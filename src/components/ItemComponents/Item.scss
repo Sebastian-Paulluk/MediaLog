@@ -56,9 +56,22 @@
 	.item {
 		display: grid;
 		grid-template-areas:
-		"name name name options" "season season notes notes";
+		"name name name options"
+		"notes notes notes notes";
 		grid-template-columns: 1fr 1fr;
 		height: 80px;
+
+		&.movie-type {
+			grid-template-areas:
+			"name name name options"
+			"minute notes notes notes";
+		}
+
+		&.series-type {
+			grid-template-areas:
+			"name name name options"
+			"season-episode notes notes notes";
+		}
 
 		.item-name {
 			width: 100%;
@@ -69,22 +82,38 @@
 		}
 
 		.item-options {
+			background-color: variables.$color4;
 			width: auto;
 			grid-area: options;
 			border-bottom: 1px solid variables.$backGroundColor;
+
 		}
 
+
 		.item-season-episode {
-			color: rgb(168, 168, 168);
 			justify-content: flex-start;
 			padding-inline: 20px;
-			grid-area: season;
+			grid-area: season-episode;
+			width: 190px;
+
+			.season-container, .episode-container {
+				gap: 5px
+			}
+
+		}
+
+		.item-from-minute{
+			justify-content: flex-start;
+			padding-inline: 20px;
+			grid-area: minute;
+			width: 170px;
+			min-width: 170px;
 		}
 
 		.item-notes {
 			border: none;
-			width: 250px;
 			grid-area: notes;
+
 		}
 
 	}

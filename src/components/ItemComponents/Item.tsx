@@ -80,6 +80,7 @@ export const Item: React.FC<ItemProps> = (props) => {
 		<>
 			<div className={
 					`item 
+					${item.type === 'Movies' ? 'movie-type' : item.type === 'Series' ? 'series-type' : ''}
 					${ isMounted ? '' : isNew ? 'firstTimeMounting' : 'mounting' }
 					${ changedCompletedState ? 'changedCompletedState' : '' }
 					`
