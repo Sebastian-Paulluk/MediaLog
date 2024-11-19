@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import './drawer.scss'
+import './Drawer.scss'
 import closeImg from '../../assets/images/close-fill.png'
 import { CategoryTypes } from "../../types/types";
 import { useDataContext } from "../../context/DataContext";
