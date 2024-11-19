@@ -1,0 +1,55 @@
+@use '../../scss/variables';
+
+.home {
+	width: 100%;
+	max-width: 1000px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+
+	.categories-container {
+		border-top: 1px solid variables.$color4;
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 15px;
+	}
+
+	.add-category-btn {
+		border-radius: 50%;
+		margin: 37px;
+		width: 76px;
+		height: 76px;
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: none;
+		background-color: transparent;
+		transition: background-color 0.2s ease;
+
+		p {
+			font-size: 80px;
+			transition: color 0.2s ease;
+			font-family: variables.$font4;
+		}
+
+		&:hover {
+			background-color: variables.$color4;
+			p {
+				color: variables.$color10;
+			}
+		}
+
+		&:active {
+			transition: none;
+			background-color: variables.$color6;
+			
+			p {
+				color: variables.$color10;
+			}
+		}
+	}
+
+}

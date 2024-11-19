@@ -1,0 +1,16 @@
+@use '../../scss/variables';
+
+.toast {
+    height: 40px;
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: variables.$color8;
+
+    &.visible {
+        opacity: 1;
+    }
+}

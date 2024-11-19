@@ -1,0 +1,62 @@
+@use '../../scss/variables';
+
+.item {
+	display: flex;
+	background-color: variables.$categoriesAndItemsBG;
+	border-radius: 10px;
+	width: 100%;
+	height: 50px;
+	cursor: pointer;
+	transition: background-color 0.2s ease,transform 0.3s ease, opacity 0.3s ease;
+    position: relative;
+	overflow: hidden;
+	opacity: 1;
+
+	&.firstTimeMounting {
+		transform: scale(0.3);
+		opacity: 0;
+	}
+
+	&.mounting {
+		transform: translateX(-50px);
+		opacity: 0;
+	}
+
+	&.changedCompletedState {
+		animation: changeBGColor 1s ease;
+	}
+
+	&.deleting {
+        opacity: 0.5;
+		pointer-events: none;
+		cursor: wait;
+    }
+
+	&:hover {
+		background-color: variables.$categoriesAndItemsBGHover;
+	}
+
+	&:active {
+		transition: none;
+		background-color: variables.$categoriesAndItemsBGActive;
+	}
+	
+
+
+}
+
+@keyframes changeBGColor {
+	from { background-color: rgb(177, 177, 0) }
+	to { background-color: variables.$categoriesAndItemsBG }
+}
+
+
+@media (max-width: 600px) {
+
+	.item {
+		display: grid;
+		height: fit-content;
+		grid-template-rows: 1fr 1fr 1fr;
+		font-size: 14px;
+	}
+}

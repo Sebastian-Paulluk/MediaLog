@@ -1,0 +1,152 @@
+@use '../../scss/variables';
+
+//global
+$background-color: variables.$color1;
+$text-color: rgb(255, 255, 255);
+$color3: rgb(85, 85, 85);
+$color4: #262a30; 
+
+//Header
+$header-height: 70px;
+$header-margin-bottom: 0px;
+$header-text-color: $text-color;
+$header-background-color: $background-color;
+$header-border-bottom-color: transparent;
+
+//Content
+$content-text-color: $text-color;
+$content-background-color: $background-color;
+$content-padding-left: 0px;
+$content-padding-right: 20px;
+$content-padding-top: 30px;
+$content-padding-bottom: 30px;
+$content-gap: 10px;
+
+//Content scroll bar
+$scroll-bar-background-color: $background-color;
+$scroll-bar-color: $color4;
+$scroll-bar-hover-color: $text-color;
+
+
+
+.drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw; 
+    z-index: 999;
+    transition: opacity 0.4s ease;
+    color: $text-color;
+    cursor: auto;
+
+    &.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+
+    &__background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+        background-color: $background-color;
+        opacity: 0.8;
+    }
+
+
+    &__menu {
+        width: 400px;
+        height: 100%;
+        background-color: $background-color;
+        border-right: 1px solid $color4;
+        transition: transform 0.5s ease;
+
+        .drawer.hidden & {
+            transform: translateX(-100%);
+        }
+
+
+        &__header {
+            width: 100%;
+            height: $header-height;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-inline: 30px;
+            margin-bottom: $header-margin-bottom;
+            color: $header-text-color;
+            background-color: $header-background-color;
+            border-bottom: 1px solid $header-border-bottom-color;
+
+            &__title {
+                font-size: larger;
+                font-weight: bolder;
+            }
+
+
+            &__close-button {
+                height:30px;
+                width: 30px;
+                border-radius: 50%;
+                color: rgb(180, 180, 180);
+                background-color: transparent;
+                font-weight: bolder;
+                font-size: large;
+                transition: transform 0.2s ease;
+                cursor: pointer;
+                
+                .close-button-img{
+                    transform: scale(1.2);
+                    width: 100%;
+                }
+
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+        }
+
+
+        &__content {
+            height: calc(100% - $header-height - $header-margin-bottom);
+            padding-top: $content-padding-top;
+            padding-bottom: $content-padding-bottom;
+            padding-left: $content-padding-left;
+            padding-right: $content-padding-right;
+            margin-right: 5px;
+            color: $content-text-color;
+            background-color: $content-background-color;
+            display: flex;
+            flex-direction: column;
+            gap: $content-gap;
+            overflow-y: scroll;
+
+            &::-webkit-scrollbar {
+                width: 3px; 
+            }
+
+            &::-webkit-scrollbar-track {
+                background: $scroll-bar-background-color;
+                border-radius: 10px;
+            }
+        
+            &::-webkit-scrollbar-thumb {
+                background-color: $scroll-bar-color; 
+                border-radius: 10px;
+            }
+        
+            &::-webkit-scrollbar-thumb:hover {
+                background: $scroll-bar-hover-color;
+                cursor: pointer;
+            }
+
+            & > * {
+                flex-shrink: 0;
+            }
+        }
+    }
+}

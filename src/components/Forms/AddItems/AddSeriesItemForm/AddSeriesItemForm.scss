@@ -1,0 +1,14 @@
+.add-series-item-form {
+    
+    .season-episode-container {
+        display: flex;
+        justify-content: space-between;
+
+        .season-input {
+            width: 48%;
+        }
+        .episode-input {
+            width: 48%;
+        }
+    }
+}

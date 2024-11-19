@@ -1,0 +1,77 @@
+@use '../../scss/variables';
+
+.latest-updates {
+    width: 100%;
+
+    &__title {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        cursor: pointer;
+        background-color: variables.$categoriesAndItemsBG;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
+        padding: 5px 20px 5px 20px;
+        color: rgb(161, 161, 161);
+        transition: border-radius 0.3s ease, background-color 0.2s ease, color 0.3s ease;
+
+        &__arrow {
+            width: 25px;
+            height: 100%;
+            transition: transform 0.2s ease;
+            transform: scaleY(-1)
+        }
+
+        &:hover {
+            background-color: variables.$categoriesAndItemsBGHover;
+            color: rgb(196, 196, 196);
+        }
+
+        &:active {
+            background-color: rgb(102, 102, 102);
+            color: white;
+            transition: border-radius 0.3s ease;
+        }
+    }
+
+    &__items-container {
+        transition: max-height 0.4s ease, opacity 0.3s ease;
+        padding-top: 3px;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        max-height: 159px;
+        opacity: 1;
+    }
+
+    &.close {
+        .latest-updates__title {
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+
+            &__arrow {
+                transform: scaleY(1)
+            }
+        }
+
+        .latest-updates__items-container {
+            max-height: 0;
+            opacity: 0;
+        }
+    }
+
+    &.empty {
+        .latest-updates__title {
+            opacity: 0.5;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            pointer-events: none;
+
+            &__arrow {
+                opacity: 0;
+                transform: scaleY(1)
+            }
+        }
+    }
+}

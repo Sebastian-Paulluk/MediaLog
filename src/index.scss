@@ -1,0 +1,19 @@
+@use './scss/variables';
+
+
+:root {
+	font-family: variables.$textFont;
+	color: variables.$textColor;
+	background-color: variables.$backGroundColor;
+}
+
+input, textarea, button {
+	font-family: variables.$textFont;
+	font-size: 16px;
+}
+
+button {
+	background: none;
+	color: white;
+	cursor: pointer;
+}

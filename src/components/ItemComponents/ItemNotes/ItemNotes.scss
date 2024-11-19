@@ -1,0 +1,29 @@
+@use '../../../scss/variables';
+
+.item-notes {
+    border-right: 1px solid variables.$backGroundColor;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    padding-inline: 20px;
+
+    &__content{
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: rgb(133, 133, 133);
+    }
+}
+
+@media (max-width: 600px) {
+
+	.item-notes {
+        justify-content: center;
+        width: 100%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-inline: 10px;
+        border-bottom: 1px solid variables.$backGroundColor;
+	}
+}

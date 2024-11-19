@@ -1,0 +1,33 @@
+@use '../../scss/variables';
+
+.search-screen {
+    width: 100%;
+    max-width: 1000px;
+    padding-inline: 20px;
+
+    .search-title {
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: variables.$textFont;
+
+        &__text {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: gray;
+
+            .query{
+                color:white;
+            }
+        }
+    }
+
+    &__items-container{
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+    }
+}

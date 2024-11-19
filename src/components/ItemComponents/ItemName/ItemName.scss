@@ -1,0 +1,29 @@
+@use '../../../scss/variables';
+
+.item-name {
+    border-right: 1px solid variables.$backGroundColor;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    padding-inline: 20px;
+
+    &__content {
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+	.item-name {
+        width: 100%;
+        justify-content: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-bottom: 2px solid variables.$backGroundColor;
+        grid-column: span 2;
+	}
+	  
+}

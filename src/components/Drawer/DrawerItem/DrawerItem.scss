@@ -1,0 +1,40 @@
+@use '../../../scss/variables';
+
+.drawer-item {
+    background-color: variables.$categoriesAndItemsBG;
+    height: 70px;
+    padding: 14px 30px 7px 60px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+
+    &__name {
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: bolder;
+    }
+
+    &__item-row  {
+
+        &__series, &__movie, &__other {
+            color: rgb(180, 180, 180);
+        }
+
+        &__other {
+            .item-row-info{
+                white-space: nowrap; 
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        &__series {
+            display: flex;
+            gap: 15px;
+        }
+    }
+
+    &:hover {
+        background-color: rgb(48, 48, 48);
+    }
+}

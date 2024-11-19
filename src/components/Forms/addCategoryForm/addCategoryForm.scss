@@ -1,0 +1,65 @@
+@use '../../../scss/variables';
+
+.add-category-form {
+    
+    .field-container {
+        .new-category-name-input {
+            margin-bottom: 15px;
+        }
+
+        .type-options-container {
+            padding-top: 10px;
+        }
+    }
+
+    .type-options-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .form__type-label {
+        display: flex;
+        gap: 5px;
+
+        .category-type-radio-button {
+            display: none;
+        }
+
+        .custom-radio {
+            position: relative; 
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            border: 2px solid variables.$borderColor;
+            background-color: transparent;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            cursor: pointer;
+
+            &:hover {
+                border-color: variables.$color9;
+            }
+        }
+
+        .category-type-radio-button:checked + .custom-radio {
+            background-color: variables.$color6;
+        }
+
+        .custom-radio::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: white;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .category-type-radio-button:checked + .custom-radio::after {
+            opacity: 1;
+        }
+    }
+}

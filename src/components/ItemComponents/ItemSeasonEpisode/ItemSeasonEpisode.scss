@@ -1,0 +1,27 @@
+@use '../../../scss/variables';
+
+.item-season-episode {
+    border-right: 1px solid variables.$backGroundColor;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 10px;
+    gap: 20px;
+
+    .season-container, .episode-container {
+        display: flex;
+        gap: 10px
+    }
+}
+
+
+@media (max-width: 600px) {
+
+	.item-season-episode {
+        width: 100%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid variables.$backGroundColor
+	}
+}

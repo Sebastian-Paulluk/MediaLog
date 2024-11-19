@@ -1,0 +1,26 @@
+.item-options {
+    width: 200px;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-inline: 20px;
+
+    .spin {
+        margin-right: auto;
+    }
+}
+
+
+
+@media (max-width: 600px) {
+
+	.item-options {
+        justify-content: center;
+        width: 100%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        grid-column: span 2;
+	}
+}

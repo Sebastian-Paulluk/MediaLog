@@ -1,0 +1,9 @@
+@use '../../../scss/variables';
+
+.item-from-minute {
+    border-right: 1px solid variables.$backGroundColor;
+    display: flex;
+    align-items: center;
+    padding-inline: 20px;
+    gap: 10px;
+}

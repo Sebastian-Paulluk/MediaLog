@@ -1,0 +1,51 @@
+@use '../../scss/variables';
+
+.header {
+    border-bottom: 1px solid #262a30;
+    height: 60px;
+
+    &__content {
+        position: relative;
+        margin: auto;
+        width: 100%;
+        max-width: 1000px;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-inline: 20px;
+
+        &__left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+        }
+
+        &__right {
+            position: absolute;
+            right: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+    }
+}
+
+.logo-name-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    .logo-img {
+        width: 25px;
+    }
+
+    .header_title {
+        font-weight: bolder;
+        font-size: larger;
+    }
+}
