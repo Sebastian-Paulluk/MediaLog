@@ -74,6 +74,7 @@
 		}
 
 		.item-name {
+			background-color: variables.$color4;
 			width: 100%;
 			grid-area: name;
 			border-right: none;
