@@ -1,10 +1,6 @@
 import { useState } from 'react'
 import './Counter.scss'
 
-interface CounterTypes {
-    
-}
-
 export const Counter = () => {
     const [counterValue, setCounterValue] = useState<number>(0)
 

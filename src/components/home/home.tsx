@@ -13,6 +13,7 @@ export const Home = () => {
 	const {categories, dataLoaded, setChangesSaved} = useDataContext();
 	const [openModal, setOpenModal] = useState(false);
 	const {setCurrentCategory} = useCurrentCategoryContext();
+	
 
 	useEffect(() => {
 		setCurrentCategory(null);

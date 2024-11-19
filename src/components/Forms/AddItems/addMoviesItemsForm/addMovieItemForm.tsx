@@ -41,12 +41,6 @@ export const AddMovieItemForm: React.FC<addMovieItemFormTypes> =({ categoryId, i
         })
     }
 
-    const resetMinuteInputValue = () => {
-        if (minuteInputRef.current) {
-            minuteInputRef.current.value = '0';
-        }
-        setMinuteValue(0);
-    };
 
     const resetInputs = () => {
         setTimeout(()=>{
