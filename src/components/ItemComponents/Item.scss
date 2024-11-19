@@ -55,8 +55,37 @@
 
 	.item {
 		display: grid;
-		height: fit-content;
-		grid-template-rows: 1fr 1fr 1fr;
-		font-size: 14px;
+		grid-template-areas:
+		"name name name options" "season season notes notes";
+		grid-template-columns: 1fr 1fr;
+		height: 80px;
+
+		.item-name {
+			width: 100%;
+			grid-area: name;
+			border-right: none;
+			justify-content: flex-start;
+			border-bottom: 1px solid variables.$backGroundColor;
+		}
+
+		.item-options {
+			width: auto;
+			grid-area: options;
+			border-bottom: 1px solid variables.$backGroundColor;
+		}
+
+		.item-season-episode {
+			color: rgb(168, 168, 168);
+			justify-content: flex-start;
+			padding-inline: 20px;
+			grid-area: season;
+		}
+
+		.item-notes {
+			border: none;
+			width: 250px;
+			grid-area: notes;
+		}
+
 	}
 }

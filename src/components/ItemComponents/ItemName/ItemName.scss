@@ -13,17 +13,3 @@
         text-overflow: ellipsis;
     }
 }
-
-
-@media (max-width: 600px) {
-
-	.item-name {
-        width: 100%;
-        justify-content: center;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        border-bottom: 2px solid variables.$backGroundColor;
-        grid-column: span 2;
-	}
-	  
-}

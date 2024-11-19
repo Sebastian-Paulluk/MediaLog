@@ -1,0 +1,23 @@
+.dots {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+
+    .dot-1, .dot-2, .dot-3 {
+        width: 2px;
+        height: 2px;
+        background-color: white;
+        transition: width 0.2s ease;
+    }
+
+    &:hover {
+        .dot-1, .dot-2, .dot-3 {
+            width: 17px;
+        }
+    }
+}

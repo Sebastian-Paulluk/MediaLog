@@ -2,7 +2,7 @@
 
 //global
 $background-color: variables.$color1;
-$text-color: rgb(255, 255, 255);
+$text-color: #ffffff;
 $color3: rgb(85, 85, 85);
 $color4: #262a30; 
 
@@ -59,7 +59,7 @@ $scroll-bar-hover-color: $text-color;
 
 
     &__menu {
-        width: 400px;
+        width: 340px;
         height: 100%;
         background-color: $background-color;
         border-right: 1px solid $color4;

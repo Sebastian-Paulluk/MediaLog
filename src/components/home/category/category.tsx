@@ -5,7 +5,7 @@ import { normalizeText } from '../../../functions/normalizeText';
 import type { MenuProps } from 'antd';
 import { Dropdown } from 'antd';
 import { useCurrentCategoryContext } from '../../../context/categoryContext';
-import dotsImg from '../../../assets/images/dots.png';
+import { Dots } from './Dots/Dots';
 
 
 type CategoryProps = {
@@ -48,9 +48,14 @@ export const Category = ({ category, deleteCategory }: CategoryProps) => {
 				</div>
 			</Link>
 
-			<Dropdown menu={{ items }} trigger={['click']} className='dropdown-categpry-options-menu'>
+			<Dropdown 
+				menu={{ items }}
+				trigger={['click']}
+				className='dropdown-categpry-options-menu'
+				 placement="bottomRight"
+			>
 				<button className='category-options-button'>
-					<img src={dotsImg} className='category-options-button__img' alt='options' />
+					<Dots />
 				</button>
 			</Dropdown>
 		</div>

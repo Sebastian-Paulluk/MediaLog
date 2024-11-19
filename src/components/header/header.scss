@@ -49,3 +49,13 @@
         font-size: larger;
     }
 }
+
+@media (max-width: 600px) {
+    .header {
+        &__content {
+            &__right{
+                gap: 5px;
+            }
+        }
+    }
+}

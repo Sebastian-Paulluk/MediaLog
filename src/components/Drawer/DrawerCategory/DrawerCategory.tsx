@@ -40,7 +40,7 @@ export const DrawerCategory: React.FC<DrawerCategoryTypes> = ({category, openCat
                     className='drawer-category__button'
                     onClick={handleCategoryClick}
                 >
-                    { category && category.name }
+                    <p className='drawer-category__button__title'>{ category && category.name }</p>
                     <p className='fav-items-size'>
                             { favoriteItems?.length }
                     </p>

@@ -22,3 +22,9 @@
         transform: translateY(2px);
     }
 }
+
+@media (max-width: 600px) {
+	.user-button {
+        padding: 3px 0px 3px 10px;
+	}
+}

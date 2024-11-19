@@ -28,4 +28,40 @@
 			width: 100%;
 		}
 	}
+
+	.current-path{
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+		max-width: 400px;
+	}
+}
+
+
+@media (max-width: 720px) {
+
+	.path {
+		.current-path {
+			max-width: 250px;
+		}
+	}
+}
+
+@media (max-width: 512px) {
+
+	.path {
+		.current-path {
+			max-width: 180px;
+		}
+	}
+}
+
+@media (max-width: 460px) {
+
+	.path {
+		.current-path {
+			max-width: 140px;
+		}
+	}
 }

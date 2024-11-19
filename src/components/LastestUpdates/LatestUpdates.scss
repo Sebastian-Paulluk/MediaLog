@@ -75,3 +75,14 @@
         }
     }
 }
+
+
+@media (max-width: 600px) {
+    
+    .latest-updates {
+
+        &__items-container {
+            max-height: 300px;
+        }
+    }
+}

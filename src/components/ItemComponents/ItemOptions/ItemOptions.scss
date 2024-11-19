@@ -11,16 +11,3 @@
         margin-right: auto;
     }
 }
-
-
-
-@media (max-width: 600px) {
-
-	.item-options {
-        justify-content: center;
-        width: 100%;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        grid-column: span 2;
-	}
-}
