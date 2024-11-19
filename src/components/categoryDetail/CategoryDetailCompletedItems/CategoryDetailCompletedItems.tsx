@@ -6,7 +6,6 @@ import arrowImg from '../../../assets/images/arrow.png';
 
 interface CategoryDetailCompletedItemsTypes {
     items: ItemTypes[];
-    newItemLoading: boolean;
 }
 
 export const CategoryDetailCompletedItems: React.FC<CategoryDetailCompletedItemsTypes> = (props) => {

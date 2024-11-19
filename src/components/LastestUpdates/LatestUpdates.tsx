@@ -40,15 +40,9 @@ export const LatestUpdates: React.FC<LastestUpdatesTypes> = () => {
                 />
             </div>
             <div className='latest-updates__items-container'>
-                {localItems.map((item, index) => {
-                    const mountingDelay = (index + 1) * 0.00;
-
-                    return <Item 
-                                mountingDelay={mountingDelay} 
-                                key={item.id}
-                                item={item}
-                            />
-                })}
+                {localItems.map(item => (
+                    <Item key={item.id} item={item} />
+                ))}
             </div>
         </div>
     )

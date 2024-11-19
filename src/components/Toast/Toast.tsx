@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useDataContext } from '../../context/DataContext'
 import './Toast.scss'
 import { Spin } from '../Spin/Spin';

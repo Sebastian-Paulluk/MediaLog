@@ -19,13 +19,12 @@ interface ItemProps {
 	isNew?: boolean;
 	changedCompletedState?: boolean;
 	mountingAnimation?: boolean;
-	mountingDelay: number;
 }
 
 export const Item: React.FC<ItemProps> = (props) => {
-	const {item, isNew=false, changedCompletedState=false, mountingAnimation=true, mountingDelay} = props
+	const {item, isNew=false, changedCompletedState=false} = props
 	const [openModal , setOpenModal] = useState<boolean>(false);
-	const isMounted: boolean = useMountingEffect(mountingDelay);
+	const isMounted: boolean = useMountingEffect();
 	const {setChangesSaved} = useDataContext();
 
 	const handleOpenModal = () => {

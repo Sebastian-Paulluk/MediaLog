@@ -19,11 +19,11 @@ export const UpdateOtherItemForm: React.FC<UpdateOtherItemFormTypes> = ({ item, 
     })
 
     const updateData = () => {
-        setOtherItemData((prevData) => ({
+        setOtherItemData({
             name: item.name,
             favorite: item.favorite,
             notes: item.notes
-        }));
+        });
     }
 
     useEffect(() => {

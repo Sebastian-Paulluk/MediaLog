@@ -17,7 +17,7 @@ const isSeriesItem = (item: ItemTypes): item is SeriesItemTypes => {
     return (item as SeriesItemTypes).season !== undefined;
 }
 
-export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item, onClose, onSubmit, openModal}) => {
+export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item, onClose, onSubmit}) => {
     const [seasonValue , setSeasonValue] = useState<number>(
         isSeriesItem(item) ? item.season : 1,
     );
@@ -35,13 +35,13 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item,
     });
 
     const updateData = () => {
-        setSeriesItemData((prevData) => ({
+        setSeriesItemData({
             name: item.name,
             favorite: item.favorite,
             season: isSeriesItem(item) ? item.season : 1,
             episode: isSeriesItem(item) ? item.episode : 1,
             notes: item.notes,
-        }));
+        });
     
         setSeasonValue(isSeriesItem(item) ? item.season : 1);
         setEpisodeValue(isSeriesItem(item) ? item.episode : 1);

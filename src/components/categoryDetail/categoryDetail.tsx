@@ -1,6 +1,6 @@
 import './categoryDetail.scss';
 import { CategoryTypes, ItemTypes } from '../../types/types';
-import { createItem, deleteItem } from '../../services/firebase';
+import { createItem } from '../../services/firebase';
 import React, { useEffect, useState } from 'react';
 import { AddOtherItemForm } from '../Forms/AddItems/addOtherItemForm/addOtherItemForm';
 import { AddMovieItemForm } from '../Forms/AddItems/addMoviesItemsForm/addMovieItemForm';
@@ -53,7 +53,7 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 	}
 
 	const formsProps = {
-		categoryId: category.id,
+		categoryId: category.id as string,
 		itemType: category.type,
 		onSubmit: handleAddItem,
 		onClose: handleCloseModal,

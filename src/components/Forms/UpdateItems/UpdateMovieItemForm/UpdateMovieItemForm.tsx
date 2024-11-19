@@ -29,12 +29,12 @@ export const UpdateMovieItemForm: React.FC<UpdateMovieItemFormTypes> = ({item, o
     });
 
     const updateData = () => {
-        setMovieItemData((prevData) => ({
+        setMovieItemData({
             name: item.name,
             favorite: item.favorite,
             minute: isMoviesItem(item) ? item.minute : 0,
             notes: item.notes
-        }));
+        });
     
         setMinute(isMoviesItem(item) ? item.minute : 0);
     }
