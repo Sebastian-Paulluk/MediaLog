@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './AddOtherItemForm.scss'
+import './addOtherItemForm.scss'
 import { OthersItemTypes } from '../../../../types/types';
 import closeImg from '../../../../assets/images/close.png';
 
