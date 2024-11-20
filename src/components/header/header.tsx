@@ -6,6 +6,7 @@ import { UserButton } from './UserButton/UserButton';
 import { useDataContext } from '../../context/DataContext';
 import { logoutUser } from '../../services/firebase';
 import logo from '../../assets/images/logo.png';
+import { SettingsButton } from './SettingsButton/SettingsButton';
 
 export const Header = () => {
 	const {user} = useDataContext();
@@ -33,8 +34,9 @@ export const Header = () => {
 							</div>
 
 							<div className='header__content__right'>
-								<FavButton />
 								<UserButton handleUserLogout={handleUserLogout} />
+								<FavButton />
+								<SettingsButton />
 							</div>
 						</>
 					) : (

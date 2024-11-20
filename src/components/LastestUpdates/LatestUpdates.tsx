@@ -23,11 +23,12 @@ export const LatestUpdates: React.FC<LastestUpdatesTypes> = () => {
         setOpen(!open);
     }
 
+
     return (
         <div 
             className={
                 `latest-updates
-                ${open ? '' : 'close'}
+                ${open ? 'open' : ''}
                 ${localItems.length === 0 ? 'empty' : ''}`
             }
         >

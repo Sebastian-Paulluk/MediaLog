@@ -21,7 +21,6 @@ export const Login: React.FC<LoginTypes> = () => {
 
     useEffect(() => {
         if (userSessionVerified && user) {
-            console.log('Este si : ' + user)
             navigate("/");
         }
     }, [user, userSessionVerified]);

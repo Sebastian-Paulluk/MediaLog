@@ -29,32 +29,48 @@ export const SearchScreen: React.FC<SearchScreenTypes> = () => {
     return (
         <div className='search-screen'>
             <div className='search-title'>
-                { currentCategory ? (
-                        <>
+
+                {   
+                    filteredItems.length > 0 ? (
+                        
+                        currentCategory ? (
+                            <>
+                                <p className='search-title__text'>
+                                    Showing results of:
+                                    <p className='query'> '{query}'</p>
+                                </p>
+                                <p className='search-title__text'>
+                                    in category:
+                                    <p className='query'> {currentCategory.name}</p>
+                                </p>
+                            </>
+                        ) : (
                             <p className='search-title__text'>
                                 Showing results of:
                                 <p className='query'> '{query}'</p>
                             </p>
-                            <p className='search-title__text'>
-                                in category:
-                                <p className='query'> {currentCategory.name}</p>
-                            </p>
-                        </>
+                        )
+
                     ) : (
                         <p className='search-title__text'>
-                            Showing results of:
+                            No items match:
                             <p className='query'> '{query}'</p>
                         </p>
-                    )
+                    )   
                 }
+                
             </div>
             <div className='search-screen__items-container'>
-                {filteredItems.map(item => (
-                    <Item 
-                        key={item.id}
-                        item={item}
-                    />
-                ))}
+                {
+                    filteredItems.length > 0 && (
+                        filteredItems.map(item => (
+                            <Item 
+                                key={item.id}
+                                item={item}
+                            />
+                        ))
+                    ) 
+                }
             </div>
         </div>
     )

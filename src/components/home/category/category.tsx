@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './category.scss';
 import { CategoryTypes } from '../../../types/types';
-import { normalizeText } from '../../../functions/normalizeText';
+import normalizeText from '../../../utils/normalizeText';
 import type { MenuProps } from 'antd';
 import { Dropdown } from 'antd';
 import { useCurrentCategoryContext } from '../../../context/categoryContext';
@@ -15,7 +15,7 @@ type CategoryProps = {
 
 
 export const Category = ({ category, deleteCategory }: CategoryProps) => {
-	const normalizedCategoryName = normalizeText(category.name)
+	const normalizedCategoryName = normalizeText.firstLettersCaps(category.name)
 	const { setCurrentCategory } = useCurrentCategoryContext();
 
 	const handleSelectCategory =()=>{

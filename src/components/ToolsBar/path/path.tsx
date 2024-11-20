@@ -1,6 +1,6 @@
 import './path.scss';
 import { Link } from 'react-router-dom';
-import { normalizeText } from '../../../functions/normalizeText';
+import normalizeText from '../../../utils/normalizeText';
 import { useCurrentCategoryContext } from '../../../context/categoryContext';
 import arrowRightImg from '../../../assets/images/arrow-right.png'
 
@@ -23,7 +23,7 @@ export const Path = () => {
 						<img src={arrowRightImg} alt='path separator' className='path-separator__img'/>
 					</span>
 					<span className="current-path active">
-						{ normalizeText(currentCategory.name) }
+						{ normalizeText.firstLettersCaps(currentCategory.name) }
 					</span>
 				</>
 			)}

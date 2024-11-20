@@ -91,7 +91,7 @@ export const Item: React.FC<ItemProps> = (props) => {
 				{item.type === 'Others' ? (
 					<>
 						<ItemName name={item.name}/>
-						{ item.notes !== "" && <ItemNotes notes={item.notes}/>}
+						<ItemNotes notes={item.notes}/>
 						<ItemOptions {...itemOptionsProps}/>
 					</>
 					

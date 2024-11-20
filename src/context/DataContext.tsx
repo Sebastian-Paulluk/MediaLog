@@ -3,6 +3,7 @@ import { CategoryTypes, ItemTypes } from "../types/types";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db, getUserData, auth } from "../services/firebase";
 import { onAuthStateChanged } from 'firebase/auth';
+import { sortByName } from "../utils/sortByName";
 
 interface DataContextType  {
     user: Record<string, any> | null;
@@ -64,7 +65,9 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
             } as CategoryTypes));
 
             const filteredCategories = categoriesData.filter(category => category.userId === user?.uid);
-            setCategories(filteredCategories);
+            const sortedCategories = filteredCategories.sort(sortByName);
+
+            setCategories(sortedCategories);
             setCategoriesLoaded(true);
         });
 
@@ -108,7 +111,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
         if (!foundItems) {
             throw new Error(`No items match categoryId.`);
         }
-        return foundItems;
+        return foundItems.sort(sortByName);
     }
 
     const getItemsByNameOrNotes = (query: string, itemsList=items) =>{
@@ -126,7 +129,8 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
     const getItemsInCategoryByNameOrNotes = (query: string, categoryId: string) =>{
         const itemList = getItemsByCategoryId(categoryId);
         const filteredItems = getItemsByNameOrNotes(query, itemList);
-        return filteredItems;
+
+        return filteredItems.sort(sortByName);
     }
 
     const existsFavoriteItems = () =>{
@@ -144,7 +148,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
                 item.favorite === true
             ));
 
-        return categoryFavoriteItems;
+        return categoryFavoriteItems.sort(sortByName);
     }
 
     const getLastUpdatedItems = () => {

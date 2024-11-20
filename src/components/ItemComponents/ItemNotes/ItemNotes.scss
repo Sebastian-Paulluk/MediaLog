@@ -13,6 +13,11 @@
         overflow: hidden;
         text-overflow: ellipsis;
         color: rgb(133, 133, 133);
+
+        .no-notes {
+            opacity: 0;
+            pointer-events: none;
+        }
     }
 }
 
