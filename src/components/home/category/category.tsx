@@ -6,6 +6,8 @@ import type { MenuProps } from 'antd';
 import { Dropdown } from 'antd';
 import { useCurrentCategoryContext } from '../../../context/categoryContext';
 import { Dots } from './Dots/Dots';
+import React from 'react';
+import { AlertDialog } from '../../AlertDialog/AlertDialog';
 
 
 type CategoryProps = {
@@ -17,6 +19,11 @@ type CategoryProps = {
 export const Category = ({ category, deleteCategory }: CategoryProps) => {
 	const normalizedCategoryName = normalizeText.firstLettersCaps(category.name)
 	const { setCurrentCategory } = useCurrentCategoryContext();
+	const [openDialog, setOpenDialog] = React.useState(false);
+
+	const handleClickOpenDialog = () => {
+        setOpenDialog(true);
+    };
 
 	const handleSelectCategory =()=>{
 		setCurrentCategory(category)
@@ -28,11 +35,12 @@ export const Category = ({ category, deleteCategory }: CategoryProps) => {
 		}
 	}
 
+
 	const items: MenuProps['items'] = [
 		{
 		  label: 'Delete',
 		  key: '0',
-		  onClick: handleDeleteCategory,
+		  onClick: handleClickOpenDialog,
 		},
 	]
 
@@ -58,6 +66,7 @@ export const Category = ({ category, deleteCategory }: CategoryProps) => {
 					<Dots />
 				</button>
 			</Dropdown>
+			<AlertDialog open={openDialog} setOpen={setOpenDialog}/>
 		</div>
 
 	);

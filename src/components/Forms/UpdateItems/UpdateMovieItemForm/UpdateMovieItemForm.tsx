@@ -5,6 +5,7 @@ import { NumberInput } from '../../../NumberInput/NumberInput';
 import closeImg from '../../../../assets/images/close.png';
 import emptyStarImg from '../../../../assets/images/favorite.png'
 import filledStarImg from '../../../../assets/images/favorite-added.png'
+import { Counter } from '../../../Counter/Counter';
 
 interface UpdateMovieItemFormTypes {
     item: ItemTypes;
@@ -147,7 +148,7 @@ export const UpdateMovieItemForm: React.FC<UpdateMovieItemFormTypes> = ({item, o
 
                 <div className='field-container'>
                     <label htmlFor='fromMinute' className='form_label'>From minute</label>
-                    <NumberInput
+                    <Counter
                         min={0}
                         name='fromMinute'
                         ref={minuteInpuRef}

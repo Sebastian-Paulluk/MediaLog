@@ -20,6 +20,8 @@
     .ant-input-number-input-wrap{
         background-color: rgb(29, 29, 29);
         border-radius: 8px;
+        display: flex !important;
+        visibility: visible !important;
     }
 
     .ant-input-number-input {

@@ -3,6 +3,7 @@ import { SeriesItemTypes } from '../../../../types/types';
 import './AddSeriesItemForm.scss'
 import { NumberInput } from '../../../NumberInput/NumberInput';
 import closeImg from '../../../../assets/images/close.png';
+import { Counter } from '../../../Counter/Counter';
 
 interface AddSeriesItemFormTypes {
     categoryId: string;
@@ -111,7 +112,7 @@ export const AddSeriesItemForm: React.FC<AddSeriesItemFormTypes> = ({ categoryId
                 <div className='field-container season-episode-container'>
                     <div className='field-container'>
                         <label htmlFor='season' className='form_label'>Season</label>
-                        <NumberInput
+                        <Counter
                             min={1}
                             name='season'
                             ref={seasonInputRef}
@@ -122,7 +123,7 @@ export const AddSeriesItemForm: React.FC<AddSeriesItemFormTypes> = ({ categoryId
 
                     <div className='field-container'>
                         <label htmlFor='episode' className='form_label'>Episode</label>
-                        <NumberInput
+                        <Counter
                             min={1}
                             name='episode'
                             ref={episodeInputRef}

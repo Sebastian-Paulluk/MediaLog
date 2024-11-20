@@ -4,6 +4,7 @@ import '../../Form.scss'
 import { MoviesItemTypes } from '../../../../types/types';
 import { NumberInput } from '../../../NumberInput/NumberInput';
 import closeImg from '../../../../assets/images/close.png';
+import { Counter } from '../../../Counter/Counter';
 
 interface addMovieItemFormTypes {
     categoryId: string;
@@ -100,7 +101,7 @@ export const AddMovieItemForm: React.FC<addMovieItemFormTypes> =({ categoryId, i
 
                 <div className='field-container'>
                     <label htmlFor='minute' className='form_label'>From minute</label>
-                    <NumberInput
+                    <Counter
                         min={0}
                         name='minute'
                         ref={minuteInputRef}

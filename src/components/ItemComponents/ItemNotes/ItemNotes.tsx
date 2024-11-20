@@ -10,9 +10,9 @@ export const ItemNotes: React.FC<ItemNotesTypes> = ({notes}) => {
 
     return (
         <div className='item-notes'>
-            <p className='item-notes__content'>
+            <span className='item-notes__content'>
                 {notes ? normalizedNotes : <p className='no-notes'>...</p>}
-            </p>
+            </span>
         </div>
     )
 }

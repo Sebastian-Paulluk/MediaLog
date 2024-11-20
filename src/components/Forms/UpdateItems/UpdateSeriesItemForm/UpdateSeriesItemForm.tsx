@@ -5,6 +5,7 @@ import { NumberInput } from '../../../NumberInput/NumberInput';
 import closeImg from '../../../../assets/images/close.png';
 import emptyStarImg from '../../../../assets/images/favorite.png'
 import filledStarImg from '../../../../assets/images/favorite-added.png'
+import { Counter } from '../../../Counter/Counter';
 
 interface UpdateSeriesItemFormTypes {
     item: ItemTypes;
@@ -128,6 +129,8 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item,
         onClose()
     };
 
+    console.log("form: " + episodeValue)
+
 
     return (
         <form onSubmit={handleSubmit} className='update-series-item-form form'>
@@ -148,7 +151,7 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item,
             <div className='form-body'>
 
                 <div className='field-container name-container'>
-                    <label htmlFor='name' className='form_label'>Name:</label>
+                    <label htmlFor='name' className='form_label'>Name</label>
                     <input
                         type='text'
                         name='name'
@@ -162,7 +165,7 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item,
                 <div className='field-container season-episode-container'>
                     <div className='field-container'>
                         <label htmlFor='season' className='form_label'>Season</label>
-                        <NumberInput
+                        <Counter
                             min={1}
                             name='season'
                             ref={seasonInputRef}
@@ -173,7 +176,7 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item,
 
                     <div className='field-container'>
                         <label htmlFor='episode' className='form_label'>Episode</label>
-                        <NumberInput
+                        <Counter
                             min={1}
                             name='episode'
                             ref={episodeInputRef}
@@ -184,7 +187,7 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item,
                 </div>
 
                 <div className='field-container'>
-                    <label htmlFor='notes' className='form_label'>Notes:</label>
+                    <label htmlFor='notes' className='form_label'>Notes</label>
                     <textarea
                         className='form__notes'
                         name='notes'
