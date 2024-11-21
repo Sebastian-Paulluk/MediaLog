@@ -16,7 +16,21 @@
         text-align: center;
         border-bottom: 1px solid variables.$borderColor;
         padding: 20px;
-        padding-bottom: 15px;
+        padding-bottom: 10px;
+
+        .item-status {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 30px;
+            gap: 10px;
+
+            &__fav-img, &__completed-img {
+                width: 25px;
+                cursor: pointer;
+            }
+        }
     }
 
     &__updating-title {
@@ -24,26 +38,11 @@
 
         .item-name {
             color: rgb(255, 255, 255);
+            width: 100%;
             font-weight: 700;
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        .fav-status {
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 10px;
-            position: absolute;
-            top: -5px;
-            left: 5px;
-
-            &__img {
-                width: 30px;
-                cursor: pointer;
-            }
         }
     }
 
@@ -62,7 +61,6 @@
 
 
     &__input {
-
         margin-top: 5px;
         width: 100%;
         border: 1px solid rgb(60, 60, 60);

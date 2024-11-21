@@ -104,7 +104,7 @@ export const Login: React.FC<LoginTypes> = () => {
                     </div>
 
                 ) : (
-                    <LoadingScreen />
+                    <LoadingScreen paddingTop='far'/>
                 )
             }
         </>

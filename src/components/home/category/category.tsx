@@ -21,10 +21,6 @@ export const Category = ({ category, deleteCategory }: CategoryProps) => {
 	const { setCurrentCategory } = useCurrentCategoryContext();
 	const [openDialog, setOpenDialog] = React.useState(false);
 
-	const handleClickOpenDialog = () => {
-        setOpenDialog(true);
-    };
-
 	const handleSelectCategory =()=>{
 		setCurrentCategory(category)
 	}
@@ -35,6 +31,9 @@ export const Category = ({ category, deleteCategory }: CategoryProps) => {
 		}
 	}
 
+	const handleClickOpenDialog = () => {
+        setOpenDialog(true);
+    };
 
 	const items: MenuProps['items'] = [
 		{
@@ -66,7 +65,11 @@ export const Category = ({ category, deleteCategory }: CategoryProps) => {
 					<Dots />
 				</button>
 			</Dropdown>
-			<AlertDialog open={openDialog} setOpen={setOpenDialog}/>
+			<AlertDialog
+				open={openDialog}
+				setOpen={setOpenDialog}
+				handleDeleteCategory={handleDeleteCategory}
+			/>
 		</div>
 
 	);

@@ -1,3 +1,30 @@
 .alert-dialog {
-    
-}
+
+    .MuiPaper-root {
+      background-color: #363636; 
+      color: #e6e6e6;
+      border-radius: 10px; 
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    }
+  
+    .MuiDialogTitle-root {
+      font-weight: bold; /* Cambia el estilo del título */
+      color: #ffffff; /* Color del título */
+    }
+
+    .MuiDialogContentText-root {
+        color: #9c9c9c; /* Color del texto dentro de DialogContentText */
+      }
+  
+    .MuiDialogActions-root {
+      background-color: rgb(37, 37, 37);
+    }
+  
+    .MuiButton-root {
+      color: #ffffff; /* Color personalizado de los botones */
+
+      &:hover {
+        background-color: #4d4d4d; 
+      }
+    }
+  }

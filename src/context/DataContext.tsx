@@ -2,7 +2,7 @@ import { createContext, ReactNode, useContext, useEffect, useState } from "react
 import { CategoryTypes, ItemTypes } from "../types/types";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db, getUserData, auth } from "../services/firebase";
-import { onAuthStateChanged } from 'firebase/auth';
+import { browserSessionPersistence, onAuthStateChanged, setPersistence } from 'firebase/auth';
 import { sortByName } from "../utils/sortByName";
 
 interface DataContextType  {
@@ -37,6 +37,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
     const [user, setUser] = useState<Record<string, any> | null>(null);
     const [userSessionVerified , setUserSessionVerified] = useState<boolean>(false);
 
+    /** 
     useEffect(() => {
         const unsubscribeAuth = onAuthStateChanged(auth, async (firebaseUser) => {
           if (firebaseUser) {
@@ -52,9 +53,32 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
         return () => {
           unsubscribeAuth(); 
         };
-      }, []);
+    }, []);
+    */
 
-
+    useEffect(() => {
+        setPersistence(auth, browserSessionPersistence)
+            .then(() => {
+                console.log('Persistencia de sesión configurada con éxito.');
+            })
+            .catch((error) => {
+                console.error('Error al configurar la persistencia de sesión:', error);
+            });
+    
+        const unsubscribeAuth = onAuthStateChanged(auth, async (firebaseUser) => {
+            if (firebaseUser) {
+                const userData = await getUserData(firebaseUser.uid);
+                setUser(userData);
+            } else {
+                setUser(null);
+            }
+            setUserSessionVerified(true);
+        });
+    
+        return () => {
+            unsubscribeAuth();
+        };
+    }, []);
 
 
     useEffect(() => {

@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { ItemTypes, SeriesItemTypes } from '../../../../types/types';
 import './UpdateSeriesItemForm.scss'
-import { NumberInput } from '../../../NumberInput/NumberInput';
 import closeImg from '../../../../assets/images/close.png';
+import completedEmpyImg from '../../../../assets/images/radio-button-unchecked.png';
+import completedFilledImg from '../../../../assets/images/radio-button-checked.png';
 import emptyStarImg from '../../../../assets/images/favorite.png'
 import filledStarImg from '../../../../assets/images/favorite-added.png'
 import { Counter } from '../../../Counter/Counter';
+
 
 interface UpdateSeriesItemFormTypes {
     item: ItemTypes;
@@ -30,6 +32,7 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item,
     const [seriesItemData , setSeriesItemData] = useState({
         name: item.name,
         favorite: item.favorite,
+        completed: item.completed,
         season: isSeriesItem(item) ? item.season : 1,
         episode: isSeriesItem(item) ? item.episode : 1,
         notes: item.notes,
@@ -39,6 +42,7 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item,
         setSeriesItemData({
             name: item.name,
             favorite: item.favorite,
+            completed: item.completed,
             season: isSeriesItem(item) ? item.season : 1,
             episode: isSeriesItem(item) ? item.episode : 1,
             notes: item.notes,
@@ -66,7 +70,13 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item,
             favorite: !prevData.favorite,
         }));
     };
-
+    
+    const handleCompletedChange = () => {
+        setSeriesItemData(prevData => ({
+            ...prevData,
+            completed: !prevData.completed,
+        }));
+    };
 
     const onChangeSeason = (newValue: number) => {
         setSeasonValue(newValue)
@@ -109,8 +119,7 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item,
             const updatedData = {
                 ...seriesItemData,
                 categoryId: item.categoryId,  
-                type: item.type,  
-                completed: item.completed,  
+                type: item.type, 
                 updatedAt: new Date().toISOString(), 
             };
     
@@ -138,14 +147,22 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item,
             <div className='form__title form__updating-title'>
                 Updating series:
                 <div className='item-name'>{item.name}</div>
-                <div className='fav-status'>
+
+                <div className='item-status'>
                     <img
                         src={seriesItemData.favorite ? filledStarImg : emptyStarImg}
                         alt='fav-status'
-                        className='fav-status__img'
+                        className='item-status__fav-img'
                         onClick={handleFavoriteChange}
                     />
+                    <img
+                        src={seriesItemData.completed ? completedFilledImg : completedEmpyImg}
+                        alt='completed-status'
+                        className='item-status__completed-img'
+                        onClick={handleCompletedChange}
+                    />
                 </div>
+                
             </div>
 
             <div className='form-body'>
@@ -193,7 +210,7 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item,
                         name='notes'
                         value={seriesItemData.notes}
                         onChange={handleNotesChange}
-                        rows={5}
+                        rows={2}
                         cols={50}
                     />
                 </div>

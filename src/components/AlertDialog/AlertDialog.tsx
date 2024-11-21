@@ -10,37 +10,47 @@ import DialogTitle from '@mui/material/DialogTitle';
 interface DialogTypes {
     open: boolean;
     setOpen: (open: boolean) => void;
+    handleDeleteCategory: () => void;
 }
 
-export const AlertDialog: React.FC<DialogTypes> = ({open, setOpen}) => {
+
+
+export const AlertDialog: React.FC<DialogTypes> = ({open, setOpen, handleDeleteCategory}) => {
 
     const handleClose = () => {
         setOpen(false);
     };
 
+    const handleConfirm =()=> {
+      handleDeleteCategory();
+      handleClose();
+    }
+
+
+
     return (
       <React.Fragment>
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">
-            {"Delete category?"}
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-             This will erase all the items asociated with this category as well.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>CANCEL</Button>
-            <Button onClick={handleClose} autoFocus>
-              CONFIRM
-            </Button>
-          </DialogActions>
-        </Dialog>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+            className="alert-dialog"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {"Delete category?"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                This will erase all the items associated with this category as well
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>CANCEL</Button>
+              <Button onClick={handleConfirm} autoFocus>CONFIRM</Button>
+            </DialogActions>
+
+          </Dialog>
       </React.Fragment>
   );
 }

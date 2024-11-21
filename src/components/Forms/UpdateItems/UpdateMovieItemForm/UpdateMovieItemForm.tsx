@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { ItemTypes, MoviesItemTypes } from '../../../../types/types';
 import './UpdateMovieItemForm.scss'
-import { NumberInput } from '../../../NumberInput/NumberInput';
 import closeImg from '../../../../assets/images/close.png';
 import emptyStarImg from '../../../../assets/images/favorite.png'
+import completedEmpyImg from '../../../../assets/images/radio-button-unchecked.png';
+import completedFilledImg from '../../../../assets/images/radio-button-checked.png';
 import filledStarImg from '../../../../assets/images/favorite-added.png'
 import { Counter } from '../../../Counter/Counter';
 
@@ -25,6 +26,7 @@ export const UpdateMovieItemForm: React.FC<UpdateMovieItemFormTypes> = ({item, o
     const [movieItemData , setMovieItemData] = useState({
         name: item.name,
         favorite: item.favorite,
+        completed: item.completed,
         minute: isMoviesItem(item) ? item.minute : 0,
         notes: item.notes
     });
@@ -33,6 +35,7 @@ export const UpdateMovieItemForm: React.FC<UpdateMovieItemFormTypes> = ({item, o
         setMovieItemData({
             name: item.name,
             favorite: item.favorite,
+            completed: item.completed,
             minute: isMoviesItem(item) ? item.minute : 0,
             notes: item.notes
         });
@@ -56,6 +59,13 @@ export const UpdateMovieItemForm: React.FC<UpdateMovieItemFormTypes> = ({item, o
         setMovieItemData(prevData => ({
             ...prevData,
             favorite: !prevData.favorite,
+        }));
+    };
+
+    const handleCompletedChange = () => {
+        setMovieItemData(prevData => ({
+            ...prevData,
+            completed: !prevData.completed,
         }));
     };
 
@@ -94,8 +104,7 @@ export const UpdateMovieItemForm: React.FC<UpdateMovieItemFormTypes> = ({item, o
             const updatedData = {
                 ...movieItemData,
                 categoryId: item.categoryId,  
-                type: item.type,  
-                completed: item.completed,  
+                type: item.type,
                 updatedAt: new Date().toISOString(), 
             };
     
@@ -122,14 +131,23 @@ export const UpdateMovieItemForm: React.FC<UpdateMovieItemFormTypes> = ({item, o
             <div className='form__title form__updating-title'>
                 Updating movie:
                 <div className='item-name'>{item.name}</div>
-                <div className='fav-status'>
+
+
+                <div className='item-status'>
                     <img
                         src={movieItemData.favorite ? filledStarImg : emptyStarImg}
                         alt='fav-status'
-                        className='fav-status__img'
+                        className='item-status__fav-img'
                         onClick={handleFavoriteChange}
                     />
+                    <img
+                        src={movieItemData.completed ? completedFilledImg : completedEmpyImg}
+                        alt='completed-status'
+                        className='item-status__completed-img'
+                        onClick={handleCompletedChange}
+                    />
                 </div>
+
             </div>
 
             <div className='form-body'>
@@ -163,7 +181,7 @@ export const UpdateMovieItemForm: React.FC<UpdateMovieItemFormTypes> = ({item, o
                         className='form__notes'
                         name='notes'
                         value={movieItemData.notes}
-                        rows={5}
+                        rows={2}
                         cols={50}
                         onChange={handleNotesChange}
                     />

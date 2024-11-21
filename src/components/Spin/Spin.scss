@@ -19,6 +19,14 @@
         width: 55px;
         height: 55px;
     }
+
+    &.normal {
+        margin-top: 50px;
+    }
+
+    &.far {
+        margin-top: 150px;
+    }
 }
 
 @keyframes rotate {

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import './addOtherItemForm.scss'
 import { OthersItemTypes } from '../../../../types/types';
+import emptyStarImg from '../../../../assets/images/favorite.png'
+import filledStarImg from '../../../../assets/images/favorite-added.png'
 import closeImg from '../../../../assets/images/close.png';
 
 interface addOtherItemFormTypes {
@@ -28,12 +30,21 @@ export const AddOtherItemForm: React.FC<addOtherItemFormTypes> =({ categoryId, i
         })
     }
 
+    const handleFavoriteChange = () => {
+        setNewItemData(prevData => ({
+            ...prevData,
+            favorite: !prevData.favorite,
+        }));
+    };
+
     const handleNotesChange =(e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setNewItemData({
             ...newItemData,
             notes: e.target.value
         })
     }
+
+
 
     const resetInputs = () => {
         setTimeout(()=>{
@@ -66,7 +77,19 @@ export const AddOtherItemForm: React.FC<addOtherItemFormTypes> =({ categoryId, i
     return(
         <form onSubmit={handleSubmit} className='form add-other-item-form'>
             
-            <div className='form__title'>Adding item</div>
+            <div className='form__title'>
+                Adding item
+
+                <div className='item-status'>
+                    <img
+                        src={newItemData.favorite ? filledStarImg : emptyStarImg}
+                        alt='fav-status'
+                        className='item-status__fav-img'
+                        onClick={handleFavoriteChange}
+                    />
+                </div>
+                
+            </div>
 
             <div className='form-body'>
 
@@ -89,7 +112,7 @@ export const AddOtherItemForm: React.FC<addOtherItemFormTypes> =({ categoryId, i
                         name='notes'
                         value={newItemData.notes}
                         onChange={handleNotesChange}
-                        rows={5}
+                        rows={2}
                         cols={50}
                     />
                 </div>

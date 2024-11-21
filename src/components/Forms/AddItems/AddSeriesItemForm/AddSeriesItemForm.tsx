@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react';
 import { SeriesItemTypes } from '../../../../types/types';
 import './AddSeriesItemForm.scss'
-import { NumberInput } from '../../../NumberInput/NumberInput';
 import closeImg from '../../../../assets/images/close.png';
+import emptyStarImg from '../../../../assets/images/favorite.png'
+import filledStarImg from '../../../../assets/images/favorite-added.png'
 import { Counter } from '../../../Counter/Counter';
 
 interface AddSeriesItemFormTypes {
@@ -35,6 +36,13 @@ export const AddSeriesItemForm: React.FC<AddSeriesItemFormTypes> = ({ categoryId
             name: e.target.value
         })
     }
+
+    const handleFavoriteChange = () => {
+        setNewSeriesData(prevData => ({
+            ...prevData,
+            favorite: !prevData.favorite,
+        }));
+    };
 
     const onChangeSeason = (newValue: number) => {
         setSeasonValue(newValue)
@@ -93,7 +101,19 @@ export const AddSeriesItemForm: React.FC<AddSeriesItemFormTypes> = ({ categoryId
     return (
         <form onSubmit={handleSubmit} className='add-series-item-form form'>
 
-            <div className='form__title'>Adding serie</div>
+            <div className='form__title'>
+                Adding serie
+
+                <div className='item-status'>
+                    <img
+                        src={newSeriesData.favorite ? filledStarImg : emptyStarImg}
+                        alt='fav-status'
+                        className='item-status__fav-img'
+                        onClick={handleFavoriteChange}
+                    />
+                </div>
+                
+            </div>
 
             <div className='form-body'>
 
@@ -140,7 +160,7 @@ export const AddSeriesItemForm: React.FC<AddSeriesItemFormTypes> = ({ categoryId
                         name='notes'
                         value={newSeriesData.notes}
                         onChange={handleNotesChange}
-                        rows={5}
+                        rows={2}
                         cols={50}
                     />
                 </div>

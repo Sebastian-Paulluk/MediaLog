@@ -2,8 +2,9 @@ import React, { useRef, useState } from 'react'
 import './addMovieItemForm.scss'
 import '../../Form.scss'
 import { MoviesItemTypes } from '../../../../types/types';
-import { NumberInput } from '../../../NumberInput/NumberInput';
 import closeImg from '../../../../assets/images/close.png';
+import emptyStarImg from '../../../../assets/images/favorite.png'
+import filledStarImg from '../../../../assets/images/favorite-added.png'
 import { Counter } from '../../../Counter/Counter';
 
 interface addMovieItemFormTypes {
@@ -33,6 +34,13 @@ export const AddMovieItemForm: React.FC<addMovieItemFormTypes> =({ categoryId, i
             name: e.target.value
         })
     }
+
+    const handleFavoriteChange = () => {
+        setNewItemData(prevData => ({
+            ...prevData,
+            favorite: !prevData.favorite,
+        }));
+    };
 
     const onChangeMinute = (newValue: number) => {
         setMinuteValue(newValue)
@@ -83,7 +91,19 @@ export const AddMovieItemForm: React.FC<addMovieItemFormTypes> =({ categoryId, i
     return(
         <form onSubmit={handleSubmit} className='form add-movie-item-form'>
 
-            <div className='form__title'> Adding movie</div>
+            <div className='form__title'>
+                Adding movie
+
+                <div className='item-status'>
+                    <img
+                        src={newItemData.favorite ? filledStarImg : emptyStarImg}
+                        alt='fav-status'
+                        className='item-status__fav-img'
+                        onClick={handleFavoriteChange}
+                    />
+                </div>
+
+            </div>
 
             <div className='form-body'>
 
@@ -117,7 +137,7 @@ export const AddMovieItemForm: React.FC<addMovieItemFormTypes> =({ categoryId, i
                         name='notes'
                         value={newItemData.notes}
                         onChange={handleNotesChange}
-                        rows={5}
+                        rows={2}
                         cols={50}
                     />
                 </div>
