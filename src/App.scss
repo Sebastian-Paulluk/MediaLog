@@ -3,15 +3,9 @@
 	padding: 0;
 	border: 0;
 	box-sizing: border-box;
-}
 
-@media (max-width: 600px) {
-	* {
-
-		&:focus {
-			outline: none; 
-			border: 2px solid #777777; 
-		}
+	&:focus {
+		outline: none; 
 	}
 }
 
