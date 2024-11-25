@@ -6,15 +6,24 @@
         .new-category-name-input {
             margin-bottom: 15px;
         }
-
-        .type-options-container {
-            padding-top: 10px;
-        }
     }
 
     .type-options-container {
         display: flex;
         justify-content: space-between;
+        border: 1px solid rgb(60, 60, 60);
+        border-radius: 5px;
+        position: relative;
+        padding: 20px 10px 20px 10px;
+
+        .type-label {
+            background-color: rgb(20, 20, 20);
+            position: absolute;
+            top: -15px;
+            left: 0;
+            padding: 0 10px 0 3px;
+            transform: translateX(-3px);
+        }
     }
 
     .form__type-label {

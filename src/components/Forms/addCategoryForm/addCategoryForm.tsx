@@ -81,8 +81,10 @@ export const AddCategoryForm: React.FC<addCategoryFormTypes> =({ onSubmit, onClo
                 </div>
                 
                 <div className='field-container'>
-                    <label className='type-label form__label'>Type:</label>
                     <div className='type-options-container'>
+
+                        <label className='type-label form__label'>Type:</label>
+                        
                         <label className='form__type-label'>
                             Series
                             <input
