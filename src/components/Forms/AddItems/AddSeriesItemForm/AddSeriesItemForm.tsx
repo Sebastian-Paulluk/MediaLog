@@ -118,7 +118,7 @@ export const AddSeriesItemForm: React.FC<AddSeriesItemFormTypes> = ({ categoryId
             <div className='form-body'>
 
                 <div className='field-container name-container'>
-                    <label htmlFor='name' className='form_label'>Name:</label>
+                    <label htmlFor='name' className='form_label'>Name</label>
                     <input
                         type='text'
                         name='name'
@@ -154,7 +154,7 @@ export const AddSeriesItemForm: React.FC<AddSeriesItemFormTypes> = ({ categoryId
                 </div>
 
                 <div className='field-container'>
-                    <label htmlFor='notes' className='form_label'>Notes:</label>
+                    <label htmlFor='notes' className='form_label'>Notes</label>
                     <textarea
                         className='form__notes'
                         name='notes'

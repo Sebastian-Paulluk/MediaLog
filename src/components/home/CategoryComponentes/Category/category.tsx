@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import './category.scss';
-import { CategoryTypes } from '../../../types/types';
-import normalizeText from '../../../utils/normalizeText';
+import { CategoryTypes } from '../../../../types/types';
+import normalizeText from '../../../../utils/normalizeText';
 import type { MenuProps } from 'antd';
 import { Dropdown } from 'antd';
-import { useCurrentCategoryContext } from '../../../context/categoryContext';
-import { Dots } from './Dots/Dots';
+import { useCurrentCategoryContext } from '../../../../context/categoryContext';
+import { Dots } from '../Dots/Dots';
 import React from 'react';
-import { AlertDialog } from '../../AlertDialog/AlertDialog';
+import { AlertDialog } from '../../../AlertDialog/AlertDialog';
 
 
 type CategoryProps = {

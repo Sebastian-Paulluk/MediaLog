@@ -1,4 +1,4 @@
-import { Category } from './category/category';
+import { Category } from './CategoryComponentes/Category/category';
 import './home.scss';
 import { useEffect, useState } from 'react';
 import { createCategory, deleteCategory } from '../../services/firebase';

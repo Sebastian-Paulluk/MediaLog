@@ -153,7 +153,7 @@ export const UpdateMovieItemForm: React.FC<UpdateMovieItemFormTypes> = ({item, o
             <div className='form-body'>
             
                 <div className='field-container from-min-container'>
-                    <label htmlFor='name' className='form__label'>Name:</label>
+                    <label htmlFor='name' className='form__label'>Name</label>
                     <input
                         className='form__input'
                         type='text'
@@ -176,7 +176,7 @@ export const UpdateMovieItemForm: React.FC<UpdateMovieItemFormTypes> = ({item, o
                 </div>
 
                 <div className='field-container from-min-container'>
-                    <label htmlFor='notes' className='form__label'>Notes:</label>
+                    <label htmlFor='notes' className='form__label'>Notes</label>
                     <textarea
                         className='form__notes'
                         name='notes'

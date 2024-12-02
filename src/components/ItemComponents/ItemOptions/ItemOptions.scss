@@ -1,13 +1,34 @@
-.item-options {
-    width: 200px;
+@use '../../../scss/variables';
+
+.item-options-container {
     margin-left: auto;
     display: flex;
-    align-items: center;
     justify-content: flex-end;
-    gap: 10px;
-    padding-inline: 20px;
+    align-items: center;
+    padding-inline: 10px;
+    width: fit-content;
 
-    .spin {
-        margin-right: auto;
+    .item-options {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        transition:
+            width 0.2s ease,
+            padding 0.2s ease,
+            opacity 0.5s ease;
+            opacity: 0;
+        width: 0px;
+        padding: 0px;
+
+        &.open {
+            width: 123px;
+            padding-inline: 10px;
+            opacity: 1;
+        }
+    }
+
+    &__button {
+        border-radius: 50%;
     }
 }

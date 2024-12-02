@@ -94,7 +94,7 @@ export const AddOtherItemForm: React.FC<addOtherItemFormTypes> =({ categoryId, i
             <div className='form-body'>
 
                 <div className='field-container'>
-                    <label htmlFor='name' className='form__label'>Name:</label>
+                    <label htmlFor='name' className='form__label'>Name</label>
                     <input
                         className='form__input'
                         type='text'
@@ -106,7 +106,7 @@ export const AddOtherItemForm: React.FC<addOtherItemFormTypes> =({ categoryId, i
                 </div>
 
                 <div className='field-container'>
-                    <label htmlFor='notes' className='form__label'>Notes:</label>
+                    <label htmlFor='notes' className='form__label'>Notes</label>
                     <textarea
                         className='form__notes'
                         name='notes'

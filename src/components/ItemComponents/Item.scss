@@ -1,6 +1,7 @@
 @use '../../scss/variables';
 
 .item {
+	border: 1px solid transparent;
 	display: flex;
 	background-color: variables.$categoriesAndItemsBG;
 	border-radius: 10px;
@@ -16,19 +17,6 @@
 	overflow: hidden;
 	opacity: 1;
 
-	&.firstTimeMounting {
-		transform: scale(0.3);
-		opacity: 0;
-	}
-
-	&.mounting {
-		transform: translateX(-50px);
-		opacity: 0;
-	}
-
-	&.changedCompletedState {
-		animation: changeBGColor 1s ease;
-	}
 
 	&.deleting {
         opacity: 0.5;
@@ -44,16 +32,8 @@
 		transition: none;
 		background-color: variables.$categoriesAndItemsBGActive;
 	}
-	
-
 
 }
-
-@keyframes changeBGColor {
-	from { background-color: rgb(177, 177, 0) }
-	to { background-color: variables.$categoriesAndItemsBG }
-}
-
 
 @media (max-width: 600px) {
 
@@ -64,7 +44,7 @@
 		"notes notes notes notes";
 		grid-template-columns: 1fr 1fr;
 		height: 80px;
-		border:1px solid transparent;
+
 		
 		&:hover {
 			background-color: variables.$categoriesAndItemsBG;
@@ -92,7 +72,7 @@
 			border-bottom: 1px solid variables.$backGroundColor;
 		}
 
-		.item-options {
+		.item-options-container {
 			background-color: variables.$color4;
 			width: auto;
 			grid-area: options;
