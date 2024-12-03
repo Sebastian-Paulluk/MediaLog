@@ -50,6 +50,18 @@
             opacity: 1;
         }
     }
+
+    &.empty {
+        pointer-events: none;
+
+        .completed-title{
+            color: rgb(83, 83, 83);
+            
+            .arrow-img{
+                display: none;
+            }
+        }
+    }
 }
 
 @keyframes horizontalMountingMovement {

@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react"
-import { CategoryTypes, ItemTypes } from "../types/types";
+import { CategoryTypes, FolderTypes, ItemTypes } from "../types/types";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db, getUserData, auth } from "../services/firebase";
 import { browserSessionPersistence, onAuthStateChanged, setPersistence } from 'firebase/auth';
@@ -9,11 +9,13 @@ interface DataContextType  {
     user: Record<string, any> | null;
     userSessionVerified: boolean;
     items: ItemTypes[];
+    folders: FolderTypes[];
     categories: CategoryTypes[];
     changesSaved: boolean;
     setChangesSaved: React.Dispatch<React.SetStateAction<boolean>>;
     dataLoaded: boolean;
     getCategoryById: (id: string) => CategoryTypes;
+    getFoldersByCategoryId: (id: string) => FolderTypes[];
     getItemsByCategoryId: (categoryId: string) => ItemTypes[];
     getItemsByNameOrNotes: (query: string) => ItemTypes[];
     getItemsInCategoryByNameOrNotes: (query: string, categoryId: string) => ItemTypes[];
@@ -30,8 +32,10 @@ interface DataProviderProps {
 
 export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
     const [items, setItems] = useState<ItemTypes[]>([]);
+    const [folders, setFolders] = useState<FolderTypes[]>([]);
     const [categories, setCategories] = useState<CategoryTypes[]>([]);
-    const [itemsLoaded, setItemsLoaded] = useState(false);  
+    const [itemsLoaded, setItemsLoaded] = useState(false);
+    const [foldersLoaded, setFoldersLoaded] = useState(false);  
     const [categoriesLoaded, setCategoriesLoaded] = useState(false);
     const [changesSaved, setChangesSaved] = useState(true);
     const [user, setUser] = useState<Record<string, any> | null>(null);
@@ -99,6 +103,27 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
             unsubscribeCategories();
         }
     }, [user]);
+
+
+    useEffect(() => {
+        const unsubscribeFolders = onSnapshot(collection(db, 'folders'), (snapshot) => {
+            const foldersData: FolderTypes[] = snapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            } as FolderTypes));
+
+            const filteredFolders = foldersData.filter(folder =>
+                categories.some(category => category.id === folder.categoryId)
+            )
+
+            setFolders(filteredFolders);
+            setFoldersLoaded(true);
+        });
+
+        return () => {
+            unsubscribeFolders();
+        }
+    }, [categories, categoriesLoaded]);
     
 
     useEffect(() => {
@@ -128,6 +153,14 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
             throw new Error(`Category with id ${id} not found`);
         }
         return category;
+    }
+
+    const getFoldersByCategoryId = (categoryId: string) => {
+        const foundFolders = folders.filter(folder => folder.categoryId === categoryId);
+        if (!foundFolders) {
+            throw new Error(`No folder match categoryId.`);
+        }
+        return foundFolders.sort(sortByName);
     }
 
     const getItemsByCategoryId = (categoryId: string) => {
@@ -184,16 +217,20 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
         }
         return [];
     };
+
+
     
     return (
         <DataContext.Provider value={{
             user,
             items,
+            folders,
             categories,
             changesSaved,
-            dataLoaded: itemsLoaded && categoriesLoaded,
+            dataLoaded: itemsLoaded && foldersLoaded && categoriesLoaded,
             setChangesSaved,
             getCategoryById,
+            getFoldersByCategoryId,
             getItemsByCategoryId,
             getItemsByNameOrNotes,
             getItemsInCategoryByNameOrNotes,

@@ -216,6 +216,18 @@ export const getItemsByCategory = async (categoryId: string) => {
 	return items;
 };
 
+export const getFoldersByCategory = async (categoryId: string) => {
+	const ItemsColletionRef = collection(db, 'folders');
+	const q = query(ItemsColletionRef, where('categoryId', '==', categoryId));
+	const querySnapshot = await getDocs(q);
+	const items = querySnapshot.docs.map(doc => ({
+		id: doc.id,
+		...doc.data(),
+	})) as ItemTypes[];
+
+	return items;
+};
+
 export const getFavoriteItems = async () => {
 	const ItemsColletionRef = collection(db, 'items');
 	const q = query(ItemsColletionRef, where('favorite', '==', true));
@@ -292,3 +304,5 @@ export const deleteItemsByCategory = async (categoryId: string) => {
         console.error('Error eliminando los items:', error);
     }
 }
+
+

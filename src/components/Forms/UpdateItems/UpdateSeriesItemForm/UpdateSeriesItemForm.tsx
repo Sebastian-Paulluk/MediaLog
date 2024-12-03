@@ -138,8 +138,6 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item,
         onClose()
     };
 
-    console.log("form: " + episodeValue)
-
 
     return (
         <form onSubmit={handleSubmit} className='update-series-item-form form'>

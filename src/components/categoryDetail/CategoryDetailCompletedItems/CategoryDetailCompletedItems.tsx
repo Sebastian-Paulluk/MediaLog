@@ -30,7 +30,8 @@ export const CategoryDetailCompletedItems: React.FC<CategoryDetailCompletedItems
         <div
             className={
                 `category-detail-completed-items
-                ${expanded ? 'expanded' : ''}`
+                ${expanded ? 'expanded' : ''}
+                ${props.items.length === 0 ? 'empty' : ''}`
             }
         >
             <h3 className='completed-title' onClick={toggleListView} ref={titleRef}>

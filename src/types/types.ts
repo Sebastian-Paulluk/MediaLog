@@ -42,6 +42,12 @@ export interface OthersItemTypes {
 
 export type ItemTypes = SeriesItemTypes | MoviesItemTypes | OthersItemTypes
 
+export interface FolderTypes {
+	id?: string;
+	name: string;
+	categoryId: string;
+}
+
 export interface CategoryTypes {
 	id?: string;
 	name: string;

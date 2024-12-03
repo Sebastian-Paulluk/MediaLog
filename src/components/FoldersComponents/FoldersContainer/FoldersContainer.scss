@@ -1,0 +1,133 @@
+@use '../../../scss/variables';
+
+.folders-container {
+    margin: 2px;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    padding-left: none;
+    transition: padding 0.3s;
+    height: 100%;
+    height: calc(100vh - 161px);
+    
+    .open-folders-button{
+        display: flex;
+        align-items: center;
+        position: absolute;
+        top: 5px;
+        left: 15px;
+        font-weight: 600;
+        font-size: larger;
+        overflow: hidden;
+
+        &__img-container {
+            height: 100%;
+            width: 20px;
+            display: flex;
+            transform: translateY(1px);
+
+            &__img {
+                width: 100%;
+                transition: transform 0.3s ease;
+            }
+        }
+    }
+
+    .folders-content {
+        margin-top: 40px;
+        border-top: 1px solid #262a30;
+
+        height: 100%;
+        width: 0px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        gap: 5px;
+        padding-top: 10px;
+        opacity: 0;
+        transition: width 0.3s ease, opacity 0.2s ease;
+
+        &__folders-container {
+
+        }
+
+        &__button-container {
+            margin-top: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+            .add-folder-button {
+                background-color: variables.$color5;
+                font-weight: bolder;
+                padding-inline: 10px;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                font-size: 25px;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: background-color 0.2s ease, color 0.2s ease;
+                font-family: variables.$font4;
+                color: variables.$backGroundColor;
+            
+                &:hover {
+                    background-color: variables.$color7;
+                    color: white;
+                }
+        
+                &:active {
+                    transition: none;
+                    background-color: variables.$color9;
+                    color: white;
+                }
+            }
+        }
+    }
+
+    &.open {
+        padding-left: 15px;
+        border-right: 1px solid #262a30;
+
+        .open-folders-button{
+            &__img-container {
+                &__img {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+        
+        .folders-content {
+            opacity: 1;
+            width: 230px;
+        }
+    }
+}
+
+@media (min-width: 1515px) {
+    
+    .folders-container {
+        padding-left: 15px;
+        position: absolute;
+        left: 0px;
+        top: 120px;
+        height: calc(100vh - 161px);
+        border-right: 1px solid #262a30;
+
+        .open-folders-button{
+            pointer-events: none;
+    
+            &__img-container {
+                display: none;
+            }
+        }
+
+        .folders-content {
+            opacity: 1;
+            width: 230px;
+        }
+    }
+}

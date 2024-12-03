@@ -33,6 +33,11 @@
 		background-color: variables.$categoriesAndItemsBGActive;
 	}
 
+	&.mounting {
+		transform: translateX(-50px);
+		opacity: 0;
+	}
+
 }
 
 @media (max-width: 600px) {

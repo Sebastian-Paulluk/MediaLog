@@ -1,0 +1,53 @@
+.folder {
+    display: flex;
+    justify-content: flex-start;
+    width: fit-content;
+    padding-left: 10px;
+    position: relative;
+
+    &__lines {
+        position: absolute;
+        top:-15px;
+        height: 100%;
+        width: 15px;
+        border-left: 1px solid rgb(83, 83, 83);
+        border-bottom: 1px solid rgb(83, 83, 83);
+    }
+
+    &__details {
+        display: flex;
+        padding-left: 10px;
+        cursor: pointer;
+        margin-left: 10px;
+        width: 100%;
+
+        &__img-container {
+            width: 30px;
+            height: 30px;
+        
+            .folder-img {
+                width: 100%;
+            }
+            margin-right: 5px;
+        }
+
+        &__name-container {
+            width: 155px;
+            display: flex;
+            align-items: center;
+            color: rgb(158, 158, 158);
+
+            &__name {
+                transition: color 0.2s ease;
+                white-space: nowrap; 
+                overflow: hidden;
+                text-overflow: ellipsis;
+    
+                &:hover {
+                    color:white;
+                }
+            }
+
+        }
+    }
+}

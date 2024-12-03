@@ -9,6 +9,7 @@ import { AddSeriesItemForm } from '../Forms/AddItems/AddSeriesItemForm/AddSeries
 import { CategoryDetailUncompletedItems } from './CategoryDetailUncompletedItems/CategoryDetailUncompletedItems';
 import { CategoryDetailCompletedItems } from './CategoryDetailCompletedItems/CategoryDetailCompletedItems';
 import { useDataContext } from '../../context/DataContext';
+import { FoldersContainer } from '../FoldersComponents/FoldersContainer/FoldersContainer';
 
 interface CategoryDetailTypes {
 	category: CategoryTypes;
@@ -19,6 +20,11 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 	const [updatedItems, setUpdatedItems] = useState<ItemTypes[]>([]);
 	const [openModal, setOpenModal] = useState(false);
 	const {setChangesSaved} = useDataContext();
+    const [openFoldersMenu , setOpenFoldersMenu] = useState(false);
+
+    const handleToggleOpenFoldersMenu =()=> {
+        setOpenFoldersMenu(!openFoldersMenu);
+    }
 
 	const handleOpenModal = () => {
         setOpenModal(true);
@@ -61,12 +67,22 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 
 	return (
 		<div className="category-detail">
-			<div className='add-item-button-container'>
-				<button className='add-item-button' onClick={handleOpenModal}>+</button>
-			</div>
 
-			<CategoryDetailUncompletedItems {...uncompletedItemProps} />
-			<CategoryDetailCompletedItems {...completedItemProps} />
+			<div className='category-detail__center'>
+				<FoldersContainer
+					category={category}
+					openFoldersMenu={openFoldersMenu}
+					handleToggleOpenFoldersMenu={handleToggleOpenFoldersMenu}
+				/>
+				<div className='category-detail__center__items-content'>
+					<div className={`add-item-button-container ${openFoldersMenu ? 'align-left' : ''}`}>
+						<button className='add-item-button' onClick={handleOpenModal}>+</button>
+					</div>
+
+					<CategoryDetailUncompletedItems {...uncompletedItemProps} />
+					<CategoryDetailCompletedItems {...completedItemProps} />
+				</div>
+			</div>
 
 			<Modal onClose={handleCloseModal} open={openModal} >
 				{category.id && (
