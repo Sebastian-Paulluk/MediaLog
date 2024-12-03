@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ItemTypes } from '../../../types/types';
 import { CompletedButton } from './CompletedButton/CompletedButton'
 import { DeleteItemButton } from './DeleteItemButton/DeleteItemButton'
