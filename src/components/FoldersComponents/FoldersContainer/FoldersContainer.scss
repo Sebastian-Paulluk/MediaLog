@@ -1,14 +1,16 @@
 @use '../../../scss/variables';
 
 .folders-container {
-    margin: 2px;
     display: flex;
     justify-content: flex-end;
     position: relative;
-    padding-left: none;
+    padding-left: 0;
+    padding-right: 0;
     transition: padding 0.3s;
     height: 100%;
     height: calc(100vh - 161px);
+    border-right: 1px solid transparent;
+    transition: border-color 0.3s ease;
     
     .open-folders-button{
         display: flex;
@@ -16,9 +18,14 @@
         position: absolute;
         top: 5px;
         left: 15px;
-        font-weight: 600;
         font-size: larger;
         overflow: hidden;
+        color: rgb(216, 216, 216);
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: white;
+        }
 
         &__img-container {
             height: 100%;
@@ -48,7 +55,7 @@
         transition: width 0.3s ease, opacity 0.2s ease;
 
         &__folders-container {
-
+            padding-left: 15px;
         }
 
         &__button-container {
@@ -89,8 +96,8 @@
     }
 
     &.open {
-        padding-left: 15px;
         border-right: 1px solid #262a30;
+        height: calc(100vh - 110px);
 
         .open-folders-button{
             &__img-container {
@@ -102,7 +109,7 @@
         
         .folders-content {
             opacity: 1;
-            width: 230px;
+            width: 250px;
         }
     }
 }
@@ -110,11 +117,10 @@
 @media (min-width: 1515px) {
     
     .folders-container {
-        padding-left: 15px;
         position: absolute;
         left: 0px;
-        top: 120px;
-        height: calc(100vh - 161px);
+        top: 109px;
+        height: calc(100vh - 109px);
         border-right: 1px solid #262a30;
 
         .open-folders-button{
@@ -128,7 +134,30 @@
         .folders-content {
             transition: none;
             opacity: 1;
-            width: calc((100vw - 1070px) / 2);
+            width: calc((100vw - 1035px) / 2);
+            height: fit-content;
+        }
+
+        &.open {
+            position: absolute;
+            left: 0px;
+            top: 109px;
+            height: calc(100vh - 109px);
+            border-right: 1px solid #262a30;
+    
+            .open-folders-button{
+                pointer-events: none;
+        
+                &__img-container {
+                    display: none;
+                }
+            }
+            
+            .folders-content {
+                transition: none;
+                opacity: 1;
+                width: calc((100vw - 1070px) / 2);
+            }
         }
     }
 }
