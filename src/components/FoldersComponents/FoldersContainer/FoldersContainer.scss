@@ -126,8 +126,9 @@
         }
 
         .folders-content {
+            transition: none;
             opacity: 1;
-            width: 230px;
+            width: calc((100vw - 1070px) / 2);
         }
     }
 }
