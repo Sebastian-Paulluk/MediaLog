@@ -21,7 +21,8 @@ function AppRoutes() {
             <Route path="/category/:categoryId" element={user ? <CategoriesContainer /> : <Navigate to="/login" />} />
             <Route path="/search/:query/" element={user ? <SearchScreen /> : <Navigate to="/login" />} />
             <Route path="/search/category/:categoryId/:query" element={user ? <SearchScreen /> : <Navigate to="/login" />} />
-        </Routes>
+			<Route path="/category/:categoryId/folder/:folderId" element={user ? <CategoriesContainer /> : <Navigate to="/login" />} />
+		</Routes>
     );
 }
 

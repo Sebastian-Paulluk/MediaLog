@@ -7,7 +7,7 @@ interface CategoryDetailUncompletedItemsTypes {
 }   
 
 export const CategoryDetailUncompletedItems: React.FC<CategoryDetailUncompletedItemsTypes> = (props) => {
-    
+
     return (
         <div className='category-detail-uncompleted-items'>
             {props.items.map((item) => (

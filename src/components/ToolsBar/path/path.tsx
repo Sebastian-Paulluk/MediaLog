@@ -7,8 +7,6 @@ import arrowRightImg from '../../../assets/images/arrow-right.png'
 export const Path = () => {
 	const { currentCategory } = useCurrentCategoryContext();
 
-	console.log()
-
 	return (
 		<div className="path">
 			<Link
@@ -22,6 +20,7 @@ export const Path = () => {
 					<span className="path-separator"> 
 						<img src={arrowRightImg} alt='path separator' className='path-separator__img'/>
 					</span>
+					
 					<span className="current-path active">
 						{ normalizeText.firstLettersCaps(currentCategory.name) }
 					</span>

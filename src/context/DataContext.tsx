@@ -16,6 +16,8 @@ interface DataContextType  {
     dataLoaded: boolean;
     getCategoryById: (id: string) => CategoryTypes;
     getFoldersByCategoryId: (id: string) => FolderTypes[];
+    getFolderById: (categoryId: string, folderId: string) => FolderTypes;
+    getItemsByFolderId: (categoryId: string) => ItemTypes[];
     getItemsByCategoryId: (categoryId: string) => ItemTypes[];
     getItemsByNameOrNotes: (query: string) => ItemTypes[];
     getItemsInCategoryByNameOrNotes: (query: string, categoryId: string) => ItemTypes[];
@@ -163,6 +165,23 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
         return foundFolders.sort(sortByName);
     }
 
+    const getFolderById = (categoryId: string, folderId: string) => {
+        const foldersInCategory = getFoldersByCategoryId(categoryId);
+        const folder = foldersInCategory.find(folder => folder.id === folderId);
+        if (!folder) {
+            throw new Error(`No folder match folderId.`);
+        }
+        return folder;
+    }
+
+    const getItemsByFolderId = (folderId: string) => {
+        const foundItems = items.filter(item => item.folderId === folderId);
+        if (!foundItems) {
+            throw new Error(`No items match folderId.`);
+        }
+        return foundItems.sort(sortByName);
+    }
+
     const getItemsByCategoryId = (categoryId: string) => {
         const foundItems = items.filter(item => item.categoryId === categoryId);
         if (!foundItems) {
@@ -231,6 +250,8 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
             setChangesSaved,
             getCategoryById,
             getFoldersByCategoryId,
+            getFolderById,
+            getItemsByFolderId,
             getItemsByCategoryId,
             getItemsByNameOrNotes,
             getItemsInCategoryByNameOrNotes,

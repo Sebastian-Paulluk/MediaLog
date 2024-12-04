@@ -1,6 +1,7 @@
 export interface SeriesItemTypes {
 	id?: string;
 	categoryId: string;
+	folderId: string;
 	type: string;
 	name: string;
 	season: number;
@@ -16,6 +17,7 @@ export interface SeriesItemTypes {
 export interface MoviesItemTypes {
 	id?: string;
 	categoryId: string;
+	folderId: string;
 	type: string;
 	name: string;
 	minute: number;
@@ -30,6 +32,7 @@ export interface MoviesItemTypes {
 export interface OthersItemTypes {
 	id?: string;
 	categoryId: string;
+	folderId: string;
 	type: string;
 	name: string;
 	notes: string;

@@ -10,13 +10,16 @@ import { CategoryDetailUncompletedItems } from './CategoryDetailUncompletedItems
 import { CategoryDetailCompletedItems } from './CategoryDetailCompletedItems/CategoryDetailCompletedItems';
 import { useDataContext } from '../../context/DataContext';
 import { FoldersContainer } from '../FoldersComponents/FoldersContainer/FoldersContainer';
+import { useParams } from 'react-router-dom';
+import { CurrentFolderBar } from './CurrentFolderBar/CurrentFolderBar';
 
 interface CategoryDetailTypes {
 	category: CategoryTypes;
 } 
 
 export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
-	const {items, getItemsByCategoryId} = useDataContext();
+	const {folderId} = useParams();
+	const {items, getItemsByCategoryId, getItemsByFolderId} = useDataContext();
 	const [updatedItems, setUpdatedItems] = useState<ItemTypes[]>([]);
 	const [openModal, setOpenModal] = useState(false);
 	const {setChangesSaved} = useDataContext();
@@ -36,11 +39,15 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 
 	useEffect(() => {
 		if (category.id) {
-			const itemsOfCategory = getItemsByCategoryId(category.id)
-			setUpdatedItems(itemsOfCategory)
+			if (folderId) {
+				const itemsOfFolder = getItemsByFolderId(folderId)
+				setUpdatedItems(itemsOfFolder);
+			} else {
+				const itemsOfCategory = getItemsByCategoryId(category.id)
+				setUpdatedItems(itemsOfCategory);
+			}
 		}
-	}, [items]);
-
+	}, [items, folderId]);
 	
 	const handleAddItem = async (newItem: ItemTypes) => {
 		if (category.id) {
@@ -67,12 +74,15 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 
 	return (
 		<div className="category-detail">
+			<CurrentFolderBar
+				handleToggleOpenFoldersMenu={handleToggleOpenFoldersMenu}
+				openFoldersMenu={openFoldersMenu}
+			/>
 
 			<div className='category-detail__center'>
 				<FoldersContainer
 					category={category}
 					openFoldersMenu={openFoldersMenu}
-					handleToggleOpenFoldersMenu={handleToggleOpenFoldersMenu}
 				/>
 				<div className='category-detail__center__items-content'>
 					<div className={`add-item-button-container ${openFoldersMenu ? 'align-left' : ''}`}>

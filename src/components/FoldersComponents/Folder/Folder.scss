@@ -1,9 +1,9 @@
 .folder {
     display: flex;
     justify-content: flex-start;
-    width: fit-content;
     padding-left: 10px;
     position: relative;
+    width: 100%;
 
     &__lines {
         position: absolute;
@@ -15,39 +15,79 @@
     }
 
     &__details {
+        z-index: 1;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
         display: flex;
-        padding-left: 10px;
-        cursor: pointer;
-        margin-left: 10px;
+        align-items: center;
+        padding-left: 5px;
+        margin-left: 15px;
         width: 100%;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
 
         &__img-container {
             width: 30px;
             height: 30px;
+            margin-right: 5px;
         
             .folder-img {
-                width: 100%;
+                transition: opacity 0.3s ease;
+                width: 30px;
+                opacity: 0.2;
             }
-            margin-right: 5px;
         }
 
-        &__name-container {
-            width: 155px;
-            display: flex;
-            align-items: center;
+        &__name {
+            padding-right: 20px;
             color: rgb(158, 158, 158);
+            transition: color 0.2s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
-            &__name {
-                transition: color 0.2s ease;
-                white-space: nowrap; 
-                overflow: hidden;
-                text-overflow: ellipsis;
+        &:hover {
+
+            background-color: rgb(30, 30, 30);
+            display: flex;
+            padding-left: 5px;
+            width: 100%;
     
-                &:hover {
-                    color:white;
+            .folder__details__img-container {
+                .folder-img {
+                    opacity: 0.6;
                 }
             }
+    
+            &__name {
+                color: white;
+            }
 
+        }
+    }
+
+    &.current-folder {
+
+        .folder__details {
+            background-color: rgb(45, 45, 45);
+            
+            &__img-container {
+                .folder-img {
+                    opacity: 0.6;
+                }
+            }
+    
+            &__name {
+                color: white;
+            }
+        }
+
+        &:hover {
+
+            .folder__details {
+                background-color: rgb(60, 60, 60);
+            }
         }
     }
 }
