@@ -9,12 +9,13 @@ import { Counter } from '../../../Counter/Counter';
 
 interface addMovieItemFormTypes {
     categoryId: string;
+    folderId: string;
     itemType: string;
     onSubmit: (newItem:  MoviesItemTypes)=> void;
     onClose: ()=> void;
 }
 
-export const AddMovieItemForm: React.FC<addMovieItemFormTypes> =({ categoryId, itemType, onSubmit, onClose })=> {
+export const AddMovieItemForm: React.FC<addMovieItemFormTypes> =({ categoryId, folderId, itemType, onSubmit, onClose })=> {
     const [minuteValue, setMinuteValue] = useState<number>(0)
     const minuteInputRef = useRef<HTMLInputElement>(null)
     const [newItemData, setNewItemData] = useState({
@@ -25,6 +26,7 @@ export const AddMovieItemForm: React.FC<addMovieItemFormTypes> =({ categoryId, i
         completed: false,
         favorite: false,
         categoryId: categoryId,
+        folderId: folderId,
         updatedAt: new Date().toISOString()
     })
 
@@ -61,6 +63,7 @@ export const AddMovieItemForm: React.FC<addMovieItemFormTypes> =({ categoryId, i
                 completed: false,
                 favorite: false,
                 categoryId,
+                folderId: folderId,
                 updatedAt: new Date().toISOString(),
             });
                 setMinuteValue(0);

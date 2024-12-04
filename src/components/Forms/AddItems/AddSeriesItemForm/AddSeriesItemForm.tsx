@@ -8,12 +8,13 @@ import { Counter } from '../../../Counter/Counter';
 
 interface AddSeriesItemFormTypes {
     categoryId: string;
+    folderId: string,
     itemType: string;
     onSubmit: (newItem:  SeriesItemTypes)=> void;
     onClose: ()=> void;
 }
 
-export const AddSeriesItemForm: React.FC<AddSeriesItemFormTypes> = ({ categoryId, itemType ,onSubmit, onClose}) => {
+export const AddSeriesItemForm: React.FC<AddSeriesItemFormTypes> = ({ categoryId, folderId, itemType ,onSubmit, onClose}) => {
     const [seasonValue , setSeasonValue] = useState<number>(1);
     const [episodeValue , setEpisodeValue] = useState<number>(1);
     const seasonInputRef = useRef<HTMLInputElement>(null)
@@ -27,6 +28,7 @@ export const AddSeriesItemForm: React.FC<AddSeriesItemFormTypes> = ({ categoryId
         completed: false,
         favorite: false,
         categoryId: categoryId,
+        folderId: folderId,
         updatedAt: new Date().toISOString(),
     });
 
@@ -80,6 +82,7 @@ export const AddSeriesItemForm: React.FC<AddSeriesItemFormTypes> = ({ categoryId
                 completed: false,
                 favorite: false,
                 categoryId,
+                folderId: folderId,
                 updatedAt: new Date().toISOString(),
             });
         }, 300)

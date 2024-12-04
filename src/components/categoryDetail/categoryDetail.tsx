@@ -67,6 +67,7 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 
 	const formsProps = {
 		categoryId: category.id as string,
+		folderId: folderId ? folderId : '',
 		itemType: category.type,
 		onSubmit: handleAddItem,
 		onClose: handleCloseModal,

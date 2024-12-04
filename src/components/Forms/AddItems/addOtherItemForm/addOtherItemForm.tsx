@@ -7,12 +7,13 @@ import closeImg from '../../../../assets/images/close.png';
 
 interface addOtherItemFormTypes {
     categoryId: string;
+    folderId: string;
     itemType: string;
     onSubmit: (newItem:  OthersItemTypes)=> void;
     onClose: ()=> void;
 }
 
-export const AddOtherItemForm: React.FC<addOtherItemFormTypes> =({ categoryId, itemType, onSubmit, onClose })=> {
+export const AddOtherItemForm: React.FC<addOtherItemFormTypes> =({ categoryId, folderId, itemType, onSubmit, onClose })=> {
     const [newItemData, setNewItemData] = useState({
         type: itemType,
         name: '',
@@ -20,6 +21,7 @@ export const AddOtherItemForm: React.FC<addOtherItemFormTypes> =({ categoryId, i
         completed: false,
         favorite: false,
         categoryId: categoryId,
+        folderId: folderId,
         updatedAt: new Date().toISOString(),
     })
 
@@ -55,6 +57,7 @@ export const AddOtherItemForm: React.FC<addOtherItemFormTypes> =({ categoryId, i
                 completed: false,
                 favorite: false,
                 categoryId,
+                folderId: folderId,
                 updatedAt: new Date().toISOString(),
             });
         }, 300)
