@@ -49,6 +49,7 @@ export interface FolderTypes {
 	id?: string;
 	name: string;
 	categoryId: string;
+	updatedAt: string;
 }
 
 export interface CategoryTypes {

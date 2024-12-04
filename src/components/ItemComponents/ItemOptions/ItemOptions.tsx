@@ -32,8 +32,6 @@ export const ItemOptions: React.FC<ItemOptionsTypes> = (props) => {
     const handleOpen =(e: React.MouseEvent<HTMLButtonElement>)=> {
         e.preventDefault();
         e.stopPropagation();
-
-    console.log('Clicked on ItemOptions button');
         setOpen(!open);
     }
 

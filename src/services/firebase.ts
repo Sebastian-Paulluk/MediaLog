@@ -21,7 +21,7 @@ import {
 	signOut,
 } from 'firebase/auth';
 
-import { CategoryTypes } from '../types/types';
+import { CategoryTypes, FolderTypes } from '../types/types';
 import { ItemTypes } from '../types/types';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -184,7 +184,27 @@ export const updateCategory = async (categoryId: string, category: Partial<Categ
     }
 };
 
- 
+
+
+// folders --------
+
+export const createFolder = async( newFolder: FolderTypes ) =>{
+    const foldersColletionRef = collection(db, 'folders');
+    const folderDoc = await addDoc(foldersColletionRef, newFolder);
+	return folderDoc.id;
+}
+
+export const deleteFolder = async(folderId: string)=> {
+	try {
+		const foldersColletionRef = collection(db, 'folders')
+		const folderRef = doc(foldersColletionRef, folderId)
+		await deleteDoc(folderRef);
+		await deleteItemsByFolder(folderId);
+	} catch(error) {
+		console.error('Error al eliminar la carpeta:', error)
+		throw new Error('No se pudo eliminar la carpeta')
+	}
+}
 
 
 
@@ -305,4 +325,17 @@ export const deleteItemsByCategory = async (categoryId: string) => {
     }
 }
 
+export const deleteItemsByFolder = async (folderId: string) => {
+    try {
+        const itemsCollectionRef = collection(db, 'items');
+        const q = query(itemsCollectionRef, where('folderId', '==', folderId));
+        const querySnapshot = await getDocs(q);
 
+        const deletePromises = querySnapshot.docs.map((docSnapshot) =>
+            deleteDoc(doc(db, 'items', docSnapshot.id))
+        );
+        await Promise.all(deletePromises);
+    } catch (error) {
+        console.error('Error eliminando los items:', error);
+    }
+}

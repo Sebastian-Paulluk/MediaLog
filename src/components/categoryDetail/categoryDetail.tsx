@@ -19,7 +19,7 @@ interface CategoryDetailTypes {
 
 export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 	const {folderId} = useParams();
-	const {items, getItemsByCategoryId, getItemsByFolderId} = useDataContext();
+	const {items, getItemsByCategoryIdInRoot, getItemsByFolderId} = useDataContext();
 	const [updatedItems, setUpdatedItems] = useState<ItemTypes[]>([]);
 	const [openModal, setOpenModal] = useState(false);
 	const {setChangesSaved} = useDataContext();
@@ -43,11 +43,11 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 				const itemsOfFolder = getItemsByFolderId(folderId)
 				setUpdatedItems(itemsOfFolder);
 			} else {
-				const itemsOfCategory = getItemsByCategoryId(category.id)
+				const itemsOfCategory = getItemsByCategoryIdInRoot(category.id)
 				setUpdatedItems(itemsOfCategory);
 			}
 		}
-	}, [items, folderId]);
+	}, [items, folderId, category.id]);
 	
 	const handleAddItem = async (newItem: ItemTypes) => {
 		if (category.id) {
@@ -56,6 +56,7 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 			setChangesSaved(true);
 		}
 	};
+
 
 	const uncompletedItemProps = {
 		items: updatedItems.filter(item => item.completed === false)
@@ -67,7 +68,7 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 
 	const formsProps = {
 		categoryId: category.id as string,
-		folderId: folderId ? folderId : '',
+		folderId: folderId ? folderId : "",
 		itemType: category.type,
 		onSubmit: handleAddItem,
 		onClose: handleCloseModal,

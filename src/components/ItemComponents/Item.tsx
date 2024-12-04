@@ -28,6 +28,7 @@ export const Item: React.FC<ItemProps> = (props) => {
 	const {setChangesSaved} = useDataContext();
 
 	const handleOpenModal = () => {
+		console.log(item)
         setOpenModal(true);
     }
 

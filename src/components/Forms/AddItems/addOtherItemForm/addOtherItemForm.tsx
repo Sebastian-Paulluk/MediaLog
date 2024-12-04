@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './addOtherItemForm.scss'
 import { OthersItemTypes } from '../../../../types/types';
 import emptyStarImg from '../../../../assets/images/favorite.png'
@@ -24,6 +24,13 @@ export const AddOtherItemForm: React.FC<addOtherItemFormTypes> =({ categoryId, f
         folderId: folderId,
         updatedAt: new Date().toISOString(),
     })
+
+    useEffect(() => {
+        setNewItemData((prevData) => ({
+            ...prevData,
+            folderId: folderId, 
+        }));
+    }, [folderId]);
 
     const handleNameChange =(e: React.ChangeEvent<HTMLInputElement>) => {
         setNewItemData({
@@ -75,7 +82,6 @@ export const AddOtherItemForm: React.FC<addOtherItemFormTypes> =({ categoryId, f
         resetInputs();
         onClose()
     }
-
 
     return(
         <form onSubmit={handleSubmit} className='form add-other-item-form'>

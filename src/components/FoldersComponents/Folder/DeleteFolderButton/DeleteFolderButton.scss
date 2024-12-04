@@ -1,0 +1,23 @@
+@use '../../../../scss/variables';
+
+.delete-folder-button {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .dots {
+        width: 25px;
+        height: 25px;
+        opacity: 0.4;
+        transition: opacity 0.3s ease;
+    }
+
+    &:hover {
+        .dots  {
+            opacity: 1;
+        }
+    }
+}

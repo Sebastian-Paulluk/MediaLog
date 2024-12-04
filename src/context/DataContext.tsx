@@ -19,6 +19,7 @@ interface DataContextType  {
     getFolderById: (categoryId: string, folderId: string) => FolderTypes;
     getItemsByFolderId: (categoryId: string) => ItemTypes[];
     getItemsByCategoryId: (categoryId: string) => ItemTypes[];
+    getItemsByCategoryIdInRoot: (categoryId: string) => ItemTypes[];
     getItemsByNameOrNotes: (query: string) => ItemTypes[];
     getItemsInCategoryByNameOrNotes: (query: string, categoryId: string) => ItemTypes[];
     getFavoriteItemsInCategory: (id: string) => ItemTypes[];
@@ -113,15 +114,15 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
                 id: doc.id,
                 ...doc.data(),
             } as FolderTypes));
-
+    
             const filteredFolders = foldersData.filter(folder =>
                 categories.some(category => category.id === folder.categoryId)
             )
-
+    
             setFolders(filteredFolders);
             setFoldersLoaded(true);
         });
-
+    
         return () => {
             unsubscribeFolders();
         }
@@ -190,6 +191,14 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
         return foundItems.sort(sortByName);
     }
 
+    const getItemsByCategoryIdInRoot = (categoryId: string) => {
+        const foundItems = items.filter(item => item.categoryId === categoryId && item.folderId === '');
+        if (!foundItems) {
+            throw new Error(`No items match categoryId.`);
+        }
+        return foundItems.sort(sortByName);
+    }
+
     const getItemsByNameOrNotes = (query: string, itemsList=items) =>{
         const escapedText = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const regex = new RegExp('.*' + escapedText + '.*', 'i');
@@ -237,7 +246,6 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
         return [];
     };
 
-
     
     return (
         <DataContext.Provider value={{
@@ -253,6 +261,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
             getFolderById,
             getItemsByFolderId,
             getItemsByCategoryId,
+            getItemsByCategoryIdInRoot,
             getItemsByNameOrNotes,
             getItemsInCategoryByNameOrNotes,
             existsFavoriteItems,

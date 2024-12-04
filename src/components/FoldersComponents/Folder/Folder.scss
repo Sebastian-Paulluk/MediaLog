@@ -5,6 +5,7 @@
     position: relative;
     width: 100%;
 
+
     &__lines {
         position: absolute;
         top:-15px;
@@ -22,6 +23,7 @@
         align-items: center;
         padding-left: 5px;
         margin-left: 15px;
+        padding-right: 10px;
         width: 100%;
         transition: background-color 0.3s ease;
         cursor: pointer;
@@ -39,12 +41,16 @@
         }
 
         &__name {
-            padding-right: 20px;
             color: rgb(158, 158, 158);
             transition: color 0.2s ease;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            max-width: 135px;
+        }
+
+        .delete-folder-button {
+            margin-left: auto;
         }
 
         &:hover {
@@ -60,7 +66,7 @@
                 }
             }
     
-            &__name {
+            .folder__details__name {
                 color: white;
             }
 
@@ -87,6 +93,33 @@
 
             .folder__details {
                 background-color: rgb(60, 60, 60);
+            }
+        }
+    }
+}
+
+@media (min-width: 1515px) {
+    
+    .folder {
+        &__details {
+            .delete-folder-button {
+                opacity: 0;
+            }
+        }
+
+        &:hover {
+            .folder__details {
+                .delete-folder-button {
+                    opacity: 1;
+                }
+            }
+        }
+
+        &.current-folder {
+            .folder__details {
+                .delete-folder-button {
+                    opacity: 1;
+                }
             }
         }
     }
