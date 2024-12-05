@@ -8,7 +8,7 @@
         position: relative;
         margin: auto;
         width: 100%;
-        max-width: 1000px;
+        max-width: variables.$content-max-width;
         height: 100%;
         display: flex;
         justify-content: space-between;

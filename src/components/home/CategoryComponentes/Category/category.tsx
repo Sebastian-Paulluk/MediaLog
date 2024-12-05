@@ -2,12 +2,11 @@ import { Link } from 'react-router-dom';
 import './category.scss';
 import { CategoryTypes } from '../../../../types/types';
 import normalizeText from '../../../../utils/normalizeText';
-import type { MenuProps } from 'antd';
-import { Dropdown } from 'antd';
 import { useCurrentCategoryContext } from '../../../../context/categoryContext';
 import { Dots } from '../Dots/Dots';
 import React from 'react';
 import { AlertDialog } from '../../../AlertDialog/AlertDialog';
+import { PopMenu } from '../../../PopMenu/PopMenu';
 
 
 type CategoryProps = {
@@ -35,36 +34,33 @@ export const Category = ({ category, deleteCategory }: CategoryProps) => {
         setOpenDialog(true);
     };
 
-	const items: MenuProps['items'] = [
-		{
-		  label: 'Delete',
-		  key: '0',
-		  onClick: handleClickOpenDialog,
-		},
-	]
-
+	const popMenuProps = {
+		options: [
+			{name: 'Edit', icon: 'edit', onClick: ()=>{console.log('me edito')}},
+			{name: 'Delete', icon: 'delete', onClick: handleClickOpenDialog},
+		]
+	}
 
 	return (
+
 		<div className='category-container'>
 			<Link to={`/category/${category.id}`} onClick={handleSelectCategory}>
 				<div className='category'>
-						<div className='top-side'></div>
+						<div className='top-side'>
+							
+						</div>
 						<div className='bottom-side'>
 							<p className="category-title">{normalizedCategoryName}</p>
 						</div>
 				</div>
 			</Link>
 
-			<Dropdown 
-				menu={{ items }}
-				trigger={['click']}
-				className='dropdown-categpry-options-menu'
-				 placement="bottomRight"
-			>
+			<PopMenu {...popMenuProps}>
 				<button className='category-options-button'>
 					<Dots />
 				</button>
-			</Dropdown>
+			</PopMenu>
+
 			<AlertDialog
 				open={openDialog}
 				setOpen={setOpenDialog}

@@ -9,8 +9,8 @@
     height: 50px;
 
     .tools-bar {
-        width: 1000px;
-        max-width: 1000px;
+        width: variables.$content-max-width;
+        max-width: variables.$content-max-width;
         padding: 10px 20px 10px 20px;
         overflow: hidden;
         display: flex;

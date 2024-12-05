@@ -4,30 +4,28 @@
     background-color: variables.$backGroundColor;
     z-index: 1;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     position: relative;
     padding-left: 0;
     padding-right: 0;
     transition: padding 0.3s;
     height: calc(100vh - 150px);
-    border-right: 1px solid transparent;
     transition: border-color 0.3s ease;
+    width: 100%;
 
     .folders-content {
         height: 100%;
-        width: 0px;
         display: flex;
         flex-direction: column;
         overflow: hidden;
         gap: 5px;
         padding-top: 10px;
         opacity: 0;
-        margin-left: 0px;
-        transition:
-            width 0.5s ease,
-            opacity 0.2s ease,
-            margin 0.2s ease;
-  
+        width: 100%;
+        border-right: 1px solid #262a30;
+        margin-left: 15px;
+        opacity: 1;
+        transition: none;
 
         &__root-folder {
             cursor: pointer;
@@ -50,6 +48,7 @@
                     width: 30px;
                     opacity: 0.2;
                 }
+                
             }
 
             .root-folder__name {
@@ -59,6 +58,7 @@
                 text-overflow: ellipsis;
                 color: rgb(158, 158, 158);
                 transition: color 0.2s ease;
+                
             }
 
             &:hover {
@@ -76,6 +76,7 @@
             }
 
             &.active {
+                
 
                 background-color: rgb(45, 45, 45);
                 
@@ -99,9 +100,11 @@
 
         &__folders-container {
             padding-left: 10px;
+            
         }
 
         &__button-container {
+            
             margin-top: 5px;
             display: flex;
             justify-content: center;
@@ -109,6 +112,7 @@
             width: 100%;
 
             .add-folder-button {
+                
                 background-color: variables.$color5;
                 font-weight: bolder;
                 padding-inline: 10px;
@@ -137,54 +141,42 @@
             }
         }
     }
-
-    &.open {
-        border-right: 1px solid #262a30;
-        height: calc(100vh - 150px);
-        
-        .folders-content {
-            margin-left: 15px;
-            opacity: 1;
-            width: 250px;
-        }
-    }
 }
 
-@media (min-width: 1515px) {
-    
+
+@media (max-width: variables.$breakpoint1) {
+
     .folders-container {
-        position: absolute;
-        left: 0px;
-        top: 150px;
-        height: calc(100vh - 150px);
-        border-right: 1px solid #262a30;
 
         .folders-content {
-            transition: none;
-            opacity: 1;
-            width: calc((100vw - 1035px) / 2);
-            height: fit-content;
+            margin-left: 0;
+            width: 0;
+        }
+
+
+        &.close {
+
+            .folders-content {
+                border: none;
+                width: 0;
+                opacity: 0;
+                transition:
+                    width 0.5s ease,
+                    opacity 0.2s ease,
+                    margin 0.4s ease;
+            }
         }
 
         &.open {
-            position: absolute;
-            left: 0px;
-            top: 110px;
-            height: calc(100vh - 110px);
-            border-right: 1px solid #262a30;
-    
-            .open-folders-button{
-                pointer-events: none;
-        
-                &__img-container {
-                    display: none;
-                }
-            }
-            
+
             .folders-content {
-                transition: none;
+                margin-left: 15px;
                 opacity: 1;
-                width: calc((100vw - 1070px) / 2);
+                width: 250px;
+                transition:
+                width 0.5s ease,
+                opacity 0.2s ease,
+                margin 0.4s ease;
             }
         }
     }

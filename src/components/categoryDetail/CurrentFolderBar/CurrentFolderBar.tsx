@@ -4,7 +4,7 @@ import { useDataContext } from '../../../context/DataContext';
 import arrowImg from '../../../assets/images/arrow-2.png';
 
 interface CurrentFolderBarTypes {
-    openFoldersMenu: boolean;
+    openFoldersMenu: boolean | null;
     handleToggleOpenFoldersMenu: ()=> void;
 }
 

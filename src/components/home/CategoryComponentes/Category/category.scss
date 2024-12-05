@@ -43,19 +43,23 @@
             }
         }
     }
+    .pop-menu {
+        transform: translate(-7px, -150px);
 
-    .category-options-button {
-        border-radius: 50px;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
-        position: absolute;
-        right: 4px;
-        top: 5px;
-        padding: 2px;
-        background: none;
-
-        &__img {
-            width: 100%;
+        .category-options-button {
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            position: absolute;
+            right: 4px;
+            top: 5px;
+            padding: 2px;
+            background: none;
+            transform: translateX(7px);
+    
+            &__img {
+                width: 100%;
+            }
         }
     }
 }

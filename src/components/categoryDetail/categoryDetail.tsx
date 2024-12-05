@@ -23,10 +23,10 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 	const [updatedItems, setUpdatedItems] = useState<ItemTypes[]>([]);
 	const [openModal, setOpenModal] = useState(false);
 	const {setChangesSaved} = useDataContext();
-    const [openFoldersMenu , setOpenFoldersMenu] = useState(false);
+    const [openFoldersMenu , setOpenFoldersMenu] = useState<boolean>(false);
 
     const handleToggleOpenFoldersMenu =()=> {
-        setOpenFoldersMenu(!openFoldersMenu);
+		setOpenFoldersMenu(!openFoldersMenu);
     }
 
 	const handleOpenModal = () => {
@@ -75,27 +75,35 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 	}
 
 	return (
-		<div className="category-detail">
+		<div className="cd">
 			<CurrentFolderBar
 				handleToggleOpenFoldersMenu={handleToggleOpenFoldersMenu}
 				openFoldersMenu={openFoldersMenu}
 			/>
-
-			<div className='category-detail__center'>
-				<FoldersContainer
-					category={category}
-					openFoldersMenu={openFoldersMenu}
-				/>
-				<div className='category-detail__center__items-content'>
-					<div className={`add-item-button-container ${openFoldersMenu ? 'align-left' : ''}`}>
-						<button className='add-item-button' onClick={handleOpenModal}>+</button>
-					</div>
-
-					<CategoryDetailUncompletedItems {...uncompletedItemProps} />
-					<CategoryDetailCompletedItems {...completedItemProps} />
+	
+			<div className="cd__body"> 
+				<div className='cd__body__left'>
+					<FoldersContainer
+						category={category}
+						setOpenFoldersMenu={setOpenFoldersMenu}
+						openFoldersMenu={openFoldersMenu}
+					/>
 				</div>
+	
+				<div className='cd__body__center'>
+					<div className='cd__body__center__items-content'>
+						<div className={`add-item-button-container ${openFoldersMenu ? 'align-left' : ''}`}>
+							<button className='add-item-button' onClick={handleOpenModal}>+</button>
+						</div>
+	
+						<CategoryDetailUncompletedItems {...uncompletedItemProps} />
+						<CategoryDetailCompletedItems {...completedItemProps} />
+					</div>
+				</div>
+	
+				<div className='cd__body__right'></div>
 			</div>
-
+	
 			<Modal onClose={handleCloseModal} open={openModal} >
 				{category.id && (
 					category.type === 'Others' ? (
@@ -109,5 +117,4 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 			</Modal>
 		</div>
 	);
-};
-
+}

@@ -9,13 +9,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Modal } from '../../modal/modal';
 import { AddFolderForm } from '../../Forms/AddFolder/AddFolderForm';
 import { createFolder, deleteFolder } from '../../../services/firebase';
+import { useWindowWidth } from '../../../Hooks/useWindowWidth';
 
 interface FoldersContainerTypes {
     category: CategoryTypes;
-    openFoldersMenu: boolean;
+    openFoldersMenu: boolean | null;
+    setOpenFoldersMenu: (state: boolean) => void;
 }
 
-export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, openFoldersMenu}) => {
+export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, openFoldersMenu, setOpenFoldersMenu}) => {
     const {getFoldersByCategoryId, folders} = useDataContext();
     const [localFolders , setLocalFolders] = useState<FolderTypes[]>([]);
     const navigate = useNavigate();
@@ -23,6 +25,37 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
 	const [openModal, setOpenModal] = useState(false);
 	const {setChangesSaved} = useDataContext();
     const {folderId} = useParams();
+    const windowWidth = useWindowWidth();
+    const [folderContainerState, setFolderContainerState] = useState<string>('');
+
+    useEffect(() => {
+        if (category.id) {
+            const res = getFoldersByCategoryId(category.id)
+            setLocalFolders(res)
+        }
+        if (!activeFolder) {
+            setActiveFolder(null);
+        }
+    }, [folders]);
+
+    const getFolderContainerState =()=> {
+        if (windowWidth > 1500) {
+            setOpenFoldersMenu(false);
+            return '';
+        } else if (openFoldersMenu === false) {
+            return 'close';
+        } else if (openFoldersMenu === true) {
+            return 'open';
+        }
+        return '';
+    }
+
+    useEffect(() => {
+        const state = getFolderContainerState();
+        setFolderContainerState(state);
+    }, [openFoldersMenu, windowWidth]);
+
+
 
     const handleOpenModal = () => {
         setOpenModal(true);
@@ -31,6 +64,8 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
     const handleCloseModal = () => {
         setOpenModal(false);
     };
+
+
 
     const handleAddFolder = async (newFolder: FolderTypes) => {
 		if (category.id) {
@@ -52,25 +87,14 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
         }
     }
 
+
     const handleRootFolderClick =()=> {
         setActiveFolder(null);
         navigate(`/category/${category.id}`);
     }
 
-
-    useEffect(() => {
-        if (category.id) {
-            const res = getFoldersByCategoryId(category.id)
-            setLocalFolders(res)
-        }
-        if (!activeFolder) {
-            setActiveFolder(null);
-        }
-    }, [folders]);
-
-
     return (
-        <div className={`folders-container ${openFoldersMenu ? 'open' : ''}`}>
+        <div className={`folders-container ${folderContainerState}`}>
 
             <div className='folders-content'>
 

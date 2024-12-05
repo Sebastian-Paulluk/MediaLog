@@ -8,7 +8,7 @@
 
     &__content {
         width: 100%;
-        max-width: 1000px;
+        max-width: variables.$content-max-width;
         height: 100%;
         margin: auto;
         padding-inline: 20px;
@@ -22,7 +22,7 @@
 
 
             &__left {
-                display: flex;
+                display: none;
                 align-items: center;
                 border-right: 2px solid #262a30;
                 padding-right: 10px;
@@ -88,8 +88,8 @@
     }
 }   
 
-@media (min-width: 1515px) {
+@media (max-width: variables.$breakpoint1) {
     .cf-bar__content__body__left {
-        display: none;
+        display: flex;
     }
 }
