@@ -26,6 +26,7 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
     const [openFoldersMenu , setOpenFoldersMenu] = useState<boolean>(false);
 
     const handleToggleOpenFoldersMenu =()=> {
+		console.log('entre')
 		setOpenFoldersMenu(!openFoldersMenu);
     }
 
@@ -99,9 +100,14 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 						<CategoryDetailUncompletedItems {...uncompletedItemProps} />
 						<CategoryDetailCompletedItems {...completedItemProps} />
 					</div>
+
+					<div
+						className={`cd__body__center__cover ${openFoldersMenu ? 'active' : ''}`}
+						onClick={handleToggleOpenFoldersMenu}
+					/>
 				</div>
 	
-				<div className='cd__body__right'></div>
+				<div className='cd__body__right' ></div>
 			</div>
 	
 			<Modal onClose={handleCloseModal} open={openModal} >
@@ -115,6 +121,7 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 					)
 				)}
 			</Modal>
+
 		</div>
 	);
 }

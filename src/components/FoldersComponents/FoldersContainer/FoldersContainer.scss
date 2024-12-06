@@ -9,7 +9,8 @@
     padding-left: 0;
     padding-right: 0;
     transition: padding 0.3s;
-    height: calc(100vh - 150px);
+    height: 100%;
+    min-height: calc(100vh - 150px);
     transition: border-color 0.3s ease;
     width: 100%;
 
@@ -173,6 +174,45 @@
                 margin-left: 15px;
                 opacity: 1;
                 width: 250px;
+                transition:
+                width 0.5s ease,
+                opacity 0.2s ease,
+                margin 0.4s ease;
+            }
+        }
+    }
+}
+
+
+@media (max-width: variables.$breakpoint2) {
+
+    .folders-container {
+
+        .folders-content {
+            margin-left: 0;
+            width: 0;
+        }
+
+
+        &.close {
+
+            .folders-content {
+                border: none;
+                width: 0;
+                opacity: 0;
+                transition:
+                    width 0.5s ease,
+                    opacity 0.2s ease,
+                    margin 0.4s ease;
+            }
+        }
+
+        &.open {
+
+            .folders-content {
+                margin-left: 15px;
+                opacity: 1;
+                width: calc(100vw - 100px);
                 transition:
                 width 0.5s ease,
                 opacity 0.2s ease,
