@@ -62,5 +62,6 @@ export interface CategoryTypes {
 
 export interface UserTypes {
 	name: string,
-	mail: string
+	mail: string,
+	UILanguage: string,
 }

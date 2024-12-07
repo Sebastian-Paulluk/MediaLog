@@ -1,13 +1,11 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react"
 import { CategoryTypes, FolderTypes, ItemTypes } from "../types/types";
 import { collection, onSnapshot } from "firebase/firestore";
-import { db, getUserData, auth } from "../services/firebase";
-import { browserSessionPersistence, onAuthStateChanged, setPersistence } from 'firebase/auth';
+import { db } from "../services/firebase";
 import { sortByName } from "../utils/sortByName";
+import { useUserContext } from "./userContext";
 
 interface DataContextType  {
-    user: Record<string, any> | null;
-    userSessionVerified: boolean;
     items: ItemTypes[];
     folders: FolderTypes[];
     categories: CategoryTypes[];
@@ -16,7 +14,7 @@ interface DataContextType  {
     dataLoaded: boolean;
     getCategoryById: (id: string) => CategoryTypes;
     getFoldersByCategoryId: (id: string) => FolderTypes[];
-    getFolderById: (categoryId: string, folderId: string) => FolderTypes;
+    getFolderById: (folderId: string) => FolderTypes;
     getItemsByFolderId: (categoryId: string) => ItemTypes[];
     getItemsByCategoryId: (categoryId: string) => ItemTypes[];
     getItemsByCategoryIdInRoot: (categoryId: string) => ItemTypes[];
@@ -34,6 +32,7 @@ interface DataProviderProps {
 }
 
 export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
+    const {user} = useUserContext();
     const [items, setItems] = useState<ItemTypes[]>([]);
     const [folders, setFolders] = useState<FolderTypes[]>([]);
     const [categories, setCategories] = useState<CategoryTypes[]>([]);
@@ -41,52 +40,6 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
     const [foldersLoaded, setFoldersLoaded] = useState(false);  
     const [categoriesLoaded, setCategoriesLoaded] = useState(false);
     const [changesSaved, setChangesSaved] = useState(true);
-    const [user, setUser] = useState<Record<string, any> | null>(null);
-    const [userSessionVerified , setUserSessionVerified] = useState<boolean>(false);
-
-    /** 
-    useEffect(() => {
-        const unsubscribeAuth = onAuthStateChanged(auth, async (firebaseUser) => {
-          if (firebaseUser) {
-            const userData = await getUserData(firebaseUser.uid);
-            setUser(userData);
-          } else {
-            setUser(null);
-          }
-
-          setUserSessionVerified(true);
-        });
-    
-        return () => {
-          unsubscribeAuth(); 
-        };
-    }, []);
-    */
-
-    useEffect(() => {
-        setPersistence(auth, browserSessionPersistence)
-            .then(() => {
-                console.log('Persistencia de sesión configurada con éxito.');
-            })
-            .catch((error) => {
-                console.error('Error al configurar la persistencia de sesión:', error);
-            });
-    
-        const unsubscribeAuth = onAuthStateChanged(auth, async (firebaseUser) => {
-            if (firebaseUser) {
-                const userData = await getUserData(firebaseUser.uid);
-                setUser(userData);
-            } else {
-                setUser(null);
-            }
-            setUserSessionVerified(true);
-        });
-    
-        return () => {
-            unsubscribeAuth();
-        };
-    }, []);
-
 
     useEffect(() => {
         const unsubscribeCategories = onSnapshot(collection(db, 'categories'), (snapshot) => {
@@ -166,9 +119,8 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
         return foundFolders.sort(sortByName);
     }
 
-    const getFolderById = (categoryId: string, folderId: string) => {
-        const foldersInCategory = getFoldersByCategoryId(categoryId);
-        const folder = foldersInCategory.find(folder => folder.id === folderId);
+    const getFolderById = (folderId: string) => {
+        const folder = folders.find(folder => folder.id === folderId);
         if (!folder) {
             throw new Error(`No folder match folderId.`);
         }
@@ -192,7 +144,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
     }
 
     const getItemsByCategoryIdInRoot = (categoryId: string) => {
-        const foundItems = items.filter(item => item.categoryId === categoryId && item.folderId === '');
+        const foundItems = items.filter(item => item.categoryId === categoryId && !item.folderId);
         if (!foundItems) {
             throw new Error(`No items match categoryId.`);
         }
@@ -246,10 +198,8 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
         return [];
     };
 
-    
     return (
         <DataContext.Provider value={{
-            user,
             items,
             folders,
             categories,
@@ -267,7 +217,6 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
             existsFavoriteItems,
             getFavoriteItemsInCategory,
             getLastUpdatedItems,
-            userSessionVerified
         }}>
             {children}
         </DataContext.Provider>

@@ -3,7 +3,7 @@ import '../Form.scss'
 import './addCategoryForm.scss'
 import { CategoryTypes } from '../../../types/types';
 import closeImg from '../../../assets/images/close.png';
-import { useDataContext } from '../../../context/DataContext';
+import { useUserContext } from '../../../context/userContext';
 
 interface addCategoryFormTypes {
     onSubmit: (newCategory:  Omit<CategoryTypes, 'id'>)=> void;
@@ -11,7 +11,7 @@ interface addCategoryFormTypes {
 }
 
 export const AddCategoryForm: React.FC<addCategoryFormTypes> =({ onSubmit, onClose })=> {
-    const { user } = useDataContext();
+    const { user } = useUserContext();
     const [newCategoryData, setNewCategoryData] = useState({
         name: '',
         type: 'Others',

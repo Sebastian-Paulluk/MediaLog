@@ -26,7 +26,6 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
     const [openFoldersMenu , setOpenFoldersMenu] = useState<boolean>(false);
 
     const handleToggleOpenFoldersMenu =()=> {
-		console.log('entre')
 		setOpenFoldersMenu(!openFoldersMenu);
     }
 

@@ -1,14 +1,14 @@
 import { ReactNode } from 'react';
 import './mainContainer.scss';
 import { ToolsBar } from '../ToolsBar/ToolsBar';
-import { useDataContext } from '../../context/DataContext';
+import { useUserContext } from '../../context/userContext';
 
 interface MainContainerProps {
 	children: ReactNode;
 }
 
 export const MainContainer = ({ children }: MainContainerProps) => {
-	const {user} = useDataContext();
+	const {user} = useUserContext();
 
 	return (
 		<div className="main-container">

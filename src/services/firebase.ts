@@ -21,7 +21,7 @@ import {
 	signOut,
 } from 'firebase/auth';
 
-import { CategoryTypes, FolderTypes } from '../types/types';
+import { CategoryTypes, FolderTypes, UserTypes } from '../types/types';
 import { ItemTypes } from '../types/types';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -80,22 +80,29 @@ export const loginUser = async (email: string, password: string) => {
 
 
 export const getUserData = async (uid?: string) => {
-	const user = auth.currentUser;
-	const userUid = uid || (user ? user.uid : null); 
-  
-	if (userUid) {
-	  const docSnap = await getDoc(doc(db, "users", userUid));
-  
-	  if (docSnap.exists()) {
-		const userData = docSnap.data();
-		return { ...userData, uid: userUid };
-	  } else {
-		return null;
-	  }
-	}
 
-	return null;
-  };
+    try {
+        const userUid = uid || auth.currentUser?.uid;
+
+        if (!userUid) {
+            console.warn("No se proporcionó un UID válido ni hay usuario autenticado.");
+            return null;
+        }
+
+        const userDoc = await getDoc(doc(db, "users", userUid));
+
+        
+        if (userDoc.exists()) {
+            return { ...userDoc.data(), uid: userUid };
+        } else {
+            console.warn(`El documento para el UID ${userUid} no existe.`);
+            return null;
+        }
+    } catch (error) {
+        console.error("Error al obtener los datos del usuario:", error);
+        return null;
+    }
+};
 
 
 export const logoutUser = async () => {
@@ -115,6 +122,18 @@ export const logoutUser = async () => {
 export const getUserUid = () => {
 	const user = auth.currentUser;
 	return user ? user.uid : null; 
+};
+
+
+
+
+export const updateUser = async (userId: string, updatedUserData: Partial<UserTypes>) => {
+	try {
+		const userDocRef = doc(db, 'users', userId);
+		await updateDoc(userDocRef, updatedUserData);
+	} catch (error) {
+		console.log('Error updating user: ', error)
+	}
 };
 
 
@@ -211,6 +230,7 @@ export const deleteFolder = async(folderId: string)=> {
 // items --------
 
 export const createItem = async( newItem: ItemTypes ) =>{
+	console.log(newItem)
     const itemsColletionRef = collection(db, 'items');
     const itemDoc = await addDoc(itemsColletionRef, newItem);
 	return itemDoc.id;

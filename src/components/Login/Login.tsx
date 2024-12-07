@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import './Login.scss'
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../services/firebase';
-import { useDataContext } from '../../context/DataContext';
 import { LoadingScreen } from '../loadingScreen/loadingScreen';
 import { Spin } from '../Spin/Spin';
 import { errorMessages } from "../../utils/personalizedAuthMessages"; 
+import { useUserContext } from '../../context/userContext';
 
 interface LoginTypes {
     
@@ -16,7 +16,7 @@ export const Login: React.FC<LoginTypes> = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
-    const  {user, userSessionVerified} = useDataContext();
+    const {user, userSessionVerified} = useUserContext();
     const [logingIn , setLogingIn] = useState(false);
 
     useEffect(() => {

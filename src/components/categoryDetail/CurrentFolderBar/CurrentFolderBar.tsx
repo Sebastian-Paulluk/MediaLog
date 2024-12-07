@@ -14,7 +14,7 @@ export const CurrentFolderBar: React.FC<CurrentFolderBarTypes> = ({handleToggleO
 
     const getCurrentFolderName =()=>{
         if (categoryId && folderId) {
-            const folder = getFolderById(categoryId, folderId);
+            const folder = getFolderById(folderId);
             return folder.name;
         }
         return 'Root';

@@ -1,0 +1,38 @@
+@use '../../scss/variables';
+
+.ss {
+    border: 1px solid red;
+    width: 100%;
+    height: calc(100vh - 110px);
+
+    padding: 4px;
+
+    &__body {
+        max-width: variables.$content-max-width;
+        height: 100%;
+        margin: auto;
+        border: 1px solid red;
+        padding-inline: 15px;
+
+        .options-group {
+            border: 1px solid red;
+            padding: 4px;
+
+            &__name {
+                margin-bottom: 10px;
+            }
+
+            &__options {
+                border: 1px solid red;
+
+                &__option {
+
+                    &__description {
+
+                    }
+                }
+            }
+
+        }
+    }
+}

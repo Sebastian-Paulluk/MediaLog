@@ -1,14 +1,14 @@
-import { useDataContext } from '../../../context/DataContext';
 import './UserButton.scss';
 import arrowImg from '../../../assets/images/arrow-down-filled.png';
 import { Dropdown, MenuProps } from 'antd';
+import { useUserContext } from '../../../context/userContext';
 
 interface UserButtonTypes {
     handleUserLogout: ()=> void;
 }
 
 export const UserButton: React.FC<UserButtonTypes> = ({handleUserLogout}) => {
-    const {user} = useDataContext();
+    const {user} = useUserContext();
 
     const items: MenuProps['items'] = [
         {
