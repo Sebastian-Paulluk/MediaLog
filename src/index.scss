@@ -1,10 +1,7 @@
 @use './scss/variables';
 
-
 :root {
 	font-family: variables.$textFont;
-	color: variables.$textColor;
-	background-color: variables.$backGroundColor;
 }
 
 input, textarea, button {

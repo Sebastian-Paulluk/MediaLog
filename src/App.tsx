@@ -6,6 +6,7 @@ import { DataProvider } from './context/DataContext';
 import { UserProvider } from './context/userContext';
 import { AppRoutes } from './routes/AppRoutes';
 import './App.scss';
+import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
 
@@ -14,12 +15,14 @@ function App() {
             <BrowserRouter>
                 <UserProvider>
                     <DataProvider>
-                        <Header />
-                        <CurrentCategoryProvider>
-                            <MainContainer>
-                                <AppRoutes />
-                            </MainContainer>
-                        </CurrentCategoryProvider>
+                        <ThemeProvider>
+                            <Header />
+                            <CurrentCategoryProvider>
+                                <MainContainer>
+                                    <AppRoutes />
+                                </MainContainer>
+                            </CurrentCategoryProvider>
+                        </ThemeProvider>
                     </DataProvider>
                 </UserProvider>
             </BrowserRouter>

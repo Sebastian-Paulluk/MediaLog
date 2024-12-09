@@ -1,5 +1,6 @@
 import './SettingsScreen.scss';
 import { LanguageOption } from "./Options/Language/Language";
+import { DarkTheme } from './Options/Language/DarkTheme';
 
 export const SettingsScreen: React.FC = () => {
 
@@ -12,8 +13,12 @@ export const SettingsScreen: React.FC = () => {
                     <h3 className='options-group__name'>
                         Interface
                     </h3>
-                    <LanguageOption />
 
+                    <div className='options-group__options'>
+                        <LanguageOption className='options-group__options__option' />
+                        <DarkTheme className='options-group__options__option' />
+                    </div>
+                    
                 </div>
             </div>
         </div>

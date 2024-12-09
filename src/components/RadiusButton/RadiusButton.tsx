@@ -2,13 +2,13 @@ import './RadiusButton.scss'
 
 interface RadiusButtonTypes {
     active: boolean;
-    onChange: (newState: boolean)=> void;
+    onChange: ()=> void;
 }
 
 export const RadiusButton: React.FC<RadiusButtonTypes> = ({active, onChange}) => {
 
     const handleClick = () => {
-        onChange(!active);  
+        onChange();
     };
 
     return (

@@ -4,10 +4,10 @@ import { useDataContext } from '../../../../context/DataContext';
 import { updateUser } from '../../../../services/firebase';
 
 interface LanguageOptionProps {
-   
+   className: string;
 }
 
-export const LanguageOption: React.FC<LanguageOptionProps> = () => {
+export const LanguageOption: React.FC<LanguageOptionProps> = ({className}) => {
     const {user} = useUserContext();
     const [selectedLanguage, setSelectedLanguage] = useState<string>(user?.UILanguage || 'english');
     const languages: string[] = ['english', 'español', 'français']
@@ -24,7 +24,7 @@ export const LanguageOption: React.FC<LanguageOptionProps> = () => {
     };
 
     return (
-        <div>
+        <div className={className}>
             <label htmlFor="language">Language:</label>
             <select id="language" name="language" value={selectedLanguage} onChange={handleChange}>
             {languages.map((language, index) => (

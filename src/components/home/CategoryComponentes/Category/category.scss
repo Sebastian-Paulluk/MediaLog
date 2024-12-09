@@ -1,4 +1,5 @@
 @use '../../../../scss/variables';
+
 .category-container {
     width: 150px;
     height: 150px;
@@ -10,23 +11,17 @@
     .category {
         width: 100%;
         height: 100%;
-        background-color: variables.$categoriesAndItemsBG;
+        background-color: var(--categories-and-items-bg);
         transition: background-color 0.2s ease;
     
         &:hover {
-            background-color: variables.$categoriesAndItemsBGHover;
-        }
-    
-        &:active {
-            transition: none;
-            border-color: variables.$color10;
+            background-color: var(--categories-and-items-bg-hover);
         }
     
         .top-side {
             width: 100%;
             height: 25%;
             border-bottom: 1px solid variables.$backGroundColor;
-
         }
 
         .bottom-side {
