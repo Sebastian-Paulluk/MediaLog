@@ -50,7 +50,7 @@
         }
 
         .category-type-radio-button:checked + .custom-radio {
-            background-color: variables.$color6;
+            background-color: variables.$color5;
         }
 
         .custom-radio::after {
@@ -62,7 +62,7 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background-color: white;
+            background-color: #EAC452;
             opacity: 0;
             transition: opacity 0.2s;
         }

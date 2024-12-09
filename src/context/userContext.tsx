@@ -6,6 +6,7 @@ import { db } from '../services/firebase';
 
 interface UserContextType {
     user: Record<string, any> | null;
+    userLanguage: string;
     userSessionVerified: boolean;
 }
 
@@ -17,6 +18,7 @@ interface UserProviderProps {
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const [user, setUser] = useState<Record<string, any> | null>(null);
+    const userLanguage = user?.UILanguage;
     const [userSessionVerified, setUserSessionVerified] = useState<boolean>(false);
 
     // useEffect para la configuración de la persistencia de sesión
@@ -72,7 +74,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     }, [user]);
 
     return (
-        <UserContext.Provider value={{ user, userSessionVerified }}>
+        <UserContext.Provider value={{ user, userLanguage, userSessionVerified }}>
             {children}
         </UserContext.Provider>
     );

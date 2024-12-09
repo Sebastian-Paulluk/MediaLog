@@ -13,7 +13,6 @@ interface UpdateSeriesItemFormTypes {
     item: ItemTypes;
     onClose: ()=> void;
     onSubmit: (updatedItem: Partial<ItemTypes>)=> void;
-    openModal: boolean;
 }
 
 const isSeriesItem = (item: ItemTypes): item is SeriesItemTypes => {

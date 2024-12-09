@@ -20,12 +20,19 @@
             opacity: 0;
         width: 0px;
         padding: 0px;
+        overflow: hidden;
 
         &.open {
-            width: 123px;
+            width: 180px;
             padding-inline: 10px;
             opacity: 1;
         }
+    }
+
+    .separator {
+        border-right: 1px solid variables.$color7;
+        height: 27px;
+        margin: auto;
     }
 
     &__button {

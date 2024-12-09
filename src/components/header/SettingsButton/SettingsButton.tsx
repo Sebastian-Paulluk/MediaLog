@@ -8,6 +8,7 @@ interface SettingsButtonTypes {
 }
 
 export const SettingsButton: React.FC<SettingsButtonTypes> = () => {
+    
 
     return (
         <Link to='/settings'>

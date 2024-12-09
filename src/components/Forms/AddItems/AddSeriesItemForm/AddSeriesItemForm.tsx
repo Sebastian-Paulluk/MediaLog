@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SeriesItemTypes } from '../../../../types/types';
 import './AddSeriesItemForm.scss'
 import closeImg from '../../../../assets/images/close.png';
@@ -31,6 +31,13 @@ export const AddSeriesItemForm: React.FC<AddSeriesItemFormTypes> = ({ categoryId
         folderId: folderId,
         updatedAt: new Date().toISOString(),
     });
+
+    useEffect(() => {
+        setNewSeriesData((prevData) => ({
+            ...prevData,
+            folderId: folderId, 
+        }));
+    }, [folderId]);
 
     const handleNameChange =(e: React.ChangeEvent<HTMLInputElement>) => {
         setNewSeriesData({

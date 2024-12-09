@@ -1,12 +1,7 @@
 import './SettingsScreen.scss';
 import { LanguageOption } from "./Options/Language/Language";
 
-interface SettingsScreenTypes {
-    
-}
-
-export const SettingsScreen: React.FC<SettingsScreenTypes> = () => {
-
+export const SettingsScreen: React.FC = () => {
 
     return (
         <div className='ss'>
@@ -20,10 +15,6 @@ export const SettingsScreen: React.FC<SettingsScreenTypes> = () => {
                     <LanguageOption />
 
                 </div>
-
-
-
-
             </div>
         </div>
     )

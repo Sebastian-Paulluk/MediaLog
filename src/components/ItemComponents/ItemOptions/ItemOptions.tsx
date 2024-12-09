@@ -5,12 +5,13 @@ import { DeleteItemButton } from './DeleteItemButton/DeleteItemButton'
 import { FavoriteButton } from './FavoriteButton/FavoriteButton'
 import './ItemOptions.scss'
 import { Dots } from '../../home/CategoryComponentes/Dots/Dots';
+import { MoveButton } from './MoveButton/MoveButton';
 
 interface ItemOptionsTypes {
-    favorite: boolean;
-    completed: boolean;
+    item: ItemTypes;
     updateItemStates: (propName: keyof ItemTypes) => void;
     deleteItem: () => void;
+    handleOpenMoveItemModal: ()=> void;
 }
 
 export const ItemOptions: React.FC<ItemOptionsTypes> = (props) => {
@@ -33,7 +34,7 @@ export const ItemOptions: React.FC<ItemOptionsTypes> = (props) => {
         e.preventDefault();
         e.stopPropagation();
         setOpen(!open);
-    }
+    };
 
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
@@ -43,16 +44,16 @@ export const ItemOptions: React.FC<ItemOptionsTypes> = (props) => {
     }, []);
 
     const favoriteButtonProps = {
-        favorite: props.favorite,
+        favorite: props.item.favorite,
         propName: 'favorite' as keyof ItemTypes,
         updateItemStates: props.updateItemStates
     }
 
     const completedButtonProps = {
-        completed: props.completed,
+        completed: props.item.completed,
         propName: 'completed'as keyof ItemTypes,
         updateItemStates: props.updateItemStates
-    }
+    };
 
     return (
         <div className='item-options-container' ref={optionsContainerRef}>
@@ -60,6 +61,8 @@ export const ItemOptions: React.FC<ItemOptionsTypes> = (props) => {
             <div className={`item-options ${open ? 'open' : ''}`}>
                 <FavoriteButton {...favoriteButtonProps}/>
                 <CompletedButton {...completedButtonProps}/>
+                <div className='separator' />
+                <MoveButton item={props.item} handleOpenMoveItemModal={props.handleOpenMoveItemModal}/>
                 <DeleteItemButton deleteItem={props.deleteItem} />
             </div>
 
@@ -72,5 +75,5 @@ export const ItemOptions: React.FC<ItemOptionsTypes> = (props) => {
             </button>
 
         </div>
-    )
-}
+    );
+};

@@ -8,7 +8,7 @@ import emptyStarImg from '../../../../assets/images/favorite.png'
 import filledStarImg from '../../../../assets/images/favorite-added.png'
 
 interface UpdateOtherItemFormTypes {
-    item: ItemTypes
+    item: ItemTypes;
     onClose: ()=> void;
     onSubmit: (updatedItem: Partial<ItemTypes>)=> void;
 }

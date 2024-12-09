@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './addMovieItemForm.scss'
 import '../../Form.scss'
 import { MoviesItemTypes } from '../../../../types/types';
@@ -29,6 +29,13 @@ export const AddMovieItemForm: React.FC<addMovieItemFormTypes> =({ categoryId, f
         folderId: folderId,
         updatedAt: new Date().toISOString()
     })
+
+    useEffect(() => {
+        setNewItemData((prevData) => ({
+            ...prevData,
+            folderId: folderId, 
+        }));
+    }, [folderId]);
 
     const handleNameChange =(e: React.ChangeEvent<HTMLInputElement>) => {
         setNewItemData({

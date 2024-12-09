@@ -61,7 +61,8 @@ export interface CategoryTypes {
 }
 
 export interface UserTypes {
-	name: string,
-	mail: string,
-	UILanguage: string,
+    name: string;
+    mail: string;
+    UILanguage: string; 
+	darkTheme: boolean;
 }

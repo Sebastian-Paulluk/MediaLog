@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { ItemTypes, MoviesItemTypes, SeriesItemTypes } from '../../types/types';
 import { Modal } from '../modal/modal';
 import { UpdateOtherItemForm } from '../Forms/UpdateItems/UpdateOtherItemForm/UpdateOtherItemForm';
@@ -13,28 +13,35 @@ import { ItemOptions } from './ItemOptions/ItemOptions';
 import './Item.scss';
 import { useMountingEffect } from '../../Hooks/useMountingEffect';
 import { useDataContext } from '../../context/DataContext';
+import { MoveItemForm } from '../Forms/MoveItemForm/MoveItemForm';
 
 interface ItemProps {
     item: ItemTypes;
-	isNew?: boolean;
-	changedCompletedState?: boolean;
 	mountingAnimation?: boolean;
 }
 
 export const Item: React.FC<ItemProps> = (props) => {
-	const {item, isNew=false, changedCompletedState=false} = props
-	const [openModal , setOpenModal] = useState<boolean>(false);
+	const {item} = props
+	const [openUpdateItemModal , setOpenUpdateItemModal] = useState<boolean>(false);
+	const [openMoveItemModal , setOpenMoveItemModal] = useState<boolean>(false);
 	const isMounted: boolean = useMountingEffect();
+	const [isDeleting , setIsDeleting] = useState<boolean>(false);
 	const {setChangesSaved} = useDataContext();
+	const itemRef = useRef(null);
 
-	const handleOpenModal = () => {
-		console.log(item)
-        setOpenModal(true);
-    }
+	const handleOpenUpdateItemModal = () => {
+        setOpenUpdateItemModal(true);
+    };
+    const handleCloseUpdateItemModal = () => {
+        setOpenUpdateItemModal(false);
+    };
 
-    const handleCloseModal = () => {
-        setOpenModal(false);
-    }
+	const handleOpenMoveItemModal = () => {
+        setOpenMoveItemModal(true);
+    };
+    const handleCloseMoveItemModal = () => {
+        setOpenMoveItemModal(false);
+    };
 
 
 	const modifyItem = async(updatedItemData: Partial<ItemTypes>)=>{
@@ -46,47 +53,56 @@ export const Item: React.FC<ItemProps> = (props) => {
 	}
 
 	const updateItemStates = async(propName: keyof ItemTypes) => {
+		setChangesSaved(false);
 		if (item.id) {
-			setChangesSaved(false);
 			const updatedItemData = {[propName]: !item[propName]};
 			await updateItem(item.id, updatedItemData);
-			setChangesSaved(true);
 		}
+		setChangesSaved(true);
 	}
 
 	const handleDeleteItem = async()=> {
-		if (item.id) {
-			setChangesSaved(false);
-			await deleteItem(item.id);
-			setChangesSaved(true);
-		}
+		setChangesSaved(false);
+		setIsDeleting(true);
+		setTimeout(async()=> {
+			if (item.id) {
+				await deleteItem(item.id);
+				setChangesSaved(true);
+			}
+		}, 225)
 	}
 
 	const itemOptionsProps = {
-		favorite: item.favorite,
-		completed: item.completed,
+		item,
 		updateItemStates,
-		deleteItem: handleDeleteItem
+		deleteItem: handleDeleteItem,
+		handleOpenMoveItemModal: handleOpenMoveItemModal
     }
 
-	const formProps = {
+	const updateItemFormProps = {
 		item,
 		onSubmit: modifyItem,
-		onClose: handleCloseModal,
-		openModal
+		onClose: handleCloseUpdateItemModal
 	}
 
+	const moveItemFormProps = {
+		item,
+		onSubmit: modifyItem,
+		onClose: handleCloseMoveItemModal
+	}
+
+	console.log(isDeleting)
 
 	return (
 		<>
 			<div className={
 					`item 
-					${item.type === 'Movies' ? 'movie-type' : item.type === 'Series' ? 'series-type' : ''}
-					${ isMounted ? '' : isNew ? 'firstTimeMounting' : 'mounting' }
-					${ changedCompletedState ? 'changedCompletedState' : '' }
-					`
+					${item.type === 'Movies' ? 'movie-type' : (item.type === 'Series' ? 'series-type' : (''))}
+					${isMounted ? '' : 'mounting'}
+					${isDeleting ? 'deleting' : ''}`
 				}
-				onClick={handleOpenModal}
+				onClick={handleOpenUpdateItemModal}
+				ref={itemRef}
 			>
 
 				{item.type === 'Others' ? (
@@ -114,17 +130,22 @@ export const Item: React.FC<ItemProps> = (props) => {
 
 			</div>
 
-			<Modal onClose={handleCloseModal} open={openModal}>
+			<Modal onClose={handleCloseUpdateItemModal} open={openUpdateItemModal}>
 				{item && (
 					item.type === 'Others' ? (
-						<UpdateOtherItemForm {...formProps}/>
+						<UpdateOtherItemForm {...updateItemFormProps}/>
 					) : item.type === 'Movies' ? (
-						<UpdateMovieItemForm {...formProps}/>
+						<UpdateMovieItemForm {...updateItemFormProps}/>
 					) : (
-						<UpdateSeriesItemForm {...formProps}/>
+						<UpdateSeriesItemForm {...updateItemFormProps}/>
 					)
 				)}
 			</Modal>
+
+			<Modal onClose={handleCloseMoveItemModal} open={openMoveItemModal} >
+                <MoveItemForm {...moveItemFormProps}/>
+            </Modal>  
+			
 		</>
 	);
 };

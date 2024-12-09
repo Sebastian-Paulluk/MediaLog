@@ -86,7 +86,6 @@ export const AddCategoryForm: React.FC<addCategoryFormTypes> =({ onSubmit, onClo
                         <label className='type-label form__label'>Type</label>
                         
                         <label className='form__type-label'>
-                            Series
                             <input
                                 className='category-type-radio-button'
                                 type= 'radio'
@@ -96,10 +95,10 @@ export const AddCategoryForm: React.FC<addCategoryFormTypes> =({ onSubmit, onClo
                                 onChange= {handleTypeChange}
                             />
                             <span className="custom-radio"></span>
+                            Series
                         </label>
 
                         <label className='form__type-label'>
-                            Movie
                             <input
                                 className='category-type-radio-button'
                                 type= 'radio'
@@ -109,10 +108,10 @@ export const AddCategoryForm: React.FC<addCategoryFormTypes> =({ onSubmit, onClo
                                 onChange= {handleTypeChange}
                             />
                             <span className="custom-radio"></span>
+                            Movie
                         </label>
 
                         <label className='form__type-label'>
-                            Other
                             <input
                                 className='category-type-radio-button'
                                 type= 'radio'
@@ -122,6 +121,7 @@ export const AddCategoryForm: React.FC<addCategoryFormTypes> =({ onSubmit, onClo
                                 onChange= {handleTypeChange}
                             />
                             <span className="custom-radio"></span>
+                            Other
                         </label>
                     </div>
                 </div>

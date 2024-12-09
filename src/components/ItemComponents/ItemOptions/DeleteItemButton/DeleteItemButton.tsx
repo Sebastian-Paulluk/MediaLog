@@ -14,8 +14,8 @@ export const DeleteItemButton: React.FC<DeleteItemButtonTypes> = ({deleteItem}) 
     }
 
     return (
-        <button className='delete-item-button'>
-            <img className='delete-item-button__img' src={deleteItemImg} alt='delete' onClick={handleClick} />
+        <button className='delete-item-button' onClick={handleClick}>
+            <img className='delete-item-button__img' src={deleteItemImg} alt='delete' />
         </button>
     )
 }

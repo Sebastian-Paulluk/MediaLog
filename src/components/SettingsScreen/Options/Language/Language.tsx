@@ -9,7 +9,7 @@ interface LanguageOptionProps {
 
 export const LanguageOption: React.FC<LanguageOptionProps> = () => {
     const {user} = useUserContext();
-    const [selectedLanguage, setSelectedLanguage] = useState<string>(user?.UILanguage);
+    const [selectedLanguage, setSelectedLanguage] = useState<string>(user?.UILanguage || 'english');
     const languages: string[] = ['english', 'español', 'français']
     const {setChangesSaved} = useDataContext();
 

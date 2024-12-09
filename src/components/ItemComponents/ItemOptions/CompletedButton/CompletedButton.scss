@@ -1,16 +1,29 @@
+@use '../../../../scss/variables';
+
 .completed-button {
     background: none;
     cursor: pointer;
     border-radius: 50%;
     width: 27px;
     height: 27px;
-    transition: transform 0.2s ease;
+    border: 1px solid variables.$color7;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:hover {
-        transform: scale(1.1);
+        background-color: variables.$color5;
+    }
+
+    &:active {
+        transition: none;
+        background-color: variables.$color6;
     }
 
     &__img {
-        width: 100%;
+        width: 19px;
     }
 }

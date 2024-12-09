@@ -17,12 +17,6 @@
 	overflow: hidden;
 	opacity: 1;
 
-	&.deleting {
-        opacity: 0.5;
-		pointer-events: none;
-		cursor: wait;
-    }
-
 	&:hover {
 		background-color: variables.$categoriesAndItemsBGHover;
 	}
@@ -37,6 +31,11 @@
 		opacity: 0;
 	}
 
+	&.deleting {
+		transform: scale(0);
+		opacity: 0;
+		pointer-events: none;
+	}
 }
 
 @media (max-width: 600px) {
