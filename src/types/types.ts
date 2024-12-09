@@ -9,8 +9,6 @@ export interface SeriesItemTypes {
 	notes: string;
 	completed: boolean;
 	favorite: boolean;
-	isNew?: boolean;
-	changedCompletedState?: boolean;
 	updatedAt: string;
 }
 
@@ -24,8 +22,6 @@ export interface MoviesItemTypes {
 	notes: string;
 	completed: boolean;
 	favorite: boolean;
-	isNew?: boolean;
-	changedCompletedState?: boolean;
 	updatedAt: string;
 }
 
@@ -38,8 +34,6 @@ export interface OthersItemTypes {
 	notes: string;
 	completed: boolean;
 	favorite: boolean;
-	isNew?: boolean;
-	changedCompletedState?: boolean;
 	updatedAt: string;
 }
 

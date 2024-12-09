@@ -43,11 +43,8 @@ export const CategoryDetailCompletedItems: React.FC<CategoryDetailCompletedItems
                     <Item
                         key={item.id}
                         item={item}
-                        isNew={item.isNew}
-                        changedCompletedState={item.changedCompletedState}
-                        />
-                    )
-                )}
+                    />
+                ))}
             </div>
         </div>
     )

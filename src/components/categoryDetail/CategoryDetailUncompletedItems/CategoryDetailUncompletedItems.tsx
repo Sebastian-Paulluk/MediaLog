@@ -14,11 +14,8 @@ export const CategoryDetailUncompletedItems: React.FC<CategoryDetailUncompletedI
                 <Item
                     key={item.id}
                     item={item}
-                    isNew={item.isNew}
-                    changedCompletedState={item.changedCompletedState}
-                    />
-                )
-            )}
+                />
+            ))}
         </div>
     )
 }
