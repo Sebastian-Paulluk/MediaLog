@@ -29,9 +29,10 @@ $color10: #ffffff;
     --color3: #949494;
     --color2: #bbbbbb;
     --color1: #ffffff;
-    --categories-and-items-bg: #{$color9};
-    --categories-and-items-bg-hover: #{$color8};
-    --categories-and-items-bg-active: #{$color7};
+
+    --components-bg: #{$color9};
+    --components-bg-hover: #{$color8};
+    --components-bg-active: #{$color7};
 }
   
 .dark-theme {
@@ -48,9 +49,9 @@ $color10: #ffffff;
     --color8: #949494;
     --color9: #bbbbbb;
     --color10: #ffffff;
-    --categories-and-items-bg: #202020;
-    --categories-and-items-bg-hover: #303030;
-    --categories-and-items-bg-active: #505050;
+    --components-bg: #202020;
+    --components-bg-hover: #303030;
+    --components-bg-active: #505050;
 }
 
 $font: "Raleway", sans-serif;

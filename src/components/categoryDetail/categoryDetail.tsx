@@ -50,6 +50,7 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 	}, [items, folderId, category.id]);
 	
 	const handleAddItem = async (newItem: ItemTypes) => {
+		console.log(newItem)
 		if (category.id) {
 			setChangesSaved(false);
 			await createItem(newItem);

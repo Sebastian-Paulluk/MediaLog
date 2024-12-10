@@ -91,8 +91,6 @@ export const Item: React.FC<ItemProps> = (props) => {
 		onClose: handleCloseMoveItemModal
 	}
 
-	console.log(isDeleting)
-
 	return (
 		<>
 			<div className={

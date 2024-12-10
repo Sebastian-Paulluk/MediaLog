@@ -18,7 +18,7 @@ interface addMovieItemFormTypes {
 export const AddMovieItemForm: React.FC<addMovieItemFormTypes> =({ categoryId, folderId, itemType, onSubmit, onClose })=> {
     const [minuteValue, setMinuteValue] = useState<number>(0)
     const minuteInputRef = useRef<HTMLInputElement>(null)
-    const [newItemData, setNewItemData] = useState({
+    const [newMovieData, setnewMovieData] = useState({
         type: itemType,
         name: '',
         minute: 0,
@@ -31,21 +31,21 @@ export const AddMovieItemForm: React.FC<addMovieItemFormTypes> =({ categoryId, f
     })
 
     useEffect(() => {
-        setNewItemData((prevData) => ({
+        setnewMovieData((prevData) => ({
             ...prevData,
             folderId: folderId, 
         }));
     }, [folderId]);
 
     const handleNameChange =(e: React.ChangeEvent<HTMLInputElement>) => {
-        setNewItemData({
-            ...newItemData,
+        setnewMovieData({
+            ...newMovieData,
             name: e.target.value
         })
     }
 
     const handleFavoriteChange = () => {
-        setNewItemData(prevData => ({
+        setnewMovieData(prevData => ({
             ...prevData,
             favorite: !prevData.favorite,
         }));
@@ -53,8 +53,8 @@ export const AddMovieItemForm: React.FC<addMovieItemFormTypes> =({ categoryId, f
 
     const onChangeMinute = (newValue: number) => {
         setMinuteValue(newValue)
-        setNewItemData({
-            ...newItemData,
+        setnewMovieData({
+            ...newMovieData,
             minute: newValue
         })
     }
@@ -62,7 +62,7 @@ export const AddMovieItemForm: React.FC<addMovieItemFormTypes> =({ categoryId, f
 
     const resetInputs = () => {
         setTimeout(()=>{
-            setNewItemData({
+            setnewMovieData({
                 type: itemType,
                 name: '',
                 minute: 0,
@@ -78,15 +78,15 @@ export const AddMovieItemForm: React.FC<addMovieItemFormTypes> =({ categoryId, f
     }
 
     const handleNotesChange =(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setNewItemData({
-            ...newItemData,
+        setnewMovieData({
+            ...newMovieData,
             notes: e.target.value
         })
     }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        onSubmit(newItemData)
+        onSubmit(newMovieData)
         resetInputs()
         onClose()
     }
@@ -106,7 +106,7 @@ export const AddMovieItemForm: React.FC<addMovieItemFormTypes> =({ categoryId, f
 
                 <div className='item-status'>
                     <img
-                        src={newItemData.favorite ? filledStarImg : emptyStarImg}
+                        src={newMovieData.favorite ? filledStarImg : emptyStarImg}
                         alt='fav-status'
                         className='item-status__fav-img'
                         onClick={handleFavoriteChange}
@@ -124,7 +124,7 @@ export const AddMovieItemForm: React.FC<addMovieItemFormTypes> =({ categoryId, f
                         name='name'
                         className='form__input'
                         required
-                        value={newItemData.name}
+                        value={newMovieData.name}
                         onChange={handleNameChange}
                     />
                 </div>
@@ -145,7 +145,7 @@ export const AddMovieItemForm: React.FC<addMovieItemFormTypes> =({ categoryId, f
                     <textarea
                         className='form__notes'
                         name='notes'
-                        value={newItemData.notes}
+                        value={newMovieData.notes}
                         onChange={handleNotesChange}
                         rows={2}
                         cols={50}
