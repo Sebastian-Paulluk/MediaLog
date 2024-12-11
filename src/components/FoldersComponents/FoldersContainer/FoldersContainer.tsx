@@ -10,6 +10,7 @@ import { Modal } from '../../modal/modal';
 import { AddFolderForm } from '../../Forms/AddFolder/AddFolderForm';
 import { createFolder, deleteFolder } from '../../../services/firebase';
 import { useWindowWidth } from '../../../Hooks/useWindowWidth';
+import normalizeText from '../../../utils/normalizeText';
 
 interface FoldersContainerTypes {
     category: CategoryTypes;
@@ -18,7 +19,7 @@ interface FoldersContainerTypes {
 }
 
 export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, openFoldersMenu, setOpenFoldersMenu}) => {
-    const {getFoldersByCategoryId, folders} = useDataContext();
+    const {getFoldersByCategoryId, getItemsByCategoryIdInRoot, folders} = useDataContext();
     const [localFolders , setLocalFolders] = useState<FolderTypes[]>([]);
     const navigate = useNavigate();
     const [activeFolder , setActiveFolder] = useState<FolderTypes | null>(null);
@@ -27,7 +28,8 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
     const {folderId} = useParams();
     const windowWidth = useWindowWidth();
     const [folderContainerState, setFolderContainerState] = useState<string>('');
-
+    const itemsInRootOfCategory = category.id ? getItemsByCategoryIdInRoot(category.id).length : 0;
+    
     useEffect(() => {
         if (category.id) {
             const res = getFoldersByCategoryId(category.id)
@@ -91,6 +93,7 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
     const handleRootFolderClick =()=> {
         setActiveFolder(null);
         navigate(`/category/${category.id}`);
+        setOpenFoldersMenu(false);
     }
 
     return (
@@ -110,8 +113,11 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
                         />
                     </div>
                     <div className='root-folder__name'>
-                        {category.name}
+                        {normalizeText.firstLetterCaps( category.name )}
                     </div>
+                    <div className='root-folder__length'>
+                    ({itemsInRootOfCategory})
+                </div>
                 </div>
 
                 <div className='folders-content__folders-container'>
@@ -122,6 +128,7 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
                             activeFolder={activeFolder}
                             setActiveFolder={setActiveFolder}
                             handleDeleteFolder={handleDeleteFolder}
+                            setOpenFoldersMenu={setOpenFoldersMenu}
                         />
                     ))}
                 </div>

@@ -16,72 +16,145 @@
         align-items: center;
 
         &__body {
-            display: flex;
-            gap: 10px;
+            display: grid;
+            grid-template-columns: 1fr calc(100% - 105px - 40px ) 1fr;
+
             width: 100%;
 
-
             &__left {
-                display: none;
                 align-items: center;
-                border-right: 2px solid #262a30;
-                padding-right: 10px;
-                cursor: pointer;
-
-                &__img-container {
-                    width: 20px;
-                    display: flex;
-                    align-items: center;
-    
-                    &__img {
-                        opacity: 0.5;
-                        width: 100%;
-                        transition: transform 0.3s ease, opacity 0.3s ease;
-
-                        &.open-cf-bar {
-                            transform: rotate(180deg);
-                        }
-                    }
-                }
-
-                &__folders-text {
-                    color: rgb(167, 167, 167);
-                    transition: color 0.3s ease;
-                }
-
-                &:hover {
-                    .cf-bar__content__body__left {
-                        &__img-container {
-            
-                            &__img {
-                                opacity: 1;
-                            }
-                        }
-
-                        &__folders-text {
-                            color: white;
-                        }
-                    }
-                }
-            }
-
-            &__right {
                 display: flex;
                 align-items: center;
-                gap: 5px;
-                width: calc(100% - 90px);
+                width: 105px;
 
+                &__open-folders-button {
+                    display: flex;
+                    border-right: 2px solid #262a30;
+
+                    &__img-container {
+                        width: 20px;
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+                        display: none;
+        
+                        &__img {
+                            opacity: 0.5;
+                            width: 100%;
+                            transition: transform 0.3s ease, opacity 0.3s ease;
+    
+                            &.open-cf-bar {
+                                transform: rotate(180deg);
+                            }
+                        }
+                    }
+    
+                    &__folders-text {
+                        display: none;
+                        color: rgb(167, 167, 167);
+                        transition: color 0.3s ease;
+                        cursor: pointer;
+                    }
+
+                    &:hover {
+                        .cf-bar__content__body__left__open-folders-button {
+                            &__img-container {
+                
+                                &__img {
+                                    opacity: 1;
+                                }
+                            }
+    
+                            &__folders-text {
+                                color: white;
+                            }
+                        }
+                    }
+                }
+
+                
                 &__cf-text {
                     color: rgb(167, 167, 167);
                     width: 105px;
                     display: flex;
                     flex-shrink: 0;
+
+                    &__folder {
+                        margin-left: 5px;
+                    }
+                }
+
+            }
+
+            &__center {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                width: calc(100% - 1px);
+                padding-inline: 15px;
+                overflow-x: auto; /* Activa el scroll horizontal si el contenido es más grande */
+                overflow-y: hidden; /* Evita el scroll vertical si no lo necesitas */
+                white-space: nowrap;
+
+                &::-webkit-scrollbar { /* Estilo para la barra de desplazamiento */
+                    height: 8px; /* Altura de la barra horizontal */
+                }
+
+                &::-webkit-scrollbar-thumb { /* Estilo del "thumb" (botón deslizante) */
+                    background: #464646;
+                    border-radius: 4px;
+                }
+
+                &::-webkit-scrollbar-track { /* Estilo del fondo de la barra */
+                    background: #303030;
                 }
 
                 &__cf-name {
+                    /*
                     white-space: nowrap; 
                     overflow: hidden;
                     text-overflow: ellipsis;
+                    */
+                }
+            }
+
+            &__right {
+                margin-left: auto;
+                border-left: 1px solid #262a30;
+                padding-left: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+
+                &__folder-count {
+                    display: flex;
+                    position: relative;
+
+                    &__img-container {
+                        height: 30px;
+                        width: 30px;
+                        display: flex;
+                        align-items: center;
+
+                        &__img {
+                            height: 30px;
+                            width: 30px;
+                            opacity: 0.6;
+                        }
+                    }
+
+                    &__number {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        display: flex;
+                        align-items: center;
+                        padding-inline: 3px;
+                        font-weight: bolder;
+                        color: var(--background-color)
+                    }
                 }
             }
         }
@@ -89,7 +162,44 @@
 }   
 
 @media (max-width: variables.$breakpoint1) {
-    .cf-bar__content__body__left {
-        display: flex;
+    .cf-bar__content{
+
+        &__body {
+            grid-template-columns: 1fr calc(100% - 160px - 40px ) 1fr;
+
+            &__left {
+                height: 40px;
+                display: flex;
+                gap: 10px;
+                border-right: 1px solid #262a30;
+                padding-right: 10px;
+                width: 160px;
+
+                &__open-folders-button {
+                    padding-right: 10px;
+
+                    &__img-container {
+                        display: flex;
+                    }
+        
+                    &__folders-text {
+                        display: block;
+                    }
+                }
+
+                &__cf-text {
+                    width: 60px;
+
+                    &__folder {
+                        display: none;
+                    }
+                }
+            }
+
+            &__center {
+                
+
+            }
+        }
     }
 }

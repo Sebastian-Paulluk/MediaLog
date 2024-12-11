@@ -4,22 +4,28 @@ import openFolderImg from '../../../assets/images/open-folder.png';
 import { FolderTypes } from '../../../types/types';
 import { useNavigate, useParams } from 'react-router-dom';
 import { DeleteFolderButton } from './DeleteFolderButton/DeleteFolderButton';
+import { useDataContext } from '../../../context/DataContext';
+import normalizeText from '../../../utils/normalizeText';
 
 interface FolderProps {
     folder: FolderTypes;
     activeFolder: FolderTypes | null;
     setActiveFolder: (folder: FolderTypes)=> void;
     handleDeleteFolder: (folder: FolderTypes)=> void;
+    setOpenFoldersMenu: (state: boolean) => void;
 }
 
-export const Folder: React.FC<FolderProps> = ({folder, activeFolder, setActiveFolder, handleDeleteFolder}) => {
+export const Folder: React.FC<FolderProps> = ({folder, activeFolder, setActiveFolder, handleDeleteFolder, setOpenFoldersMenu}) => {
     const {categoryId} = useParams();
     const navigate = useNavigate();
-    const isActiveFolder = folder.id === activeFolder?.id
+    const isActiveFolder = folder.id === activeFolder?.id;
+    const {getItemsByFolderId} = useDataContext();
+    const itemsInFolder = folder.id ? getItemsByFolderId(folder.id).length : 0;
     
     const handleFolderClick =()=>{
-        navigate(`/category/${categoryId}/folder/${folder.id}`)
         setActiveFolder(folder);
+        navigate(`/category/${categoryId}/folder/${folder.id}`);
+        setOpenFoldersMenu(false);
     }
 
     return (
@@ -31,8 +37,10 @@ export const Folder: React.FC<FolderProps> = ({folder, activeFolder, setActiveFo
                     <img src={isActiveFolder ? openFolderImg : folderImg} alt='folder-img' className='folder-img'/>
                 </div>
                 <div className='folder__details__name'>
-                    {folder.name}
-
+                    {normalizeText.firstLetterCaps(folder.name)}
+                </div>
+                <div className='folder__details__length'>
+                    ({itemsInFolder})
                 </div>
                 <DeleteFolderButton folder={folder} deleteFolder={handleDeleteFolder} />
             </div>
