@@ -17,15 +17,18 @@
 
         &__body {
             display: grid;
-            grid-template-columns: 1fr calc(100% - 105px - 40px ) 1fr;
-
+            grid-template-columns: 1fr calc(100% - 115px - 40px ) 1fr;
             width: 100%;
 
             &__left {
                 align-items: center;
                 display: flex;
                 align-items: center;
-                width: 105px;
+                width: 115px;
+                box-shadow: 5px 0px 10px rgb(0, 0, 0);
+                height: 40px;
+                border-right: 1px solid #262a30;
+                z-index: 1;
 
                 &__open-folders-button {
                     display: flex;
@@ -92,29 +95,25 @@
                 gap: 5px;
                 width: calc(100% - 1px);
                 padding-inline: 15px;
-                overflow-x: auto; /* Activa el scroll horizontal si el contenido es más grande */
-                overflow-y: hidden; /* Evita el scroll vertical si no lo necesitas */
+                overflow-x: auto; 
+                overflow-y: hidden;
                 white-space: nowrap;
 
-                &::-webkit-scrollbar { /* Estilo para la barra de desplazamiento */
-                    height: 8px; /* Altura de la barra horizontal */
+                &::-webkit-scrollbar { 
+                    height: 8px; 
                 }
 
-                &::-webkit-scrollbar-thumb { /* Estilo del "thumb" (botón deslizante) */
+                &::-webkit-scrollbar-thumb { 
                     background: #464646;
                     border-radius: 4px;
                 }
 
-                &::-webkit-scrollbar-track { /* Estilo del fondo de la barra */
+                &::-webkit-scrollbar-track { 
                     background: #303030;
                 }
 
                 &__cf-name {
-                    /*
-                    white-space: nowrap; 
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    */
+
                 }
             }
 
@@ -126,6 +125,7 @@
                 align-items: center;
                 justify-content: center;
                 width: 40px;
+                box-shadow: -5px 0px 10px rgb(0, 0, 0);
 
                 &__folder-count {
                     display: flex;
@@ -171,8 +171,6 @@
                 height: 40px;
                 display: flex;
                 gap: 10px;
-                border-right: 1px solid #262a30;
-                padding-right: 10px;
                 width: 160px;
 
                 &__open-folders-button {

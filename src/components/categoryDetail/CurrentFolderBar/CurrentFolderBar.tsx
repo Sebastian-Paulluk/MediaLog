@@ -24,6 +24,7 @@ export const CurrentFolderBar: React.FC<CurrentFolderBarTypes> = ({handleToggleO
 
     const getFoldersInCategory =()=> categoryId ? getFoldersByCategoryId(categoryId).length : 0;
 
+
     return (
         <div className='cf-bar'>
             <div className='cf-bar__content'>
@@ -58,7 +59,7 @@ export const CurrentFolderBar: React.FC<CurrentFolderBarTypes> = ({handleToggleO
 
                     <div className='cf-bar__content__body__center'>
 
-                        <div className='cf-bar__content__body__center__cf-name'>
+                        <div className='cf-bar__content__body__center__cf-name' >
                             {normalizeText.firstLetterCaps( getCurrentFolderName() )}
                         </div>
                     </div>
