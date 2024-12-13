@@ -1,6 +1,5 @@
 import './Folder.scss'
 import folderImg from '../../../assets/images/folder.png';
-import openFolderImg from '../../../assets/images/open-folder.png';
 import { FolderTypes } from '../../../types/types';
 import { useNavigate, useParams } from 'react-router-dom';
 import { DeleteFolderButton } from './DeleteFolderButton/DeleteFolderButton';
@@ -30,17 +29,17 @@ export const Folder: React.FC<FolderProps> = ({folder, activeFolder, setActiveFo
 
     return (
         <div className={`folder ${isActiveFolder? 'current-folder' : ''}`} >
-            <span className='folder__lines'></span>
+            <span className='folder__lines' />
 
             <div className='folder__details' onClick={handleFolderClick}>
                 <div className='folder__details__img-container'>
-                    <img src={isActiveFolder ? openFolderImg : folderImg} alt='folder-img' className='folder-img'/>
+                    <img src={folderImg} alt='folder-img' className='folder-img'/>
+                    <span className='folder__details__img-container__number'>
+                        {itemsInFolder}
+                    </span>
                 </div>
                 <div className='folder__details__name'>
                     {normalizeText.firstLetterCaps(folder.name)}
-                </div>
-                <div className='folder__details__length'>
-                    ({itemsInFolder})
                 </div>
                 <DeleteFolderButton folder={folder} deleteFolder={handleDeleteFolder} />
             </div>

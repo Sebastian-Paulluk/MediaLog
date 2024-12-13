@@ -4,7 +4,6 @@ import { useDataContext } from '../../../context/DataContext';
 import arrowImg from '../../../assets/images/arrow-2.png';
 import normalizeText from '../../../utils/normalizeText';
 import folderImg from '../../../assets/images/folder.png';
-import listImg from '../../../assets/images/list.png';
 
 interface CurrentFolderBarTypes {
     openFoldersMenu: boolean | null;
@@ -12,7 +11,7 @@ interface CurrentFolderBarTypes {
 }
 
 export const CurrentFolderBar: React.FC<CurrentFolderBarTypes> = ({handleToggleOpenFoldersMenu, openFoldersMenu}) => {
-    const {getFolderById, getFoldersByCategoryId, getItemsByCategoryIdInRoot, getItemsByFolderId} = useDataContext();
+    const {getFolderById, getItemsByCategoryIdInRoot, getItemsByFolderId} = useDataContext();
     const {categoryId, folderId} = useParams();
 
     const getCurrentFolderName =()=>{
@@ -23,7 +22,6 @@ export const CurrentFolderBar: React.FC<CurrentFolderBarTypes> = ({handleToggleO
         return 'Root';
     }
 
-    const getFoldersInCategory =()=> categoryId ? getFoldersByCategoryId(categoryId).length : 0;
     const getItemsInRoot =()=> categoryId ? getItemsByCategoryIdInRoot(categoryId).length : 0;
     const getItemsInFolder =()=> folderId ? getItemsByFolderId(folderId).length : 0;
 
@@ -59,11 +57,21 @@ export const CurrentFolderBar: React.FC<CurrentFolderBarTypes> = ({handleToggleO
                                         />
                                     </div>
                                     <div className='fc__main-folder__number'>
-                                        {getFoldersInCategory()}
+                                        {getItemsInRoot()}
                                     </div>
                                 </div>
 
-                                <img src={folderImg} className='fc__ghost-folder-img' alt='ghost-folder-img' />
+                                <div className='fc__ghost-folder-container'>
+                                    <img
+                                        src={folderImg}
+                                        className='fc__ghost-folder-container__img'
+                                        alt='ghost-folder-img'
+                                    />
+                                    <div className='fc__ghost-folder-container__number'>
+                                        {getItemsInFolder()}
+                                    </div>
+                                </div>
+                                
                             </div>
                         
                         </div>
@@ -77,10 +85,7 @@ export const CurrentFolderBar: React.FC<CurrentFolderBarTypes> = ({handleToggleO
                     </div>
 
                     <div className='cf-bar__content__body__right'>
-                            {getCurrentFolderName() === 'Root' ? getItemsInRoot() : getItemsInFolder()}
-                            <div className='cf-bar__content__body__right__img-container'>
-                                <img src={listImg} alt='list-img' className='cf-bar__content__body__right__img-container__img' />
-                            </div>
+
                     </div>
                 </div>
 

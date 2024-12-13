@@ -4,7 +4,6 @@ import { Folder } from '../Folder/Folder'
 import './FoldersContainer.scss'
 import { CategoryTypes, FolderTypes } from '../../../types/types';
 import folderImg from '../../../assets/images/folder.png';
-import openFolderImg from '../../../assets/images/open-folder.png';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Modal } from '../../modal/modal';
 import { AddFolderForm } from '../../Forms/AddFolder/AddFolderForm';
@@ -106,18 +105,22 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
                     onClick={handleRootFolderClick}
                 >
                     <div className='root-folder__img-container'>
+
                         <img
-                            src={!activeFolder ? openFolderImg : folderImg}
+                            src={folderImg}
                             alt='root-folder'
                             className='root-folder__img-container__img'
                         />
+                        <div className='root-folder__img-container__number'>
+                            {itemsInRootOfCategory}
+                        </div>
+
                     </div>
+                    
                     <div className='root-folder__name'>
                         {normalizeText.firstLetterCaps( category.name )}
                     </div>
-                    <div className='root-folder__length'>
-                    ({itemsInRootOfCategory})
-                </div>
+
                 </div>
 
                 <div className='folders-content__folders-container'>

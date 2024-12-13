@@ -5,7 +5,7 @@
     height: 40px;
     background-color: variables.$backGroundColor;
     border-bottom: 1px solid #262a30;
-    overflow: hidden;
+    //overflow: hidden;
 
     &__content {
         width: 100%;
@@ -26,7 +26,7 @@
                 align-items: center;
                 width: 65px;
                 padding-left: 20px;
-                box-shadow: 15px 0px 10px rgb(0, 0, 0, 0.6);
+                //box-shadow: 15px 0px 10px rgb(0, 0, 0, 0.6);
                 height: 40px;
                 border-right: 1px solid #262a30;
                 z-index: 1;
@@ -35,7 +35,6 @@
                 &__open-folders-button {
                     display: flex;
                     align-items: center;
-                    //cursor: pointer;
                     gap: 3px;
                     padding-right: 10px;
                     pointer-events: none;
@@ -52,7 +51,7 @@
                             transition: transform 0.3s ease, opacity 0.3s ease;
     
                             &.open-cf-bar {
-                                transform: rotate(180deg);
+                                transform: scaleX(-1);
                             }
                         }
                     }
@@ -70,7 +69,8 @@
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            transition:  transform 0.3s ease;
+                            transition: transform 0.3s ease, opacity 0.3s ease;
+                            opacity: 0.9;
 
                             &__img-container {
                                 height: 30px;
@@ -83,9 +83,7 @@
                                 &__img {
                                     height: 30px;
                                     width: 30px;
-                                    opacity: 0.4;
                                     position: absolute;
-                                    transition: opacity 0.3s ease;
                                 }
                             }
         
@@ -109,26 +107,52 @@
 
                         }
 
-                        .fc__ghost-folder-img {
-                            height: 30px;
-                            width: 30px;
+                        .fc__ghost-folder-container {
                             position: absolute;
                             bottom: -4px;
                             right: -8px;
+                            height: 30px;
+                            width: 30px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            color: black;
                             opacity: 0;
                             transition: opacity 0.3s ease;
+
+                            &__img {
+                                position: absolute;
+                                height: 30px;
+                                width: 30px;
+                                filter: brightness(0.8);
+                                transition: filter 0.3s ease;
+                            }
+
+                            &__number {
+                                z-index: 1;
+                                opacity: 0;
+                            }
                         }
     
 
                         &.not-root {
 
                             .fc__main-folder {
+                                opacity: 0.4;
                                 transform: translate(-6px, -6px) scale(0.7);
+                            
+                                &__number {
+                                    opacity: 0;
+                                }
                             }
 
-                            .fc__ghost-folder-img {
-                                opacity: 0.4;
-                                pointer-events: all;
+                            .fc__ghost-folder-container {
+                                opacity: 1;
+
+                                &__number {
+                                    opacity: 1;
+                                }
+                                
                             }
                         }
                     }
@@ -173,8 +197,7 @@
                 justify-content: flex-end;
                 gap: 5px;
                 width: 80px;
-                padding-right: 20px;
-                box-shadow: -15px 0px 10px rgb(0, 0, 0, 0.6);
+
 
                 &__img-container {
                     display: flex;
@@ -215,6 +238,12 @@
                         display: flex;
                     }
 
+                    &__folder-count {
+                        .fc__main-folder{
+                            opacity: 0.6;
+                        }
+                    }
+
                     &:hover {
                         .cf-bar__content__body__left__open-folders-button {
                             &__arrow-img-container {
@@ -225,16 +254,16 @@
                             
                             &__folder-count {
                                 .fc__main-folder{
-                                    &__img-container {
-                                        &__img {
-                                            opacity: 0.6;
-                                        }
-                                    }
+                                    opacity: 0.9;
                                 }
 
                                 &.not-root {
-                                    .fc__ghost-folder-img {
-                                        opacity: 0.7;
+                                    .fc__main-folder {
+                                        opacity: 0.6;
+                                    }
+
+                                    .fc__ghost-folder-container__img {
+                                        filter: brightness(1);
                                     } 
                                 }
                             } 
