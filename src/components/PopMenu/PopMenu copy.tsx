@@ -4,12 +4,15 @@ import { styled, alpha } from '@mui/material/styles';
 import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import EditIcon from '@mui/icons-material/Edit';
-import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 interface PopMenuTypes {
     children: React.ReactNode;
-    options: { name: string; icon: string; onClick: () => void }[];
+    options: {
+        name: string;
+        icon: string;
+        onClick: (() => void) | ((e: React.MouseEvent) => void); 
+    }[];
 }
 
 const StyledMenu = styled((props: MenuProps) => (
@@ -79,9 +82,13 @@ export const PopMenu: React.FC<PopMenuTypes> = ({ children, options }) => {
         setAnchorEl(null);
     };
 
-    const handleOptionFunction = (optionOnClick: ()=> void) => {
+    const handleOptionFunction = (e: React.MouseEvent,optionOnClick: (() => void) | ((e: React.MouseEvent) => void)) => {
         setAnchorEl(null);
-        optionOnClick();
+        if (optionOnClick.length === 1) {
+            (optionOnClick as (e: React.MouseEvent) => void)(e); 
+        } else {
+            (optionOnClick as () => void)(); 
+        }
     };
 
     return (
@@ -101,10 +108,13 @@ export const PopMenu: React.FC<PopMenuTypes> = ({ children, options }) => {
                 onClose={handleClose}
             >
                 {options.map((option, index) => (
-                    <MenuItem key={index} onClick={()=>handleOptionFunction(option.onClick)} disableRipple>
+                    <MenuItem
+                        key={index}
+                        onClick={(e)=>handleOptionFunction(e, option.onClick)}
+                        disableRipple
+                    >
                         {
                             option.icon === 'edit' ? ( <EditIcon /> ) :
-                            option.icon === 'move' ? ( <SwapHorizIcon /> ) :
                             option.icon === 'delete' ? ( <DeleteIcon /> ) :
                             null
                         }
