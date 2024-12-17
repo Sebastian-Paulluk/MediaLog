@@ -83,23 +83,26 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 			/>
 	
 			<div className="cd__body"> 
-
-				<FoldersContainer
-					category={category}
-					setOpenFoldersMenu={setOpenFoldersMenu}
-					openFoldersMenu={openFoldersMenu}
-				/>
+				<div className='cd__body__left'>
+					<FoldersContainer
+						category={category}
+						setOpenFoldersMenu={setOpenFoldersMenu}
+						openFoldersMenu={openFoldersMenu}
+					/>
+				</div>
 	
-				<div className='cd__body__items-content'>
-					<div className={`add-item-button-container ${openFoldersMenu ? 'align-left' : ''}`}>
-						<button className='add-item-button' onClick={handleOpenModal}>+</button>
+				<div className='cd__body__center'>
+					<div className='cd__body__center__items-content'>
+						<div className={`add-item-button-container ${openFoldersMenu ? 'align-left' : ''}`}>
+							<button className='add-item-button' onClick={handleOpenModal}>+</button>
+						</div>
+	
+						<CategoryDetailUncompletedItems {...uncompletedItemProps} />
+						<CategoryDetailCompletedItems {...completedItemProps} />
 					</div>
 
-					<CategoryDetailUncompletedItems {...uncompletedItemProps} />
-					<CategoryDetailCompletedItems {...completedItemProps} />
-
 					<div
-						className={`cd__body__items-content__cover ${openFoldersMenu ? 'active' : ''}`}
+						className={`cd__body__center__cover ${openFoldersMenu ? 'active' : ''}`}
 						onClick={handleToggleOpenFoldersMenu}
 					/>
 				</div>

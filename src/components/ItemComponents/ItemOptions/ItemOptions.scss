@@ -8,6 +8,7 @@
     padding-inline: 10px;
     width: fit-content;
     gap: 10px;
+    width: 130px;
 
     .item-options {
         display: flex;
@@ -22,12 +23,6 @@
         width: 65px;
         padding: 0px;
         overflow: hidden;
-    }
-
-    .separator {
-        border-right: 1px solid variables.$color7;
-        height: 27px;
-        margin: auto;
     }
 
     &__button {

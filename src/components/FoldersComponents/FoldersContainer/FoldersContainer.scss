@@ -1,6 +1,7 @@
 @use '../../../scss/variables';
 
-.folders-container {
+
+    /*
     background-color: variables.$backGroundColor;
     z-index: 1;
     display: flex;
@@ -13,178 +14,171 @@
     min-height: calc(100vh - 150px);
     transition: border-color 0.3s ease;
     width: 100%;
-    max-width: calc((100vw - variables.$content-max-width) / 2);
+   // max-width: calc((100vw - variables.$content-max-width) / 2);
 
-    .folders-content {
-        height: 100%;
+*/
+
+.folders-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 5px;
+    padding-top: 10px;
+    opacity: 0;
+    width: 100%;
+    border-right: 1px solid #262a30;
+    opacity: 1;
+    transition: none;
+    min-height: calc(100vh - 150px);
+
+    &__root-folder {
+        cursor: pointer;
         display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        gap: 5px;
-        padding-top: 10px;
-        opacity: 0;
-        width: 100%;
-        border-right: 1px solid #262a30;
-        opacity: 1;
-        transition: none;
+        align-items: center;
+        padding-left: 5px;
+        background-color: variables.$backGroundColor;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        z-index: 1;
+        transition: background-color 0.3s ease;
 
-        &__root-folder {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            padding-left: 5px;
-            background-color: variables.$backGroundColor;
-            border-top-left-radius: 5px;
-            border-bottom-left-radius: 5px;
-            z-index: 1;
-            transition: background-color 0.3s ease;
-
-            .root-folder__img-container {
-                width: 30px;
-                height: 30px;
-                margin-right: 5px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                position: relative;
-                color: black;
-                opacity: 0.4;
-                transition: opacity 0.3s ease;
-
-                &__img {
-                    width: 30px;
-                }
-
-                &__number {
-                    position: absolute;
-                }
-                
-            }
-
-            .root-folder__name {
-                white-space: nowrap; 
-                overflow: hidden;
-                text-overflow: ellipsis;
-                color: rgb(158, 158, 158);
-                transition: color 0.2s ease;
-                max-width: calc(100% - 80px);
-            }
-
-            &:hover {
-                background-color: rgb(30, 30, 30);
-
-                .root-folder__img-container {
-                    opacity: 0.7;
-                }
-
-                .root-folder__name {
-                    color: white;
-                }
-            }
-
-            &.active {
-                background-color: rgb(45, 45, 45);
-                
-                .root-folder__img-container {
-                    opacity: 0.7;
-                }
-        
-                .root-folder__name {
-                    color: white;
-                }
-
-                &:hover {
-                    background-color: rgb(60, 60, 60);
-
-                    .root-folder__img-container {
-                        opacity: 1;
-                    }
-                }
-            }
-            
-        }
-
-        &__folders-container {
-            padding-left: 10px;
-            
-        }
-
-        &__button-container {
-            
-            margin-top: 5px;
+        .root-folder__img-container {
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 100%;
+            position: relative;
+            color: black;
+            opacity: 0.4;
+            transition: opacity 0.3s ease;
 
-            .add-folder-button {
-                
-                background-color: variables.$color5;
-                font-weight: bolder;
-                padding-inline: 10px;
+            &__img {
                 width: 30px;
-                height: 30px;
-                border-radius: 50%;
-                font-size: 25px;
-                cursor: pointer;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                transition: background-color 0.2s ease, color 0.2s ease;
-                font-family: variables.$font4;
-                color: variables.$backGroundColor;
+            }
+
+            &__number {
+                position: absolute;
+            }
             
-                &:hover {
-                    background-color: variables.$color7;
-                    color: white;
+        }
+
+        .root-folder__name {
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: rgb(158, 158, 158);
+            transition: color 0.2s ease;
+            max-width: calc(100% - 80px);
+        }
+
+        &:hover {
+            background-color: rgb(30, 30, 30);
+
+            .root-folder__img-container {
+                opacity: 0.7;
+            }
+
+            .root-folder__name {
+                color: white;
+            }
+        }
+
+        &.active {
+            background-color: rgb(45, 45, 45);
+            
+            .root-folder__img-container {
+                opacity: 0.7;
+            }
+    
+            .root-folder__name {
+                color: white;
+            }
+
+            &:hover {
+                background-color: rgb(60, 60, 60);
+
+                .root-folder__img-container {
+                    opacity: 1;
                 }
+            }
+        }
         
-                &:active {
-                    transition: none;
-                    background-color: variables.$color9;
-                    color: white;
-                }
+    }
+
+    &__folders-container {
+        padding-left: 10px;
+        
+    }
+
+    &__button-container {
+        
+        margin-top: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        .add-folder-button {
+            
+            background-color: variables.$color5;
+            font-weight: bolder;
+            padding-inline: 10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            font-family: variables.$font4;
+            color: variables.$backGroundColor;
+        
+            &:hover {
+                background-color: variables.$color7;
+                color: white;
+            }
+    
+            &:active {
+                transition: none;
+                background-color: variables.$color9;
+                color: white;
             }
         }
     }
 }
 
 
+
 @media (max-width: variables.$breakpoint1) {
 
-    .folders-container {
+    .folders-content {
         max-width: none;
-
-        .folders-content {
-            margin-left: 0;
-            width: 0;
-        }
-
+        margin-left: 0;
+        width: 0;
 
         &.close {
-
-            .folders-content {
-                border: none;
-                width: 0;
-                opacity: 0;
-                transition:
-                    width 0.5s ease,
-                    opacity 0.2s ease,
-                    margin 0.4s ease;
-            }
-        }
-
-        &.open {
-
-            .folders-content {
-                margin-left: 15px;
-                opacity: 1;
-                width: 350px;
-                transition:
+            border: none;
+            width: 0;
+            opacity: 0;
+            transition:
                 width 0.5s ease,
                 opacity 0.2s ease,
                 margin 0.4s ease;
-            }
+        }
+
+        &.open {
+            margin-left: 15px;
+            opacity: 1;
+            width: 350px;
+            transition:
+            width 0.5s ease,
+            opacity 0.2s ease,
+            margin 0.4s ease;
         }
     }
 }
@@ -192,38 +186,30 @@
 
 @media (max-width: variables.$breakpoint2) {
 
-    .folders-container {
 
-        .folders-content {
-            margin-left: 0;
-            width: 0;
-        }
 
+    .folders-content {
+        margin-left: 0;
+        width: 0;
 
         &.close {
-
-            .folders-content {
-                border: none;
-                width: 0;
-                opacity: 0;
-                transition:
-                    width 0.5s ease,
-                    opacity 0.2s ease,
-                    margin 0.4s ease;
-            }
-        }
-
-        &.open {
-
-            .folders-content {
-                margin-left: 15px;
-                opacity: 1;
-                width: calc(100vw - 100px);
-                transition:
+            border: none;
+            width: 0;
+            opacity: 0;
+            transition:
                 width 0.5s ease,
                 opacity 0.2s ease,
                 margin 0.4s ease;
-            }
+        }
+    
+        &.open {
+            margin-left: 15px;
+            opacity: 1;
+            width: calc(100vw - 100px);
+            transition:
+            width 0.5s ease,
+            opacity 0.2s ease,
+            margin 0.4s ease;
         }
     }
 }

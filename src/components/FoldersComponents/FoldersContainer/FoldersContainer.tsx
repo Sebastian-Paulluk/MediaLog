@@ -96,9 +96,7 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
     }
 
     return (
-        <div className={`folders-container ${folderContainerState}`}>
-
-            <div className='folders-content'>
+        <div className={`folders-content ${folderContainerState}`}>
 
                 <div
                     className={`folders-content__root-folder ${!activeFolder ? 'active' : ''}`}
@@ -141,7 +139,7 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
                         +
                     </button>
                 </div>
-            </div>
+
 
             <Modal onClose={handleCloseModal} open={openModal} >
                 {category.id && (

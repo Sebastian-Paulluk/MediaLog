@@ -1,12 +1,11 @@
 @use '../../../scss/variables';
 
 .item-notes {
-    border-right: 1px solid variables.$backGroundColor;
     display: flex;
     align-items: center;
-    flex: 1;
     padding-inline: 20px;
     overflow: hidden;
+    width: 100%;
 
     &__content{
         white-space: nowrap; 

@@ -70,7 +70,7 @@
         }
 
         .latest-updates__items-container {
-            max-height: 180px;
+            max-height: 282px;
             opacity: 1;
         }
     }
@@ -85,20 +85,6 @@
             &__arrow {
                 opacity: 0;
                 transform: scaleY(1)
-            }
-        }
-    }
-}
-
-
-@media (max-width: 600px) {
-    
-    .latest-updates {
-
-        &.open {
-    
-            .latest-updates__items-container {
-                max-height: 240px;
             }
         }
     }

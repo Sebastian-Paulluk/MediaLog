@@ -1,0 +1,116 @@
+@use '../../scss/variables';
+
+.item {
+	border: 1px solid transparent;
+	display: flex;
+	background-color: variables.$categoriesAndItemsBG;
+	border-radius: 10px;
+	width: 100%;
+	height: 50px;
+	cursor: pointer;
+	transition:
+		background-color 0.2s ease,
+		transform 0.3s ease, 
+		opacity 0.3s ease,
+		border-color 0.3s ease;
+    position: relative;
+	overflow: hidden;
+	opacity: 1;
+	
+
+	&:hover {
+		background-color: variables.$categoriesAndItemsBGHover;
+	}
+
+	&:active {
+		transition: none;
+		background-color: variables.$categoriesAndItemsBGActive;
+	}
+
+	&.mounting {
+		transform: translateX(-50px);
+		opacity: 0;
+	}
+
+	&.deleting {
+		transform: scale(0);
+		opacity: 0;
+		pointer-events: none;
+	}
+}
+
+@media (max-width: 600px) {
+
+	.item {
+		display: grid;
+		grid-template-areas:
+		"name name name options"
+		"notes notes notes notes";
+		grid-template-columns: 1fr 1fr;
+		height: 80px;
+
+		
+		&:hover {
+			background-color: variables.$categoriesAndItemsBG;
+			border: 1px solid #EAC452;
+		}
+
+		&.movie-type {
+			grid-template-areas:
+			"name name name options"
+			"minute notes notes notes";
+		}
+
+		&.series-type {
+			grid-template-areas:
+			"name name name options"
+			"season-episode notes notes notes";
+		}
+
+		.item-name {
+			background-color: variables.$color4;
+			width: 100%;
+			grid-area: name;
+			border-right: none;
+			justify-content: flex-start;
+			border-bottom: 1px solid variables.$backGroundColor;
+		}
+
+		.item-options-container {
+			background-color: variables.$color4;
+			width: auto;
+			grid-area: options;
+			border-bottom: 1px solid variables.$backGroundColor;
+
+		}
+
+
+		.item-season-episode {
+			justify-content: flex-start;
+			padding-inline: 20px;
+			grid-area: season-episode;
+			width: 190px;
+
+			.season-container, .episode-container {
+				gap: 5px
+			}
+
+		}
+
+		.item-from-minute{
+			justify-content: flex-start;
+			padding-inline: 20px;
+			grid-area: minute;
+			width: 170px;
+			min-width: 170px;
+		}
+
+		.item-notes {
+			border: none;
+			grid-area: notes;
+		}
+
+	}
+
+
+}

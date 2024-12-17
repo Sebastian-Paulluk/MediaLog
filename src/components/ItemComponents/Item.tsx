@@ -105,24 +105,38 @@ export const Item: React.FC<ItemProps> = (props) => {
 
 				{item.type === 'Others' ? (
 					<>
-						<ItemName name={item.name}/>
-						<ItemNotes notes={item.notes}/>
-						<ItemOptions {...itemOptionsProps}/>
+						<div className='item__top'>
+							<ItemName name={item.name}/>
+							<ItemOptions {...itemOptionsProps}/>
+						</div>
+						<div className='item__bottom'>
+							<ItemNotes notes={item.notes}/>
+						</div>
 					</>
 					
 				) : item.type === 'Movies' ? (
 					<>
-						<ItemName name={item.name}/>
-						<ItemFromMinute minute={(item as MoviesItemTypes).minute} />
-						{ item.notes !== "" && <ItemNotes notes={item.notes}/>}
-						<ItemOptions {...itemOptionsProps}/>
+						<div className='item__top'>
+							<ItemName name={item.name}/>
+							<ItemOptions {...itemOptionsProps}/>
+						</div>
+						<div className='item__bottom'>
+							<ItemFromMinute minute={(item as MoviesItemTypes).minute} />
+							<ItemNotes notes={item.notes}/>
+						</div>
+						
+						
 					</>
 				) : (
 					<>
-						<ItemName name={item.name}/>
-						<ItemSeasonEpisode season={(item as SeriesItemTypes).season} episode={(item as SeriesItemTypes).episode} />
-						{ item.notes !== "" && <ItemNotes notes={item.notes}/>}
-						<ItemOptions {...itemOptionsProps}/>
+						<div className='item__top'>
+							<ItemName name={item.name}/>
+							<ItemOptions {...itemOptionsProps}/>
+						</div>
+						<div className='item__bottom'>
+							<ItemSeasonEpisode season={(item as SeriesItemTypes).season} episode={(item as SeriesItemTypes).episode} />
+							<ItemNotes notes={item.notes}/>
+						</div>
 					</>
 				)}
 

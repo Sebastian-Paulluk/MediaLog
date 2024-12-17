@@ -2,69 +2,61 @@
 
 .cd {
 	overflow: hidden;
+	
 
 	&__body {
 		display: grid;
-		grid-template-columns: 1fr auto 1fr;
-
-		&__left {
-			
-		}
-		
-		&__center {
-			background-color: variables.$backGroundColor;
-			display: flex;
-			margin: 0 auto;
-			width: variables.$content-max-width;
-
-			position: relative;
+		grid-template-columns: 1fr minmax(0, 1000px) 1fr;
 	
-			&__items-content{
-				padding-inline: 15px;
-				width: 1000px;
-		
-				.add-item-button-container {
-					padding-top: 20px;
-					padding-bottom: 20px;
-					width: 100%;
+		&__items-content{
+			width: 100%;
+			padding-inline: 20px;
+			display: flex;
+			flex-direction: column;
+			margin: 0 auto;
+			position: relative;
+
+			.add-item-button-container {
+				padding-top: 20px;
+				padding-bottom: 20px;
+				display: flex;
+				justify-content: center;
+				background-color: variables.$backGroundColor;
+
+				.add-item-button{
+					background-color: variables.$color5;
+					font-weight: bolder;
+					padding-inline: 10px;
+					width: 50px;
+					height: 50px;
+					border-radius: 50%;
+					font-size: 40px;
+					cursor: pointer;
 					display: flex;
 					justify-content: center;
-					background-color: variables.$backGroundColor;
-	
-					.add-item-button{
-						background-color: variables.$color5;
-						font-weight: bolder;
-						padding-inline: 10px;
-						width: 50px;
-						height: 50px;
-						border-radius: 50%;
-						font-size: 40px;
-						cursor: pointer;
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						transition: background-color 0.2s ease;
-						font-family: variables.$font4;
-					
-						&:hover {
-							background-color: variables.$color7;
-						}
+					align-items: center;
+					transition: background-color 0.2s ease;
+					font-family: variables.$font4;
 				
-						&:active {
-							transition: none;
-							background-color: variables.$color9;
-						}
+					&:hover {
+						background-color: variables.$color7;
 					}
-	
-					&.align-left {
-	
-						.add-item-button{
-							position: sticky;
-							right: 20px;
-						}
+			
+					&:active {
+						transition: none;
+						background-color: variables.$color9;
+					}
+				}
+
+				&.align-left {
+
+					.add-item-button{
+						position: sticky;
+						right: 20px;
 					}
 				}
 			}
+		
 
 
 			&__cover {
@@ -73,8 +65,6 @@
 				background-color: black;
 				opacity: 0;
 				pointer-events: none;
-				height: 100px;
-				width: 100px;
 				top: 0;
 				left: 0;
 				width: 100%;
@@ -83,6 +73,7 @@
 		}
 	
 		&__right {
+			
 		}
 	}
 }
@@ -98,12 +89,11 @@
 				width: fit-content;
 			}
 
-			&__center{
-	
-				&__items-content{
+			
+			&__items-content{
 
-				}
 			}
+			
 
 			&__right {
 
@@ -117,8 +107,8 @@
 	.cd {
 
 		&__body {
-			&__center{
-				width: 100vw;
+			&__items-content{
+				width: 100%;
 			}
 		}
 	}
@@ -129,7 +119,7 @@
 
 	.cd {
 		&__body {
-			&__center{
+			&__items-content{
 				&__cover {
 					&.active {
 						opacity: 0.7;
