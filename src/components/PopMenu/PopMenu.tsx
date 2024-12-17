@@ -124,7 +124,8 @@ export const PopMenu: React.FC<PopMenuTypes> = ({ children, options, header }) =
                             textAlign: 'center',
                             paddingTop: '10px',   
                             paddingBottom: '4px', 
-                            minHeight: 'unset',   
+                            minHeight: 'unset',
+                            backgroundColor: '#303030'
                         }}
                     >
                         {header}
