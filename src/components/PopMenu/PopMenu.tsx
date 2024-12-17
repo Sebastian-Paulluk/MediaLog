@@ -6,10 +6,14 @@ import MenuItem from '@mui/material/MenuItem';
 import EditIcon from '@mui/icons-material/Edit';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import DeleteIcon from '@mui/icons-material/Delete';
+import LogoutIcon from '@mui/icons-material/Logout';
+import SettingsIcon from '@mui/icons-material/Settings';
+import Divider from '@mui/material/Divider';
 
 interface PopMenuTypes {
     children: React.ReactNode;
     options: { name: string; icon: string; onClick: () => void }[];
+    header?: string;
 }
 
 const StyledMenu = styled((props: MenuProps) => (
@@ -32,6 +36,7 @@ const StyledMenu = styled((props: MenuProps) => (
         minWidth: 120,
         color: '#bbbbbb',
         backgroundColor: '#303030',
+        border: '1px solid #606060',
         boxShadow:
             'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
         '& .MuiMenu-list': {
@@ -66,20 +71,25 @@ const StyledMenu = styled((props: MenuProps) => (
 }));
 
 
-export const PopMenu: React.FC<PopMenuTypes> = ({ children, options }) => {
+export const PopMenu: React.FC<PopMenuTypes> = ({ children, options, header }) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const buttonRef = React.useRef<HTMLDivElement | null>(null); 
 
     const open = Boolean(anchorEl);
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
-    
+
     const handleClose = () => {
         setAnchorEl(null);
+
+        if (buttonRef.current) {
+            buttonRef.current.focus();
+        }
     };
 
-    const handleOptionFunction = (optionOnClick: ()=> void) => {
+    const handleOptionFunction = (optionOnClick: () => void) => {
         setAnchorEl(null);
         optionOnClick();
     };
@@ -87,7 +97,7 @@ export const PopMenu: React.FC<PopMenuTypes> = ({ children, options }) => {
     return (
         <div className='pop-menu'>
 
-            <div onClick={handleClick}>
+            <div ref={buttonRef} onClick={handleClick}>
                 {children}
             </div>
 
@@ -95,17 +105,41 @@ export const PopMenu: React.FC<PopMenuTypes> = ({ children, options }) => {
                 id="menu"
                 MenuListProps={{
                     'aria-labelledby': 'demo-customized-button',
+                    autoFocus: false, 
                 }}
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}
             >
+                {header && [
+                    <MenuItem
+                        key="header"
+                        style={{ 
+                            color: '#bbbbbb',
+                            pointerEvents: 'none', 
+                            cursor: 'default',
+                            display: 'flex',     
+                            justifyContent: 'center', 
+                            alignItems: 'center',  
+                            textAlign: 'center',
+                            paddingTop: '10px',   
+                            paddingBottom: '4px', 
+                            minHeight: 'unset',   
+                        }}
+                    >
+                        {header}
+                    </MenuItem>,
+                    <Divider key="divider" sx={{ borderColor: '#606060' }} />
+                ]}
+
                 {options.map((option, index) => (
                     <MenuItem key={index} onClick={()=>handleOptionFunction(option.onClick)} disableRipple>
                         {
                             option.icon === 'edit' ? ( <EditIcon /> ) :
                             option.icon === 'move' ? ( <SwapHorizIcon /> ) :
                             option.icon === 'delete' ? ( <DeleteIcon /> ) :
+                            option.icon === 'logout' ? ( <LogoutIcon /> ) :
+                            option.icon === 'settings' ? ( <SettingsIcon /> ) :
                             null
                         }
                         

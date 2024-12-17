@@ -1,7 +1,7 @@
 import { Category } from './CategoryComponentes/Category/category';
 import './home.scss';
 import { useEffect, useState } from 'react';
-import { createCategory, deleteCategory } from '../../services/firebase';
+import { createCategory, deleteCategory, deleteFoldersByCaregoryId, deleteItemsByCategoryId } from '../../services/firebase';
 import { CategoryTypes } from '../../types/types';
 import { LoadingScreen } from '../loadingScreen/loadingScreen';
 import { AddCategoryModal } from './addCategoryModal/addCategoryModal';
@@ -13,6 +13,7 @@ export const Home = () => {
 	const {categories, dataLoaded, setChangesSaved} = useDataContext();
 	const [openModal, setOpenModal] = useState(false);
 	const {setCurrentCategory} = useCurrentCategoryContext();
+	const [categoryDeletingId , setCategoryDeletingId] = useState<string>(''); 
 
 	useEffect(() => {
 		setCurrentCategory(null);
@@ -27,15 +28,19 @@ export const Home = () => {
     };
 
 	const handleAddCategory = async (newCategory: Omit<CategoryTypes, 'id'>) => { 
-		setChangesSaved(false)
+		setChangesSaved(false);
 		await createCategory(newCategory);
-		setChangesSaved(true)
+		setChangesSaved(true);
 	};
 
 	const handleDeleteCategory =async(categoryId: string)=>{
-		setChangesSaved(false)
-		await deleteCategory(categoryId)
-		setChangesSaved(true)
+		setChangesSaved(false);
+		setCategoryDeletingId(categoryId);
+		await deleteItemsByCategoryId(categoryId);
+		await deleteCategory(categoryId);
+		await deleteFoldersByCaregoryId(categoryId);
+		setCategoryDeletingId('');
+		setChangesSaved(true);
 	};
 	
 	return (
@@ -49,7 +54,14 @@ export const Home = () => {
 						</div>
 
 						{categories.map((category, index) => {
-							return <Category key={index} category={category} deleteCategory={handleDeleteCategory}/>;
+							return (
+								<Category
+									key={index}
+									category={category}
+									deleteCategory={handleDeleteCategory}
+									isDeleting={categoryDeletingId === category.id}
+								/>
+							);
 						})}
 					</div>
 				</>

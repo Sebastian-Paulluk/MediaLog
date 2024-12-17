@@ -12,10 +12,11 @@ import { PopMenu } from '../../../PopMenu/PopMenu';
 type CategoryProps = {
 	category: CategoryTypes;
 	deleteCategory: (categoryId: string) => void;
+	isDeleting: boolean;
 };
 
 
-export const Category = ({ category, deleteCategory }: CategoryProps) => {
+export const Category = ({ category, deleteCategory, isDeleting }: CategoryProps) => {
 	const normalizedCategoryName = normalizeText.firstLettersCaps(category.name)
 	const { setCurrentCategory } = useCurrentCategoryContext();
 	const [openDialog, setOpenDialog] = React.useState(false);
@@ -43,7 +44,7 @@ export const Category = ({ category, deleteCategory }: CategoryProps) => {
 
 	return (
 
-		<div className='category-container'>
+		<div className={`category-container ${isDeleting ? 'deleting' : ''}`}>
 			<Link to={`/category/${category.id}`} onClick={handleSelectCategory}>
 				<div className='category'>
 						<div className='top-side'>

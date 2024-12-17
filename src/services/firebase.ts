@@ -116,6 +116,7 @@ export const logoutUser = async () => {
 		}
 		throw error;
 	}
+
 };
 
 
@@ -183,8 +184,7 @@ export const deleteCategory = async(categoryId: string)=> {
 	try {
 		const categoriesColletionRef = collection(db, 'categories')
 		const categoryRef = doc(categoriesColletionRef, categoryId)
-		await deleteDoc(categoryRef)
-		await deleteItemsByCategory(categoryId);
+		await deleteDoc(categoryRef);
 	} catch(error) {
 		console.error('Error al eliminar la categoría:', error)
 		throw new Error('No se pudo eliminar la categoría')
@@ -218,11 +218,25 @@ export const deleteFolder = async(folderId: string)=> {
 		const foldersColletionRef = collection(db, 'folders')
 		const folderRef = doc(foldersColletionRef, folderId)
 		await deleteDoc(folderRef);
-		await deleteItemsByFolder(folderId);
 	} catch(error) {
-		console.error('Error al eliminar la carpeta:', error)
+		console.error('Error deleting folder:', error)
 		throw new Error('No se pudo eliminar la carpeta')
 	}
+}
+
+export const deleteFoldersByCaregoryId = async(categoryId: string)=> {
+	try {
+        const foldersCollectionRef = collection(db, 'folders');
+        const q = query(foldersCollectionRef, where('categoryId', '==', categoryId));
+        const querySnapshot = await getDocs(q);
+
+        const deletePromises = querySnapshot.docs.map((docSnapshot) =>
+            deleteDoc(doc(db, 'folders', docSnapshot.id))
+        );
+        await Promise.all(deletePromises);
+    } catch (error) {
+        console.error('Error deleting folders:', error);
+    }
 }
 
 
@@ -230,7 +244,6 @@ export const deleteFolder = async(folderId: string)=> {
 // items --------
 
 export const createItem = async( newItem: ItemTypes ) =>{
-	console.log(newItem)
     const itemsColletionRef = collection(db, 'items');
     const itemDoc = await addDoc(itemsColletionRef, newItem);
 	return itemDoc.id;
@@ -330,7 +343,7 @@ export const getItemsByNameOrNotes = async(query: string) =>{
     return filteredItems;
 }
 
-export const deleteItemsByCategory = async (categoryId: string) => {
+export const deleteItemsByCategoryId = async (categoryId: string) => {
     try {
         const itemsCollectionRef = collection(db, 'items');
         const q = query(itemsCollectionRef, where('categoryId', '==', categoryId));
@@ -345,7 +358,7 @@ export const deleteItemsByCategory = async (categoryId: string) => {
     }
 }
 
-export const deleteItemsByFolder = async (folderId: string) => {
+export const deleteItemsByFolderId = async (folderId: string) => {
     try {
         const itemsCollectionRef = collection(db, 'items');
         const q = query(itemsCollectionRef, where('folderId', '==', folderId));

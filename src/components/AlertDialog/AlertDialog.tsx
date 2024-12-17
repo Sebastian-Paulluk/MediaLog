@@ -42,7 +42,7 @@ export const AlertDialog: React.FC<DialogTypes> = ({open, setOpen, handleDeleteC
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                This will erase all the items associated with this category as well
+                This will erase all the folders and items associated with this category as well
               </DialogContentText>
             </DialogContent>
             <DialogActions>

@@ -1,7 +1,6 @@
 @use '../../../scss/variables';
 
 .item-name {
-    border-right: 1px solid variables.$backGroundColor;
     display: flex;
     align-items: center;
     padding-inline: 20px;

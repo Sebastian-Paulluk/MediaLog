@@ -7,7 +7,7 @@ import folderImg from '../../../assets/images/folder.png';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Modal } from '../../modal/modal';
 import { AddFolderForm } from '../../Forms/AddFolder/AddFolderForm';
-import { createFolder, deleteFolder } from '../../../services/firebase';
+import { createFolder, deleteFolder, deleteItemsByFolderId } from '../../../services/firebase';
 import { useWindowWidth } from '../../../Hooks/useWindowWidth';
 import normalizeText from '../../../utils/normalizeText';
 
@@ -56,8 +56,6 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
         setFolderContainerState(state);
     }, [openFoldersMenu, windowWidth]);
 
-
-
     const handleOpenModal = () => {
         setOpenModal(true);
     };
@@ -65,8 +63,6 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
     const handleCloseModal = () => {
         setOpenModal(false);
     };
-
-
 
     const handleAddFolder = async (newFolder: FolderTypes) => {
 		if (category.id) {
@@ -83,11 +79,11 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
         }
         if (folder.id) {
 			setChangesSaved(false);
-			await deleteFolder(folder.id);
+            await deleteFolder(folder.id);
+            await deleteItemsByFolderId(folder.id);
 			setChangesSaved(true);
         }
     }
-
 
     const handleRootFolderClick =()=> {
         setActiveFolder(null);

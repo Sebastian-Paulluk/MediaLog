@@ -1,21 +1,14 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './header.scss';
 import { FavButton } from './FavButton/FavButton';
 import { Toast } from '../Toast/Toast';
-import { UserButton } from './UserButton/UserButton';
-import { logoutUser } from '../../services/firebase';
 import logo from '../../assets/images/logo.png';
 import { SettingsButton } from './SettingsButton/SettingsButton';
 import { useUserContext } from '../../context/userContext';
 
 export const Header = () => {
 	const {user} = useUserContext();
-    const navigate = useNavigate();
-	
-	const handleUserLogout =()=>{
-        logoutUser();
-        navigate("/login");
-    }
+
 
 	return (
 		<div className='header'>
@@ -34,7 +27,6 @@ export const Header = () => {
 							</div>
 
 							<div className='header__content__right'>
-								<UserButton handleUserLogout={handleUserLogout} />
 								<FavButton />
 								<SettingsButton />
 							</div>
