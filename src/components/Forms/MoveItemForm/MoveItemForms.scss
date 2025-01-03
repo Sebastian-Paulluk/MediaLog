@@ -6,82 +6,34 @@
     .form-body {
         padding-top: 30px;
         padding-bottom: 40px;
-        gap: 30px;
         color: white;
+        gap: 20px;
 
         .origin-location, .available-locations {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
             border: 1px solid rgb(60, 60, 60);
             border-radius: 5px;
             padding: 15px 15px;
             display: flex;
-            flex-direction: column;
             gap: 10px;
-            position: relative;
 
             &__title {
                 background-color: rgb(20, 20, 20);
                 color: rgb(145, 145, 145);
-                position: absolute;
-                top: -15px;
-                left: 8px;
-                padding-inline: 5px;
-            }
-            
-            &__location {
-                color: white;
             }
         }
 
         .available-locations {
 
-            &__option {
-                display: flex;
-                gap: 10px;
-                width: fit-content;
+            &__select {
+                padding: 5px 10px;
+                border-radius: 10px;
                 cursor: pointer;
 
-                &__radio-button {
-                    display: none;
-                }
-        
-                .custom-radio {
-                    position: relative; 
-                    height: 20px;
-                    width: 20px;
-                    border-radius: 50%;
-                    border: 2px solid variables.$borderColor;
-                    background-color: transparent;
-                    transition: background-color 0.2s ease, border-color 0.2s ease;
+                &__option {
+                    display: flex;
+                    gap: 10px;
+                    width: fit-content;
                     cursor: pointer;
-        
-                    &:hover {
-                        border-color: variables.$color9;
-                    }
-                }
-        
-                &__radio-button:checked + .custom-radio {
-                    background-color: variables.$color5;
-                }
-        
-                .custom-radio::after {
-                    content: "";
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    width: 10px;
-                    height: 10px;
-                    border-radius: 50%;
-                    background-color: #EAC452;
-                    opacity: 0;
-                    transition: opacity 0.2s;
-                }
-        
-                &__radio-button:checked + .custom-radio::after {
-                    opacity: 1;
                 }
             }
         }

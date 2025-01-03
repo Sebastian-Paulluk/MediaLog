@@ -16,23 +16,22 @@ $color9: #bbbbbb;
 $color10: #ffffff;
 
 :root {
-    --background-color: #ffffff;
-    --text-color: #000000;
-    --border-color: #d3d3d3;
-    --color10: #070707;
-    --color9: #101010;
-    --color8: #202020;
-    --color7: #303030;
-    --color6: #505050;
-    --color5: #606060;
-    --color4: #707070;
-    --color3: #949494;
-    --color2: #bbbbbb;
-    --color1: #ffffff;
-
-    --components-bg: #{$color9};
-    --components-bg-hover: #{$color8};
-    --components-bg-active: #{$color7};
+    --background-color: #101010;
+    --text-color: #ffffff;
+    --border-color: #606060;
+    --color1: #070707;
+    --color2: #101010;
+    --color3: #202020;
+    --color4: #303030;
+    --color5: #505050;
+    --color6: #606060;
+    --color7: #707070;
+    --color8: #949494;
+    --color9: #bbbbbb;
+    --color10: #ffffff;
+    --components-bg: #202020;
+    --components-bg-hover: #303030;
+    --components-bg-active: #505050;
 }
   
 .dark-theme {

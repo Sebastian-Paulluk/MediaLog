@@ -6,6 +6,9 @@ import './MoveItemForms.scss';
 import { AddFolderForm } from '../AddFolder/AddFolderForm';
 import { createFolder } from '../../../services/firebase';
 import { Modal } from '../../modal/modal';
+import normalizeText from '../../../utils/normalizeText';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { SelectChangeEvent } from '@mui/material';
 
 interface addOtherItemFormTypes {
     item: ItemTypes;
@@ -67,7 +70,7 @@ export const MoveItemForm: React.FC<addOtherItemFormTypes> =({ item, onSubmit, o
         onClose();
     };
 
-    const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSelectChange = (event: SelectChangeEvent<string>) => {
         setSelectedFolderId(event.target.value);
     };
 
@@ -92,49 +95,41 @@ export const MoveItemForm: React.FC<addOtherItemFormTypes> =({ item, onSubmit, o
 
                     <div className='origin-location'>
                         <div className='origin-location__title'>
-                            From
+                            From:
                         </div>
-                        <p className='origin-location__location'>{itemLocation}</p>
+                        <p className='origin-location__location'>{normalizeText.firstLetterCaps(itemLocation)}</p>
                     </div>
 
-                    <div className='available-locations'>
 
-                        <div className='available-locations__title'>
-                            To
-                        </div>
 
-                        {itemLocation !== 'Root' && (
-                            <label className='available-locations__option'>
-                                <input
-                                    className='available-locations__option__radio-button'
-                                    type="radio"
-                                    value={''} 
-                                    checked={selectedFolderId === ''} 
-                                    onChange={handleRadioChange}
-                                /> 
-                                <span className="custom-radio"></span>
-                                Root
-                            </label>
-                        )}
+
+
+                        <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label" sx={{ fontSize: '1.2rem', color: '#333', fontWeight: 'bold' }}>To</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value='To'
+                                label="To"
+                                onChange={handleSelectChange}
+                                sx={{
+
+                                }}
+                            >
+                                {itemLocation !== 'Root' && (
+                                    <MenuItem value={''} sx={{ fontSize: '1rem', color: '#555' }}>Root</MenuItem>
+                                )}
+
+                                {foldersInCategory.map((folder, key) => (
+                                    item.folderId !== folder.id && (
+                                        <MenuItem key={key} value={folder.id} sx={{ fontSize: '1rem', color: '#555' }}>{folder.name}</MenuItem>
+                                    )
+                                ))}
+                            </Select>
+                        </FormControl>
+
                         
-                        {foldersInCategory.map((folder, key) => {
-                            return item.folderId !== folder.id && (
-                                <label key={key} className='available-locations__option'>
-                                    <input
-                                        className='available-locations__option__radio-button'
-                                        type="radio"
-                                        value={folder.id} 
-                                        checked={selectedFolderId === folder.id} 
-                                        onChange={handleRadioChange}
-                                    />
-                                    <span className="custom-radio"></span>
-                                    {folder.name}
-                                </label>
-                            )
-                        })}
 
-                        <button onClick={handleOpenModal}>New folder</button>
-                    </div>
 
                 </div>
 
