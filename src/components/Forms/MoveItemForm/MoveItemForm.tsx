@@ -7,8 +7,6 @@ import { AddFolderForm } from '../AddFolder/AddFolderForm';
 import { createFolder } from '../../../services/firebase';
 import { Modal } from '../../modal/modal';
 import normalizeText from '../../../utils/normalizeText';
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import { SelectChangeEvent } from '@mui/material';
 
 interface addOtherItemFormTypes {
     item: ItemTypes;
@@ -70,7 +68,7 @@ export const MoveItemForm: React.FC<addOtherItemFormTypes> =({ item, onSubmit, o
         onClose();
     };
 
-    const handleSelectChange = (event: SelectChangeEvent<string>) => {
+    const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedFolderId(event.target.value);
     };
 
@@ -81,6 +79,7 @@ export const MoveItemForm: React.FC<addOtherItemFormTypes> =({ item, onSubmit, o
 			setChangesSaved(true);
 		}
 	};
+
 
     return(
         <>
@@ -95,46 +94,63 @@ export const MoveItemForm: React.FC<addOtherItemFormTypes> =({ item, onSubmit, o
 
                     <div className='origin-location'>
                         <div className='origin-location__title'>
-                            From:
+                            From
                         </div>
                         <p className='origin-location__location'>{normalizeText.firstLetterCaps(itemLocation)}</p>
                     </div>
 
 
-
-
-
-                        <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label" sx={{ fontSize: '1.2rem', color: '#333', fontWeight: 'bold' }}>To</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value='To'
-                                label="To"
-                                onChange={handleSelectChange}
-                                sx={{
-
-                                }}
-                            >
-                                {itemLocation !== 'Root' && (
-                                    <MenuItem value={''} sx={{ fontSize: '1rem', color: '#555' }}>Root</MenuItem>
-                                )}
-
-                                {foldersInCategory.map((folder, key) => (
-                                    item.folderId !== folder.id && (
-                                        <MenuItem key={key} value={folder.id} sx={{ fontSize: '1rem', color: '#555' }}>{folder.name}</MenuItem>
-                                    )
-                                ))}
-
-                                <MenuItem onClick={handleOpenModal} value={''} sx={{ fontSize: '1rem', color: '#555' }}
-                                >Create new folder
-                                </MenuItem>
-
-                            </Select>
-                        </FormControl>
-
+                    <div className='available-locations'>
+                        <div className='available-locations__title'>
+                            To
+                        </div>
                         
+                        <select
+                            className='available-locations__select'
+                            value={selectedFolderId}
+                            onChange={(e) => {
+                                const value = e.target.value;
+                                if (value === "new-folder") {
+                                    handleOpenModal(e); 
+                                    e.target.value = selectedFolderId; 
+                                } else {
+                                    handleSelectChange(e); 
+                                }
+                            }}
+                        >
 
+                            {itemLocation !== 'Root' && (
+                                    <option className="available-locations__select__option" value="Root">
+                                        Root
+                                    </option>
+                                )
+                            }
+
+
+                            {foldersInCategory.map((folder, key) => {
+                                return item.folderId !== folder.id && (
+                                    <option
+                                        key={key}
+                                        className='available-locations__select__option'
+                                        value={folder.id}
+                                    >
+                                        {folder.name}
+                                    </option>
+                                )
+                            })}
+
+                            <option
+                                className='available-locations__select__option new-folder'
+                                onClick={handleOpenModal}
+                                value="new-folder"
+                            >
+                                Create folder
+                            </option>
+
+                        </select>
+
+                    </div>
+ 
 
                 </div>
 

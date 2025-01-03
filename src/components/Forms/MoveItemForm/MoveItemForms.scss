@@ -14,26 +14,45 @@
             border-radius: 5px;
             padding: 15px 15px;
             display: flex;
+            align-items: center;
             gap: 10px;
+            position: relative;
+            height: 60px;
 
             &__title {
                 background-color: rgb(20, 20, 20);
                 color: rgb(145, 145, 145);
+                position: absolute;
+                top: -13px;
+                left: 5px;
+                padding-inline: 5px;
+                transition: color .3s;
             }
         }
 
         .available-locations {
+            padding: 0;
+            transition: border-color .3s;
+
+            &:hover {
+                border-color: rgb(172, 172, 172);
+
+                .available-locations__title{
+                    color: white;
+                }
+            }
 
             &__select {
-                padding: 5px 10px;
-                border-radius: 10px;
+                background-color: rgb(20, 20, 20);
+                color: white;
+                border-radius: 5px;
+                height: 100%;
+                width: 100%;
+                padding: 0 10px;
                 cursor: pointer;
 
                 &__option {
-                    display: flex;
-                    gap: 10px;
-                    width: fit-content;
-                    cursor: pointer;
+                    background-color: rgb(75, 75, 75);
                 }
             }
         }
