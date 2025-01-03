@@ -125,6 +125,11 @@ export const MoveItemForm: React.FC<addOtherItemFormTypes> =({ item, onSubmit, o
                                         <MenuItem key={key} value={folder.id} sx={{ fontSize: '1rem', color: '#555' }}>{folder.name}</MenuItem>
                                     )
                                 ))}
+
+                                <MenuItem onClick={handleOpenModal} value={''} sx={{ fontSize: '1rem', color: '#555' }}
+                                >Create new folder
+                                </MenuItem>
+
                             </Select>
                         </FormControl>
 
