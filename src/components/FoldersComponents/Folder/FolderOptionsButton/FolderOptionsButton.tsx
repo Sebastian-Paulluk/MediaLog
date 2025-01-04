@@ -1,5 +1,5 @@
 import './FolderOptionsButton.scss'
-import { CategoryTypes, FolderTypes } from '../../../../types/types';
+import { FolderTypes } from '../../../../types/types';
 import { PopMenu } from '../../../PopMenu/PopMenu';
 import React from 'react';
 import { AlertDialog } from '../../../AlertDialog/AlertDialog';

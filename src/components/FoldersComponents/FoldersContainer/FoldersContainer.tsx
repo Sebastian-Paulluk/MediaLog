@@ -11,7 +11,6 @@ import { createFolder, deleteCategory, deleteFolder, deleteFoldersByCaregoryId, 
 import { useWindowWidth } from '../../../Hooks/useWindowWidth';
 import normalizeText from '../../../utils/normalizeText';
 import listImg from '../../../assets/images/list.png';
-import { FolderOptionsButton } from '../Folder/FolderOptionsButton/FolderOptionsButton';
 import { RootFolderOptionsButton } from '../Folder/RootFolderOptionsButton/RootFolderOptionsButton';
 import { EditCategoryForm } from '../../Forms/EditCategoryForm/EditCategoryForm';
 
