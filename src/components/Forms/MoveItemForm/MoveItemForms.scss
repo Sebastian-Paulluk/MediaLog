@@ -23,10 +23,11 @@
                 background-color: rgb(20, 20, 20);
                 color: rgb(145, 145, 145);
                 position: absolute;
-                top: -13px;
+                top: -11px;
                 left: 5px;
                 padding-inline: 5px;
                 transition: color .3s;
+                font-size: 13px;
             }
         }
 
@@ -56,5 +57,15 @@
                 }
             }
         }
+    }
+
+
+}
+
+.add-folder-item {
+    gap: 10px;
+
+    &__img {
+        width: 25px;
     }
 }

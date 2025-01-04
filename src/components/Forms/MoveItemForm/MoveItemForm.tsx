@@ -7,6 +7,45 @@ import { AddFolderForm } from '../AddFolder/AddFolderForm';
 import { createFolder } from '../../../services/firebase';
 import { Modal } from '../../modal/modal';
 import normalizeText from '../../../utils/normalizeText';
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import addImg from '../../../assets/images/add circle.png'
+
+const theme = createTheme({
+    components: {
+        MuiMenu: {
+            styleOverrides: {
+                paper: {
+                    backgroundColor: 'rgb(80, 80, 80)', // Fondo del menú completo
+                    borderRadius: '5px', // Bordes redondeados, opcional
+                    marginTop: '4px', // Ajusta el margen superior si es necesario
+                    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)', // Sombra opcional
+                },
+                list: {
+                    padding: '0', // Elimina el padding del cuerpo del menú
+                },
+            },
+        },
+        MuiMenuItem: {
+            styleOverrides: {
+                root: {
+                    color: 'white',
+                    backgroundColor: 'rgb(40, 40, 40)',
+                    transition: 'background-color .3s',
+                    '&:hover': {
+                        backgroundColor: 'rgb(60, 60, 60)',
+                    },
+                    '&.Mui-selected': {
+                        backgroundColor: 'rgb(80, 80, 80)',
+                        '&:hover': {
+                            backgroundColor: 'rgb(126, 126, 126)', // Fondo del elemento activo al hacer hover
+                        },
+                    }, 
+                },
+            },
+        },
+    },
+});
 
 interface addOtherItemFormTypes {
     item: ItemTypes;
@@ -42,8 +81,8 @@ export const MoveItemForm: React.FC<addOtherItemFormTypes> =({ item, onSubmit, o
         }, 300)
     };
     
-    const handleOpenModal = (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleOpenModal = (event: SelectChangeEvent) => {
+        event.preventDefault();
         setOpenModal(true);
     };
 
@@ -68,7 +107,7 @@ export const MoveItemForm: React.FC<addOtherItemFormTypes> =({ item, onSubmit, o
         onClose();
     };
 
-    const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleSelectChange = (event: SelectChangeEvent) => {
         setSelectedFolderId(event.target.value);
     };
 
@@ -100,57 +139,77 @@ export const MoveItemForm: React.FC<addOtherItemFormTypes> =({ item, onSubmit, o
                     </div>
 
 
-                    <div className='available-locations'>
-                        <div className='available-locations__title'>
-                            To
-                        </div>
-                        
-                        <select
-                            className='available-locations__select'
-                            value={selectedFolderId}
-                            onChange={(e) => {
-                                const value = e.target.value;
-                                if (value === "new-folder") {
-                                    handleOpenModal(e); 
-                                    e.target.value = selectedFolderId; 
-                                } else {
-                                    handleSelectChange(e); 
-                                }
-                            }}
-                        >
 
-                            {itemLocation !== 'Root' && (
-                                    <option className="available-locations__select__option" value="Root">
-                                        Root
-                                    </option>
-                                )
-                            }
-
-
-                            {foldersInCategory.map((folder, key) => {
-                                return item.folderId !== folder.id && (
-                                    <option
-                                        key={key}
-                                        className='available-locations__select__option'
-                                        value={folder.id}
-                                    >
-                                        {folder.name}
-                                    </option>
-                                )
-                            })}
-
-                            <option
-                                className='available-locations__select__option new-folder'
-                                onClick={handleOpenModal}
-                                value="new-folder"
+                    <ThemeProvider theme={theme}>
+                        <FormControl fullWidth>
+                            <InputLabel
+                                id="demo-simple-select-label"
+                                sx={{
+                                    color: 'rgb(145, 145, 145)', // Color inicial
+                                    '&.Mui-focused': {
+                                        color: 'white', // Color cuando está enfocado
+                                    },
+                                }}
                             >
-                                Create folder
-                            </option>
+                                To
+                            </InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={selectedFolderId}
+                                    label="Age"
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        if (value === "new-folder") {
+                                            handleOpenModal(e); 
+                                            e.target.value = selectedFolderId; 
+                                        } else {
+                                            handleSelectChange(e); 
+                                        }
+                                    }}
+                                    sx={{
+                                        color: 'white',
+                                        backgroundColor: 'rgb(20, 20, 20)',
+                                        borderRadius: '5px',
+                                        '& .MuiSelect-icon': {
+                                        color: 'white',
+                                        },
+                                        '& .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'rgb(60, 60, 60)',
+                                        },
+                                        '&:hover .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: 'rgb(172, 172, 172)',
+                                        },
+                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: 'white', // Cambia el color del borde cuando está activo
+                                        },
+                                    }}
+                                >
+                                    {itemLocation !== 'Root' && (
+                                        <MenuItem value={'Root'}>Root</MenuItem>
+                                    )}
 
-                        </select>
+                                    {foldersInCategory.map((folder, key) => {
+                                        return item.folderId !== folder.id && (
+                                            <MenuItem value={folder.id} key={key}>{normalizeText.firstLetterCaps(folder.name)}</MenuItem>
+                                        )
+                                    })}
 
-                    </div>
- 
+                                    <MenuItem
+                                        value={'new-folder'}
+                                        sx={{
+                                            borderTop: '1px solid rgb(129, 129, 129)'
+                                        }}
+                                        className='add-folder-item'
+                                    >
+                                        <img src={addImg} className='add-folder-item__img' alt='add-folder' />
+                                       New folder
+                                    </MenuItem>
+
+
+                            </Select>
+                        </FormControl>
+                    </ThemeProvider>
 
                 </div>
 

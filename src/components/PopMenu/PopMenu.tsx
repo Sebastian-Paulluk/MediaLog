@@ -94,8 +94,12 @@ export const PopMenu: React.FC<PopMenuTypes> = ({ children, options, header }) =
         optionOnClick();
     };
 
+    const handleMenuClick = (e: React.MouseEvent) => {
+        e.stopPropagation();  
+    };
+
     return (
-        <div className='pop-menu'>
+        <div className="pop-menu" onClick={handleMenuClick}>
 
             <div ref={buttonRef} onClick={handleClick}>
                 {children}

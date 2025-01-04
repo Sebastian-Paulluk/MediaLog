@@ -12,6 +12,7 @@ export const CategoriesContainer = () => {
 	const [ category, setCategory ] = useState<CategoryTypes | null>(null);
 	const { setCurrentCategory } = useCurrentCategoryContext();
 	const { getCategoryById, dataLoaded } = useDataContext();
+	const {categories} = useDataContext();
 	
 	useEffect(() => {
 		if (categoryId) {
@@ -21,7 +22,8 @@ export const CategoriesContainer = () => {
 				setCurrentCategory(category)
 			}
 		}
-	}, [dataLoaded]);
+	}, [dataLoaded, categories]);
+
 
 	return (
 		<div className="categories-container">

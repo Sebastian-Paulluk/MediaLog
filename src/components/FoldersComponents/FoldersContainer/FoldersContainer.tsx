@@ -7,9 +7,13 @@ import folderImg from '../../../assets/images/folder.png';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Modal } from '../../modal/modal';
 import { AddFolderForm } from '../../Forms/AddFolder/AddFolderForm';
-import { createFolder, deleteFolder, deleteItemsByFolderId } from '../../../services/firebase';
+import { createFolder, deleteCategory, deleteFolder, deleteFoldersByCaregoryId, deleteItemsByCategoryId, deleteItemsByFolderId, updateCategory } from '../../../services/firebase';
 import { useWindowWidth } from '../../../Hooks/useWindowWidth';
 import normalizeText from '../../../utils/normalizeText';
+import listImg from '../../../assets/images/list.png';
+import { FolderOptionsButton } from '../Folder/FolderOptionsButton/FolderOptionsButton';
+import { RootFolderOptionsButton } from '../Folder/RootFolderOptionsButton/RootFolderOptionsButton';
+import { EditCategoryForm } from '../../Forms/EditCategoryForm/EditCategoryForm';
 
 interface FoldersContainerTypes {
     category: CategoryTypes;
@@ -28,7 +32,8 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
     const windowWidth = useWindowWidth();
     const [folderContainerState, setFolderContainerState] = useState<string>('');
     const itemsInRootOfCategory = category.id ? getItemsByCategoryIdInRoot(category.id).length : 0;
-    
+    const [openEditCategoryModal , setOpenEditCategoryModal] = useState<boolean>(false);
+
     useEffect(() => {
         if (category.id) {
             const res = getFoldersByCategoryId(category.id)
@@ -85,11 +90,46 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
         }
     }
 
+
+
+    const handleOpenUpdateItemModal = () => {
+        setOpenEditCategoryModal(true);
+    };
+    const handleCloseUpdateItemModal = () => {
+        setOpenEditCategoryModal(false);
+    };
+    const handleEditCategory = async(updatedCategoryData: Partial<CategoryTypes>) =>{
+        if (category.id) {
+            setChangesSaved(false);
+            await updateCategory(category.id, updatedCategoryData);
+            setChangesSaved(true);
+        }
+    };
+    const handleDeleteCategory = async(category: CategoryTypes)=> {
+        if (category.id) {
+			setChangesSaved(false);
+            navigate(`/`);
+
+            await deleteItemsByCategoryId(category.id);
+            await deleteCategory(category.id);
+            await deleteFoldersByCaregoryId(category.id);
+			setChangesSaved(true);
+        };
+    };
+
+
     const handleRootFolderClick =()=> {
         setActiveFolder(null);
         navigate(`/category/${category.id}`);
         setOpenFoldersMenu(false);
     }
+
+
+    const editCategoryFormProps = {
+		category,
+		onSubmit: handleEditCategory,
+		onClose: handleCloseUpdateItemModal
+	}
 
     return (
         <div className={`folders-content ${folderContainerState}`}>
@@ -105,15 +145,27 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
                             alt='root-folder'
                             className='root-folder__img-container__img'
                         />
-                        <div className='root-folder__img-container__number'>
-                            {itemsInRootOfCategory}
-                        </div>
+
 
                     </div>
+
+
                     
                     <div className='root-folder__name'>
                         {normalizeText.firstLetterCaps( category.name )}
                     </div>
+
+                    <div className='folder__details__items-length'>
+                        {itemsInRootOfCategory}
+                        <img src={listImg} alt='list-img' className='list-img'/>
+                    </div>
+
+                    <RootFolderOptionsButton
+                        rootFolder={category}
+                        deleteFolder={handleDeleteCategory}
+                        setOpenFoldersMenu={setOpenFoldersMenu}
+                        handleOpenUpdateItemModal={handleOpenUpdateItemModal}
+                    />
 
                 </div>
 
@@ -146,6 +198,10 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
                     />
                 )}
 			</Modal>
+
+            <Modal onClose={handleCloseUpdateItemModal} open={openEditCategoryModal} >
+                <EditCategoryForm {...editCategoryFormProps}/>
+            </Modal>  
         </div>
     )
 }

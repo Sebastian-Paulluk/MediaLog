@@ -239,6 +239,18 @@ export const deleteFoldersByCaregoryId = async(categoryId: string)=> {
     }
 }
 
+export const updateFolder = async (folderId: string, folder: Partial<FolderTypes>) => {
+	try {
+        const foldersCollectionRef = collection(db, 'folders');
+        const folderRef = doc(foldersCollectionRef, folderId);
+        
+        await updateDoc(folderRef, folder);
+    } catch (error) {
+        console.error('Error al modificar la carpeta:', error);
+        throw new Error('No se pudo modificar la carpeta');
+    }
+};
+
 
 
 // items --------

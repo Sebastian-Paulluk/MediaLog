@@ -17,6 +17,7 @@
     }
 
     &__details {
+
         z-index: 1;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
@@ -26,8 +27,10 @@
         margin-left: 15px;
         padding-right: 5px;
         width: 100%;
+        max-width: calc(100% - 15px);
         transition: background-color 0.3s ease;
         cursor: pointer;
+        
 
         &__img-container {
             width: 30px;
@@ -56,13 +59,29 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: calc(100% - 80px);
+            max-width: calc(100% - 140px);
+        }
+
+        &__items-length {
+            width: 60px;
+            padding-right: 5px;
+            margin-right: 25px;
+            opacity: 0.4;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 5px;
+            border-left: 1px solid rgb(151, 151, 151);
+            margin-left: auto;
+
+            .list-img {
+                width: 20px;
+            }
         }
 
 
-        .delete-folder-button {
+        .folder-options-button-container {
             position: absolute;
-            margin-left: auto;
             right: 5px;
         }
 
