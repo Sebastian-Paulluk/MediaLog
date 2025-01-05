@@ -19,19 +19,25 @@
 */
 
 .folders-content {
-    
     height: 100%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     gap: 5px;
-    padding-top: 10px;
     opacity: 0;
     width: 100%;
     border-right: 1px solid #262a30;
     opacity: 1;
     transition: none;
     min-height: calc(100vh - 150px);
+
+    &__title{
+        color: rgb(212, 212, 212);
+        padding: 15px;
+        text-align: center;
+        background-image: linear-gradient(to right, #101010, #272727);
+        font-weight: bolder;
+    }
 
     &__root-folder {
         cursor: pointer;
@@ -213,7 +219,7 @@
         &.open {
             margin-left: 15px;
             opacity: 1;
-            width: calc(100vw - 100px);
+            width: calc(100vw - 95px);
             transition:
             width 0.5s ease,
             opacity 0.2s ease,

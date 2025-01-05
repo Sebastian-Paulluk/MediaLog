@@ -132,6 +132,9 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
 
     return (
         <div className={`folders-content ${folderContainerState}`}>
+                <div className='folders-content__title'>
+                    Folders
+                </div>
 
                 <div
                     className={`folders-content__root-folder ${!activeFolder ? 'active' : ''}`}
