@@ -82,24 +82,20 @@ export const Category = ({ category, deleteCategory, isDeleting }: CategoryProps
 		<div className={`category-container ${isDeleting ? 'deleting' : ''}`}>
 			<Link to={`/category/${category.id}`} onClick={handleSelectCategory}>
 				<div className='category'>
-						<div className='top-side'>
-							<p className="category-title">{normalizedCategoryName}</p>
+					<div className='top-side'>
+						<p className="category-title">{normalizedCategoryName}</p>
 
+					</div>
+					<div className='bottom-side'>
+						<div className='bottom-side__items'>
+							{getItemsInCategory()}
+							<img src={listImg} className='bottom-side__items__img' alt='list-img' />
 						</div>
-						<div className='bottom-side'>
-							<p className="bottom-side__type">Type: {category.type}</p>
-							<div className='bottom-side__bottom'>
-								<div className='bottom-side__bottom__items'>
-									{getItemsInCategory()}
-									<img src={listImg} className='bottom-side__bottom__items__img' alt='list-img' />
-								</div>
-								<div className='bottom-side__bottom__folders'>
-									{getFoldersQuantity()}
-									<img src={folderImg} className='bottom-side__bottom__folders__img' alt='list-img' />
-								</div>
-							</div>
+						<div className='bottom-side__folders'>
+							{getFoldersQuantity()}
+							<img src={folderImg} className='bottom-side__folders__img' alt='list-img' />
 						</div>
-						
+					</div>
 				</div>
 			</Link>
 

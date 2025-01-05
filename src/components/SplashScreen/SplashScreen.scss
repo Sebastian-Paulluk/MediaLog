@@ -1,0 +1,15 @@
+.splash-screen {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &__logo {
+        width: 130px;
+    }
+
+    .spin {
+        margin-top: 50px;
+    }
+}

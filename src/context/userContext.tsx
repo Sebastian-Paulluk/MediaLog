@@ -6,8 +6,10 @@ import { db } from '../services/firebase';
 
 interface UserContextType {
     user: Record<string, any> | null;
+    setUser: React.Dispatch<React.SetStateAction<Record<string, any> | null>>;
     userLanguage: string;
     userSessionVerified: boolean;
+    isUserLoggedIn: boolean;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -20,12 +22,13 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const [user, setUser] = useState<Record<string, any> | null>(null);
     const userLanguage = user?.UILanguage;
     const [userSessionVerified, setUserSessionVerified] = useState<boolean>(false);
-
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(false);
+    
     // useEffect para la configuración de la persistencia de sesión
     useEffect(() => {
         setPersistence(auth, browserLocalPersistence)
             .then(() => {
-                //console.log('Persistencia de sesión configurada con éxito.');
+                console.log('Persistencia de sesión configurada con éxito.');
             })
             .catch((error) => {
                 console.error('Error al configurar la persistencia de sesión:', error);
@@ -35,11 +38,14 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     // useEffect para el cambio de estado de autenticación
     useEffect(() => {
         const unsubscribeAuth = onAuthStateChanged(auth, (firebaseUser) => {
+            console.log('Firebase User:', firebaseUser);
             if (firebaseUser) {
                 setUserSessionVerified(true);
+                setIsUserLoggedIn(true);
                 subscribeToUserData(firebaseUser.uid); // Llamada para suscribirse a los datos del usuario
             } else {
                 setUser(null);
+                setIsUserLoggedIn(false);
                 setUserSessionVerified(true);
             }
         });
@@ -69,12 +75,13 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
 
     useEffect(() => {
         if (user) {
-            //console.log('Datos del usuario actualizados:', user);
+            console.log('Datos del usuario actualizados:', user);
         }
     }, [user]);
 
+
     return (
-        <UserContext.Provider value={{ user, userLanguage, userSessionVerified }}>
+        <UserContext.Provider value={{ user, setUser, userLanguage, userSessionVerified, isUserLoggedIn }}>
             {children}
         </UserContext.Provider>
     );
