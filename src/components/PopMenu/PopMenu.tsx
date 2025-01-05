@@ -14,6 +14,8 @@ interface PopMenuTypes {
     children: React.ReactNode;
     options: { name: string; icon: string; onClick: () => void }[];
     header?: string;
+    vertical?: 'top' | 'center' | 'bottom'; 
+    horizontal?: 'left' | 'center' | 'right'; 
 }
 
 const StyledMenu = styled((props: MenuProps) => (
@@ -71,7 +73,7 @@ const StyledMenu = styled((props: MenuProps) => (
 }));
 
 
-export const PopMenu: React.FC<PopMenuTypes> = ({ children, options, header }) => {
+export const PopMenu: React.FC<PopMenuTypes> = ({ children, options, header, vertical, horizontal }) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const buttonRef = React.useRef<HTMLDivElement | null>(null); 
 
@@ -114,6 +116,10 @@ export const PopMenu: React.FC<PopMenuTypes> = ({ children, options, header }) =
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}
+                transformOrigin={{
+                    vertical: vertical || 'top',
+                    horizontal: horizontal || 'right',
+                }}
             >
                 {header && [
                     <MenuItem

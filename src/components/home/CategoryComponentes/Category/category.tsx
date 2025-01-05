@@ -3,7 +3,6 @@ import './category.scss';
 import { CategoryTypes } from '../../../../types/types';
 import normalizeText from '../../../../utils/normalizeText';
 import { useCurrentCategoryContext } from '../../../../context/categoryContext';
-import { Dots } from '../Dots/Dots';
 import React, { useState } from 'react';
 import { AlertDialog } from '../../../AlertDialog/AlertDialog';
 import { PopMenu } from '../../../PopMenu/PopMenu';
@@ -11,7 +10,9 @@ import { EditCategoryForm } from '../../../Forms/EditCategoryForm/EditCategoryFo
 import { Modal } from '../../../modal/modal';
 import { useDataContext } from '../../../../context/DataContext';
 import { updateCategory } from '../../../../services/firebase';
-
+import listImg from '../../../../assets/images/list.png';
+import folderImg from '../../../../assets/images/folder-white.png';
+import settingsImg from '../../../../assets/images/settings-2.png';
 
 type CategoryProps = {
 	category: CategoryTypes;
@@ -25,7 +26,11 @@ export const Category = ({ category, deleteCategory, isDeleting }: CategoryProps
 	const { setCurrentCategory } = useCurrentCategoryContext();
 	const [openDialog, setOpenDialog] = React.useState(false);
 	const [openEditCategoryModal , setOpenEditCategoryModal] = useState<boolean>(false);
+	const {getFoldersByCategoryId, getItemsByCategoryId } = useDataContext();
 	const {setChangesSaved} = useDataContext();
+
+	const getItemsInCategory =()=> category.id ? getItemsByCategoryId(category.id).length : 0;
+    const getFoldersQuantity =()=> category.id ? getFoldersByCategoryId(category.id).length : 0;
 
 	const handleOpenUpdateItemModal = () => {
 		setOpenEditCategoryModal(true);
@@ -66,8 +71,11 @@ export const Category = ({ category, deleteCategory, isDeleting }: CategoryProps
 		options: [
 			{name: 'Edit name', icon: 'edit', onClick: handleOpenUpdateItemModal},
 			{name: 'Delete', icon: 'delete', onClick: handleClickOpenDialog},
-		]
+		],
 	}
+
+
+
 
 	return (
 
@@ -75,19 +83,32 @@ export const Category = ({ category, deleteCategory, isDeleting }: CategoryProps
 			<Link to={`/category/${category.id}`} onClick={handleSelectCategory}>
 				<div className='category'>
 						<div className='top-side'>
-							
+							<p className="category-title">{normalizedCategoryName}</p>
+
 						</div>
 						<div className='bottom-side'>
-							<p className="category-title">{normalizedCategoryName}</p>
+							<p className="bottom-side__type">Type: {category.type}</p>
+							<div className='bottom-side__bottom'>
+								<div className='bottom-side__bottom__items'>
+									{getItemsInCategory()}
+									<img src={listImg} className='bottom-side__bottom__items__img' alt='list-img' />
+								</div>
+								<div className='bottom-side__bottom__folders'>
+									{getFoldersQuantity()}
+									<img src={folderImg} className='bottom-side__bottom__folders__img' alt='list-img' />
+								</div>
+							</div>
 						</div>
+						
 				</div>
 			</Link>
 
-			<PopMenu {...popMenuProps}>
+			<PopMenu {...{ ...popMenuProps, vertical: 'bottom' as 'bottom' }}>
 				<button className='category-options-button'>
-					<Dots />
+					<img src={settingsImg} alt='settings' className='category-options-button__img' />
 				</button>
 			</PopMenu>
+
 
 			<AlertDialog
 				title='Delete category?'
