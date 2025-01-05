@@ -22,7 +22,7 @@ export const CurrentFolderBar: React.FC<CurrentFolderBarTypes> = ({handleToggleO
         }
         if (categoryId) {
             const category = getCategoryById(categoryId);
-            return category.name;
+            return category?.name;
         }
     }
 

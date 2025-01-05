@@ -56,7 +56,6 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 			setChangesSaved(true);
 		}
 	};
-	console.log(category.name)
 
 	const uncompletedItemProps = {
 		items: updatedItems.filter(item => item.completed === false)

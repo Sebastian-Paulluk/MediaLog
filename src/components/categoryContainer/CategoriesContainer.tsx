@@ -15,15 +15,14 @@ export const CategoriesContainer = () => {
 	const {categories} = useDataContext();
 	
 	useEffect(() => {
-		if (categoryId) {
-			if (dataLoaded) {
-				const category = getCategoryById(categoryId)
-				setCategory(category)
-				setCurrentCategory(category)
+		if (dataLoaded && categoryId) {
+			const category = getCategoryById(categoryId);
+			if (category) {
+				setCategory(category);
+				setCurrentCategory(category);
 			}
 		}
-	}, [dataLoaded, categories]);
-
+	}, [dataLoaded, categories, categoryId]);
 
 	return (
 		<div className="categories-container">

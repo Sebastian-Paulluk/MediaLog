@@ -38,7 +38,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     // useEffect para el cambio de estado de autenticación
     useEffect(() => {
         const unsubscribeAuth = onAuthStateChanged(auth, (firebaseUser) => {
-            console.log('Firebase User:', firebaseUser);
+            //console.log('Firebase User:', firebaseUser);
             if (firebaseUser) {
                 setUserSessionVerified(true);
                 setIsUserLoggedIn(true);

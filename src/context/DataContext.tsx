@@ -12,7 +12,7 @@ interface DataContextType  {
     changesSaved: boolean;
     setChangesSaved: React.Dispatch<React.SetStateAction<boolean>>;
     dataLoaded: boolean;
-    getCategoryById: (id: string) => CategoryTypes;
+    getCategoryById: (id: string) => CategoryTypes | null;
     getFoldersByCategoryId: (id: string) => FolderTypes[];
     getFolderById: (folderId: string) => FolderTypes;
     getItemsByFolderId: (categoryId: string) => ItemTypes[];
@@ -62,54 +62,53 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
 
 
     useEffect(() => {
-        const unsubscribeFolders = onSnapshot(collection(db, 'folders'), (snapshot) => {
-            const foldersData: FolderTypes[] = snapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data(),
-            } as FolderTypes));
+        if (categoriesLoaded) {
+            const unsubscribeFolders = onSnapshot(collection(db, 'folders'), (snapshot) => {
+                const foldersData: FolderTypes[] = snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                } as FolderTypes));
     
-            const filteredFolders = foldersData.filter(folder =>
-                categories.some(category => category.id === folder.categoryId)
-            )
+                const filteredFolders = foldersData.filter(folder =>
+                    categories.some(category => category.id === folder.categoryId)
+                );
     
-            setFolders(filteredFolders);
-            setFoldersLoaded(true);
-        });
+                setFolders(filteredFolders);
+                setFoldersLoaded(true);
+            });
     
-        return () => {
-            unsubscribeFolders();
+            return () => {
+                unsubscribeFolders();
+            };
         }
     }, [categories, categoriesLoaded]);
     
 
     useEffect(() => {
-        const unsubscribeItems = onSnapshot(collection(db, 'items'), (snapshot) => {
-            const itemsData: ItemTypes[] = snapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data(),
-            } as ItemTypes));
-
-            const filteredItems = itemsData.filter(item =>
-                categories.some(category => category.id === item.categoryId)
-            )
-            setItems(filteredItems);
-            setItemsLoaded(true);
-        });
-
-        return () => {
-            unsubscribeItems();
+        if (categoriesLoaded) {
+            const unsubscribeItems = onSnapshot(collection(db, 'items'), (snapshot) => {
+                const itemsData: ItemTypes[] = snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                } as ItemTypes));
+    
+                const filteredItems = itemsData.filter(item =>
+                    categories.some(category => category.id === item.categoryId)
+                );
+                setItems(filteredItems);
+                setItemsLoaded(true);
+            });
+    
+            return () => {
+                unsubscribeItems();
+            };
         }
     }, [categories, categoriesLoaded]);
 
 
-
-    const getCategoryById = (id: string) => {
-        const category = categories.find(category => category.id === id);
-        if (!category) {
-            throw new Error(`Category with id ${id} not found`);
-        }
-        return category;
-    }
+    const getCategoryById = (id: string): CategoryTypes | null => {
+        return categories.find(category => category.id === id) || null;
+    };
 
     const getFoldersByCategoryId = (categoryId: string) => {
         const foundFolders = folders.filter(folder => folder.categoryId === categoryId);
