@@ -112,7 +112,7 @@ export const MoveItemForm: React.FC<addOtherItemFormTypes> =({ item, onSubmit, o
     };
 
     const handleAddFolder = async (newFolder: FolderTypes) => {
-		if (category.id) {
+		if (category?.id) {
 			setChangesSaved(false);
 			await createFolder(newFolder);
 			setChangesSaved(true);
@@ -126,7 +126,7 @@ export const MoveItemForm: React.FC<addOtherItemFormTypes> =({ item, onSubmit, o
                 
                 <div className='form__title'>
                     <p>Moving item</p>
-                    <p>in '{category.name}'</p>
+                    <p>in '{category?.name}'</p>
                 </div>
 
                 <div className='form-body'>
@@ -224,9 +224,9 @@ export const MoveItemForm: React.FC<addOtherItemFormTypes> =({ item, onSubmit, o
             </form>
 
             <Modal onClose={handleCloseModal} open={openModal} >
-                {category.id && (
+                {category?.id && (
                     <AddFolderForm
-                        categoryId={category?.id}
+                        categoryId={category.id}
                         onSubmit={handleAddFolder}
                         onClose={handleCloseModal}
                     />
