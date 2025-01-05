@@ -28,7 +28,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     useEffect(() => {
         setPersistence(auth, browserLocalPersistence)
             .then(() => {
-                console.log('Persistencia de sesión configurada con éxito.');
+                //console.log('Persistencia de sesión configurada con éxito.');
             })
             .catch((error) => {
                 console.error('Error al configurar la persistencia de sesión:', error);
@@ -75,7 +75,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
 
     useEffect(() => {
         if (user) {
-            console.log('Datos del usuario actualizados:', user);
+            //console.log('Datos del usuario actualizados:', user);
         }
     }, [user]);
 
