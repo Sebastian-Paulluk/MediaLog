@@ -56,7 +56,7 @@ interface addOtherItemFormTypes {
 export const MoveItemForm: React.FC<addOtherItemFormTypes> =({ item, onSubmit, onClose })=> {
     const {getFolderById, getCategoryById, getFoldersByCategoryId} = useDataContext();
     const category = getCategoryById(item.categoryId);
-    const itemLocation = item.folderId === '' ? 'Root' : getFolderById(item.folderId).name;
+    const itemLocation = item.folderId === '' ? 'Root' : getFolderById(item.folderId)!.name;
     const foldersInCategory = getFoldersByCategoryId(item.categoryId);
     const {setChangesSaved} = useDataContext();
     const [openModal, setOpenModal] = useState(false);
