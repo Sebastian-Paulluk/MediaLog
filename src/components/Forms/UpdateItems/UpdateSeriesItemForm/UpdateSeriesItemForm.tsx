@@ -226,7 +226,10 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item,
                     <div className='notes-label'>
                         <label htmlFor='notes' className='form__label'>Notes</label>
                         <p className={`copy-notes-text ${notesTextCopiedVisible ? 'visible' : ''}`}>Copied to clipboard</p>
-                        <button className='copy-notes-button' onClick={handleCopyNotes}>
+                        <button
+                            className={`copy-notes-button ${!seriesItemData.notes ? 'disabled' : ''}`}
+                            onClick={handleCopyNotes}
+                        >
                             <img src={copyImg} className='copy-notes-button__img' alt='copy-img' />
                         </button>
                     </div>

@@ -84,7 +84,7 @@ export const UpdateMovieItemForm: React.FC<UpdateMovieItemFormTypes> = ({item, o
         setMovieItemData({
             ...movieItemData,
             notes: e.target.value
-        })
+        });
     };
 
 
@@ -198,8 +198,11 @@ export const UpdateMovieItemForm: React.FC<UpdateMovieItemFormTypes> = ({item, o
                 <div className='field-container from-min-container'>
                     <div className='notes-label'>
                         <label htmlFor='notes' className='form__label'>Notes</label>
-                        <p className={`copy-notes-text ${notesTextCopiedVisible ? 'visible' : ''}`}>Copied to clipboard</p>
-                        <button className='copy-notes-button' onClick={handleCopyNotes}>
+                        <p className={`copy-notes-text ${notesTextCopiedVisible ? 'visible' : ''}`}>
+                            Copied to clipboard
+                        </p>
+                        <button className={`copy-notes-button ${!movieItemData.notes ? 'disabled' : ''}`}
+                             onClick={handleCopyNotes}>
                             <img src={copyImg} className='copy-notes-button__img' alt='copy-img' />
                         </button>
                     </div>

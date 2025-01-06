@@ -14,7 +14,7 @@ interface DataContextType  {
     dataLoaded: boolean;
     getCategoryById: (id: string) => CategoryTypes | null;
     getFoldersByCategoryId: (id: string) => FolderTypes[];
-    getFolderById: (folderId: string) => FolderTypes;
+    getFolderById: (folderId: string) => FolderTypes | null;
     getItemsByFolderId: (categoryId: string) => ItemTypes[];
     getItemsByCategoryId: (categoryId: string) => ItemTypes[];
     getItemsByCategoryIdInRoot: (categoryId: string) => ItemTypes[];
@@ -119,10 +119,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({children}) => {
     }
 
     const getFolderById = (folderId: string) => {
-        const folder = folders.find(folder => folder.id === folderId);
-        if (!folder) {
-            throw new Error(`No folder match folderId.`);
-        }
+        const folder = folders.find(folder => folder.id === folderId) || null;
         return folder;
     }
 

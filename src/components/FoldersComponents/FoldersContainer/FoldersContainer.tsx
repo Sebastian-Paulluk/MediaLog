@@ -26,8 +26,8 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
     const navigate = useNavigate();
     const [activeFolder , setActiveFolder] = useState<FolderTypes | null>(null);
 	const [openModal, setOpenModal] = useState(false);
-	const {setChangesSaved} = useDataContext();
-    const {folderId} = useParams();
+	const {setChangesSaved, getFolderById} = useDataContext();
+    const { folderId} = useParams();
     const windowWidth = useWindowWidth();
     const [folderContainerState, setFolderContainerState] = useState<string>('');
     const itemsInRootOfCategory = category.id ? getItemsByCategoryIdInRoot(category.id).length : 0;
@@ -35,13 +35,16 @@ export const FoldersContainer: React.FC<FoldersContainerTypes> = ({category, ope
 
     useEffect(() => {
         if (category.id) {
-            const res = getFoldersByCategoryId(category.id)
-            setLocalFolders(res)
-        }
-        if (!activeFolder) {
+            const res = getFoldersByCategoryId(category.id);
+            setLocalFolders(res);
+        };
+        if (folderId) {
+            const res = getFolderById(folderId);
+            setActiveFolder(res);
+        } else {
             setActiveFolder(null);
-        }
-    }, [folders]);
+        };
+    }, [folders, folderId]);
 
     const getFolderContainerState =()=> {
         if (windowWidth > 1500) {
