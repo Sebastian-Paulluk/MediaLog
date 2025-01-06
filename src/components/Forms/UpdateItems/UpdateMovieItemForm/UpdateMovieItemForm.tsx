@@ -7,6 +7,7 @@ import completedEmpyImg from '../../../../assets/images/radio-button-unchecked.p
 import completedFilledImg from '../../../../assets/images/radio-button-checked.png';
 import filledStarImg from '../../../../assets/images/favorite-added.png'
 import { Counter } from '../../../Counter/Counter';
+import copyImg from '../../../../assets/images/copy.png';
 
 interface UpdateMovieItemFormTypes {
     item: ItemTypes;
@@ -30,6 +31,7 @@ export const UpdateMovieItemForm: React.FC<UpdateMovieItemFormTypes> = ({item, o
         minute: isMoviesItem(item) ? item.minute : 0,
         notes: item.notes
     });
+    const [notesTextCopiedVisible , setNotesTextCopiedVisible] = useState<boolean>(false);
 
     const updateData = () => {
         setMovieItemData({
@@ -39,9 +41,9 @@ export const UpdateMovieItemForm: React.FC<UpdateMovieItemFormTypes> = ({item, o
             minute: isMoviesItem(item) ? item.minute : 0,
             notes: item.notes
         });
-    
         setMinute(isMoviesItem(item) ? item.minute : 0);
-    }
+        setNotesTextCopiedVisible(false);
+    };
 
     useEffect(() => {
         updateData()
@@ -118,11 +120,29 @@ export const UpdateMovieItemForm: React.FC<UpdateMovieItemFormTypes> = ({item, o
 
 
     const handleCancel = (e: React.FormEvent) =>{
-        e.preventDefault()
-        setTimeout(()=>{updateData()},300)
-        onClose()
+        e.preventDefault();
+        setTimeout(()=>{updateData()},300);
+        onClose();
     };
 
+
+    const copyTextToClipboard = async(text: string)=> {
+        try {
+                await navigator.clipboard.writeText(text);
+            } catch (err) {
+                console.error("Error copying text: ", err);
+        };
+    };
+
+
+    const handleCopyNotes =(e: React.FormEvent) =>{
+        e.preventDefault();
+        copyTextToClipboard(movieItemData.notes);
+        setNotesTextCopiedVisible(true);
+        setTimeout(()=>{
+            setNotesTextCopiedVisible(false);
+        },2000);
+    };
 
 
     return (
@@ -165,7 +185,7 @@ export const UpdateMovieItemForm: React.FC<UpdateMovieItemFormTypes> = ({item, o
                 </div>
 
                 <div className='field-container'>
-                    <label htmlFor='fromMinute' className='form_label'>From minute</label>
+                    <label htmlFor='fromMinute' className='form__label'>From minute</label>
                     <Counter
                         min={0}
                         name='fromMinute'
@@ -176,7 +196,13 @@ export const UpdateMovieItemForm: React.FC<UpdateMovieItemFormTypes> = ({item, o
                 </div>
 
                 <div className='field-container from-min-container'>
-                    <label htmlFor='notes' className='form__label'>Notes</label>
+                    <div className='notes-label'>
+                        <label htmlFor='notes' className='form__label'>Notes</label>
+                        <p className={`copy-notes-text ${notesTextCopiedVisible ? 'visible' : ''}`}>Copied to clipboard</p>
+                        <button className='copy-notes-button' onClick={handleCopyNotes}>
+                            <img src={copyImg} className='copy-notes-button__img' alt='copy-img' />
+                        </button>
+                    </div>
                     <textarea
                         className='form__notes'
                         name='notes'

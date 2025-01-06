@@ -7,7 +7,7 @@ import completedFilledImg from '../../../../assets/images/radio-button-checked.p
 import emptyStarImg from '../../../../assets/images/favorite.png'
 import filledStarImg from '../../../../assets/images/favorite-added.png'
 import { Counter } from '../../../Counter/Counter';
-
+import copyImg from '../../../../assets/images/copy.png';
 
 interface UpdateSeriesItemFormTypes {
     item: ItemTypes;
@@ -36,6 +36,8 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item,
         episode: isSeriesItem(item) ? item.episode : 1,
         notes: item.notes,
     });
+    const [notesTextCopiedVisible , setNotesTextCopiedVisible] = useState<boolean>(false);
+
 
     const updateData = () => {
         setSeriesItemData({
@@ -49,6 +51,7 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item,
     
         setSeasonValue(isSeriesItem(item) ? item.season : 1);
         setEpisodeValue(isSeriesItem(item) ? item.episode : 1);
+        setNotesTextCopiedVisible(false);
     }
 
     useEffect(() => {
@@ -138,6 +141,25 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item,
     };
 
 
+    const copyTextToClipboard = async(text: string)=> {
+        try {
+                await navigator.clipboard.writeText(text);
+            } catch (err) {
+                console.error("Error copying text: ", err);
+        };
+    };
+
+
+    const handleCopyNotes =(e: React.FormEvent) =>{
+        e.preventDefault();
+        copyTextToClipboard(seriesItemData.notes);
+        setNotesTextCopiedVisible(true);
+        setTimeout(()=>{
+            setNotesTextCopiedVisible(false);
+        },2000);
+    };
+
+
     return (
         <form onSubmit={handleSubmit} className='update-series-item-form form'>
             
@@ -201,7 +223,13 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({item,
                 </div>
 
                 <div className='field-container'>
-                    <label htmlFor='notes' className='form_label'>Notes</label>
+                    <div className='notes-label'>
+                        <label htmlFor='notes' className='form__label'>Notes</label>
+                        <p className={`copy-notes-text ${notesTextCopiedVisible ? 'visible' : ''}`}>Copied to clipboard</p>
+                        <button className='copy-notes-button' onClick={handleCopyNotes}>
+                            <img src={copyImg} className='copy-notes-button__img' alt='copy-img' />
+                        </button>
+                    </div>
                     <textarea
                         className='form__notes'
                         name='notes'
