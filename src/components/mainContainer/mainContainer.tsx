@@ -8,23 +8,18 @@ interface MainContainerProps {
 }
 
 export const MainContainer = ({ children }: MainContainerProps) => {
-	const {user} = useUserContext();
+	const { user } = useUserContext();
 
 	return (
 		<div className="main-container">
-			{
-				user ? (
-					<>
-						<ToolsBar />
-						{children}
-					</>
-				) : (
-					<>
-						{children}
-					</>
-				)
-			}
-
+			{user ? (
+				<>
+					<ToolsBar />
+					{children}
+				</>
+			) : (
+				<>{children}</>
+			)}
 		</div>
 	);
 };

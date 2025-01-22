@@ -9,11 +9,11 @@ import { useDataContext } from '../../context/DataContext';
 
 export const CategoriesContainer = () => {
 	const { categoryId } = useParams<{ categoryId: string }>();
-	const [ category, setCategory ] = useState<CategoryTypes | null>(null);
+	const [category, setCategory] = useState<CategoryTypes | null>(null);
 	const { setCurrentCategory } = useCurrentCategoryContext();
 	const { getCategoryById, dataLoaded } = useDataContext();
-	const {categories} = useDataContext();
-	
+	const { categories } = useDataContext();
+
 	useEffect(() => {
 		if (dataLoaded && categoryId) {
 			const category = getCategoryById(categoryId);
@@ -22,7 +22,13 @@ export const CategoriesContainer = () => {
 				setCurrentCategory(category);
 			}
 		}
-	}, [dataLoaded, categories, categoryId]);
+	}, [
+		dataLoaded,
+		categories,
+		categoryId,
+		getCategoryById,
+		setCurrentCategory,
+	]);
 
 	return (
 		<div className="categories-container">

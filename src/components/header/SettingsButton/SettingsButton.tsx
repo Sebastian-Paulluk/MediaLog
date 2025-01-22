@@ -6,34 +6,37 @@ import { logoutUser } from '../../../services/firebase';
 import { useUserContext } from '../../../context/userContext';
 import normalizeText from '../../../utils/normalizeText';
 
-interface SettingsButtonTypes {
-    
-}
+export const SettingsButton: React.FC = () => {
+	const { user } = useUserContext();
+	const userName = normalizeText.firstLetterCaps(user?.name);
+	const navigate = useNavigate();
 
-export const SettingsButton: React.FC<SettingsButtonTypes> = () => {
-    const {user} = useUserContext();
-    const userName = normalizeText.firstLetterCaps(user?.name)
-    const navigate = useNavigate();
-
-	
-	const handleUserLogout =()=>{
-        logoutUser();
-        navigate("/login");
-    }
-    
-    const popMenuProps = {
-        header: userName,
-		options: [
-			{name: 'Settings', icon: 'settings', onClick: ()=>console.log()},
-            {name: 'Logout', icon: 'logout', onClick: handleUserLogout},
-		]
+	const handleUserLogout = () => {
+		logoutUser();
+		navigate('/login');
 	};
 
-    return (
-        <PopMenu {...popMenuProps}>
-            <div className='settings-button'>
-                <img src={settingsImg} alt='settings' className='settings-button__img' />
-            </div>
-        </PopMenu>  
-    )
-}
+	const popMenuProps = {
+		header: userName,
+		options: [
+			{
+				name: 'Settings',
+				icon: 'settings',
+				onClick: () => console.log(),
+			},
+			{ name: 'Logout', icon: 'logout', onClick: handleUserLogout },
+		],
+	};
+
+	return (
+		<PopMenu {...popMenuProps}>
+			<div className="settings-button">
+				<img
+					src={settingsImg}
+					alt="settings"
+					className="settings-button__img"
+				/>
+			</div>
+		</PopMenu>
+	);
+};

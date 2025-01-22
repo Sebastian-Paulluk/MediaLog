@@ -1,158 +1,152 @@
 @use '../../../scss/variables';
 
 .folder {
-    display: flex;
-    justify-content: flex-start;
-    padding-left: 10px;
-    position: relative;
-    width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	padding-left: 10px;
+	position: relative;
+	width: 100%;
 
-    &__lines {
-        position: absolute;
-        top:-15px;
-        height: 100%;
-        width: 15px;
-        border-left: 1px solid rgb(83, 83, 83);
-        border-bottom: 1px solid rgb(83, 83, 83);
-    }
+	&__lines {
+		position: absolute;
+		top: -15px;
+		height: 100%;
+		width: 15px;
+		border-left: 1px solid rgb(83, 83, 83);
+		border-bottom: 1px solid rgb(83, 83, 83);
+	}
 
-    &__details {
+	&__details {
+		z-index: 1;
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+		display: flex;
+		align-items: center;
+		padding-left: 5px;
+		margin-left: 15px;
+		padding-right: 5px;
+		width: 100%;
+		max-width: calc(100% - 15px);
+		transition: background-color 0.3s ease;
+		cursor: pointer;
 
-        z-index: 1;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-        display: flex;
-        align-items: center;
-        padding-left: 5px;
-        margin-left: 15px;
-        padding-right: 5px;
-        width: 100%;
-        max-width: calc(100% - 15px);
-        transition: background-color 0.3s ease;
-        cursor: pointer;
-        
+		&__img-container {
+			width: 30px;
+			height: 30px;
+			margin-right: 5px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			transition: opacity 0.3s ease;
+			opacity: 0.4;
 
-        &__img-container {
-            width: 30px;
-            height: 30px;
-            margin-right: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            transition: opacity 0.3s ease;
-            opacity: 0.4;
-        
-            .folder-img {
-                width: 30px;
-            }
+			.folder-img {
+				width: 30px;
+			}
 
-            &__number {
-                color: black;
-                position: absolute;
-            }
-        }
+			&__number {
+				color: black;
+				position: absolute;
+			}
+		}
 
-        &__name {
-            color: rgb(158, 158, 158);
-            transition: color 0.2s ease;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: calc(100% - 140px);
-        }
+		&__name {
+			color: rgb(158, 158, 158);
+			transition: color 0.2s ease;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: calc(100% - 140px);
+		}
 
-        &__items-length {
-            width: 60px;
-            padding-right: 5px;
-            margin-right: 25px;
-            opacity: 0.4;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 5px;
-            border-left: 1px solid rgb(151, 151, 151);
-            margin-left: auto;
+		&__items-length {
+			width: 60px;
+			padding-right: 5px;
+			margin-right: 25px;
+			opacity: 0.4;
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			gap: 5px;
+			border-left: 1px solid rgb(151, 151, 151);
+			margin-left: auto;
 
-            .list-img {
-                width: 20px;
-            }
-        }
+			.list-img {
+				width: 20px;
+			}
+		}
 
+		.folder-options-button-container {
+			position: absolute;
+			right: 5px;
+		}
 
-        .folder-options-button-container {
-            position: absolute;
-            right: 5px;
-        }
+		&:hover {
+			background-color: rgb(30, 30, 30);
+			display: flex;
+			padding-left: 5px;
+			width: 100%;
 
-        &:hover {
-            background-color: rgb(30, 30, 30);
-            display: flex;
-            padding-left: 5px;
-            width: 100%;
+			.folder__details {
+				&__img-container {
+					opacity: 0.7;
+				}
 
-            .folder__details {
-                &__img-container {
-                    opacity: 0.7;
-                }
-        
-                &__name {
-                    color: white;
-                }
-            }
-        }
-    }
+				&__name {
+					color: white;
+				}
+			}
+		}
+	}
 
-    &.current-folder {
+	&.current-folder {
+		.folder__details {
+			background-color: rgb(45, 45, 45);
 
-        .folder__details {
-            background-color: rgb(45, 45, 45);
-            
-            &__img-container {
-                opacity: 0.6;
-            }
-    
-            &__name {
-                color: white;
-            }
-        }
+			&__img-container {
+				opacity: 0.6;
+			}
 
-        &:hover {
+			&__name {
+				color: white;
+			}
+		}
 
-            .folder__details {
-                background-color: rgb(60, 60, 60);
+		&:hover {
+			.folder__details {
+				background-color: rgb(60, 60, 60);
 
-                &__img-container {
-                    opacity: 1;
-                }
-            }
-        }
-    }
+				&__img-container {
+					opacity: 1;
+				}
+			}
+		}
+	}
 }
 
 @media (min-width: 1515px) {
-    
-    .folder {
-        &__details {
-            .delete-folder-button {
-                opacity: 0;
-            }
-        }
+	.folder {
+		&__details {
+			.delete-folder-button {
+				opacity: 0;
+			}
+		}
 
-        &:hover {
-            .folder__details {
-                .delete-folder-button {
-                    opacity: 1;
-                }
-            }
-        }
+		&:hover {
+			.folder__details {
+				.delete-folder-button {
+					opacity: 1;
+				}
+			}
+		}
 
-        &.current-folder {
-            .folder__details {
-                .delete-folder-button {
-                    opacity: 1;
-                }
-            }
-        }
-    }
+		&.current-folder {
+			.folder__details {
+				.delete-folder-button {
+					opacity: 1;
+				}
+			}
+		}
+	}
 }

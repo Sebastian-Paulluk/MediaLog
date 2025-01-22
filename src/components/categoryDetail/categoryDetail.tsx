@@ -15,40 +15,47 @@ import { CurrentFolderBar } from './CurrentFolderBar/CurrentFolderBar';
 
 interface CategoryDetailTypes {
 	category: CategoryTypes;
-} 
+}
 
 export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
-	const {folderId} = useParams();
-	const {items, getItemsByCategoryIdInRoot, getItemsByFolderId} = useDataContext();
+	const { folderId } = useParams();
+	const { items, getItemsByCategoryIdInRoot, getItemsByFolderId } =
+		useDataContext();
 	const [updatedItems, setUpdatedItems] = useState<ItemTypes[]>([]);
 	const [openModal, setOpenModal] = useState(false);
-	const {setChangesSaved} = useDataContext();
-    const [openFoldersMenu , setOpenFoldersMenu] = useState<boolean>(false);
+	const { setChangesSaved } = useDataContext();
+	const [openFoldersMenu, setOpenFoldersMenu] = useState<boolean>(false);
 
-    const handleToggleOpenFoldersMenu =()=> {
+	const handleToggleOpenFoldersMenu = () => {
 		setOpenFoldersMenu(!openFoldersMenu);
-    }
+	};
 
 	const handleOpenModal = () => {
-        setOpenModal(true);
-    };
+		setOpenModal(true);
+	};
 
-    const handleCloseModal = () => {
-        setOpenModal(false);
-    };
+	const handleCloseModal = () => {
+		setOpenModal(false);
+	};
 
 	useEffect(() => {
 		if (category.id) {
 			if (folderId) {
-				const itemsOfFolder = getItemsByFolderId(folderId)
+				const itemsOfFolder = getItemsByFolderId(folderId);
 				setUpdatedItems(itemsOfFolder);
 			} else {
-				const itemsOfCategory = getItemsByCategoryIdInRoot(category.id)
+				const itemsOfCategory = getItemsByCategoryIdInRoot(category.id);
 				setUpdatedItems(itemsOfCategory);
 			}
 		}
-	}, [items, folderId, category.id]);
-	
+	}, [
+		items,
+		folderId,
+		category.id,
+		getItemsByFolderId,
+		getItemsByCategoryIdInRoot,
+	]);
+
 	const handleAddItem = async (newItem: ItemTypes) => {
 		if (category.id) {
 			setChangesSaved(false);
@@ -58,20 +65,20 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 	};
 
 	const uncompletedItemProps = {
-		items: updatedItems.filter(item => item.completed === false)
-	}
+		items: updatedItems.filter((item) => item.completed === false),
+	};
 
 	const completedItemProps = {
-		items: updatedItems.filter(item => item.completed === true)
-	}
+		items: updatedItems.filter((item) => item.completed === true),
+	};
 
 	const formsProps = {
 		categoryId: category.id as string,
-		folderId: folderId ? folderId : "",
+		folderId: folderId ? folderId : '',
 		itemType: category.type,
 		onSubmit: handleAddItem,
 		onClose: handleCloseModal,
-	}
+	};
 
 	return (
 		<div className="cd">
@@ -79,44 +86,52 @@ export const CategoryDetail: React.FC<CategoryDetailTypes> = ({ category }) => {
 				handleToggleOpenFoldersMenu={handleToggleOpenFoldersMenu}
 				openFoldersMenu={openFoldersMenu}
 			/>
-	
-			<div className="cd__body"> 
 
+			<div className="cd__body">
 				<FoldersContainer
 					category={category}
 					setOpenFoldersMenu={setOpenFoldersMenu}
 					openFoldersMenu={openFoldersMenu}
 				/>
-	
-				<div className='cd__body__items-content'>
-					<div className={`add-item-button-container ${openFoldersMenu ? 'align-left' : ''}`}>
-						<button className='add-item-button' onClick={handleOpenModal}>+</button>
+
+				<div className="cd__body__items-content">
+					<div
+						className={`add-item-button-container ${
+							openFoldersMenu ? 'align-left' : ''
+						}`}
+					>
+						<button
+							className="add-item-button"
+							onClick={handleOpenModal}
+						>
+							+
+						</button>
 					</div>
 
 					<CategoryDetailUncompletedItems {...uncompletedItemProps} />
 					<CategoryDetailCompletedItems {...completedItemProps} />
 
 					<div
-						className={`cd__body__items-content__cover ${openFoldersMenu ? 'active' : ''}`}
+						className={`cd__body__items-content__cover ${
+							openFoldersMenu ? 'active' : ''
+						}`}
 						onClick={handleToggleOpenFoldersMenu}
 					/>
 				</div>
-	
-				<div className='cd__body__right' ></div>
-			</div>
-	
-			<Modal onClose={handleCloseModal} open={openModal} >
-				{category.id && (
-					category.type === 'Others' ? (
-						<AddOtherItemForm {...formsProps}/>
-					) : category.type === 'Movies' ? (
-						<AddMovieItemForm {...formsProps}/>
-					) : (
-						<AddSeriesItemForm {...formsProps}/>
-					)
-				)}
-			</Modal>
 
+				<div className="cd__body__right"></div>
+			</div>
+
+			<Modal onClose={handleCloseModal} open={openModal}>
+				{category.id &&
+					(category.type === 'Others' ? (
+						<AddOtherItemForm {...formsProps} />
+					) : category.type === 'Movies' ? (
+						<AddMovieItemForm {...formsProps} />
+					) : (
+						<AddSeriesItemForm {...formsProps} />
+					))}
+			</Modal>
 		</div>
 	);
-}
+};

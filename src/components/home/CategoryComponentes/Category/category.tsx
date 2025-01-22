@@ -20,17 +20,25 @@ type CategoryProps = {
 	isDeleting: boolean;
 };
 
-
-export const Category = ({ category, deleteCategory, isDeleting }: CategoryProps) => {
-	const normalizedCategoryName = normalizeText.firstLettersCaps(category.name)
+export const Category = ({
+	category,
+	deleteCategory,
+	isDeleting,
+}: CategoryProps) => {
+	const normalizedCategoryName = normalizeText.firstLettersCaps(
+		category.name
+	);
 	const { setCurrentCategory } = useCurrentCategoryContext();
 	const [openDialog, setOpenDialog] = React.useState(false);
-	const [openEditCategoryModal , setOpenEditCategoryModal] = useState<boolean>(false);
-	const {getFoldersByCategoryId, getItemsByCategoryId } = useDataContext();
-	const {setChangesSaved, dataLoaded} = useDataContext();
+	const [openEditCategoryModal, setOpenEditCategoryModal] =
+		useState<boolean>(false);
+	const { getFoldersByCategoryId, getItemsByCategoryId } = useDataContext();
+	const { setChangesSaved, dataLoaded } = useDataContext();
 
-	const getItemsInCategory =()=> category.id ? getItemsByCategoryId(category.id).length : null;
-    const getFoldersQuantity =()=> category.id ? getFoldersByCategoryId(category.id).length : null;
+	const getItemsInCategory = () =>
+		category.id ? getItemsByCategoryId(category.id).length : null;
+	const getFoldersQuantity = () =>
+		category.id ? getFoldersByCategoryId(category.id).length : null;
 
 	const handleOpenUpdateItemModal = () => {
 		setOpenEditCategoryModal(true);
@@ -38,85 +46,107 @@ export const Category = ({ category, deleteCategory, isDeleting }: CategoryProps
 	const handleCloseUpdateItemModal = () => {
 		setOpenEditCategoryModal(false);
 	};
-	const handleEditCategory = async(updatedCategoryData: Partial<CategoryTypes>) =>{
+	const handleEditCategory = async (
+		updatedCategoryData: Partial<CategoryTypes>
+	) => {
 		if (category.id) {
 			setChangesSaved(false);
 			await updateCategory(category.id, updatedCategoryData);
 			setChangesSaved(true);
 		}
-	}
-	
+	};
 
-	const handleSelectCategory =()=>{
-		setCurrentCategory(category)
-	}
+	const handleSelectCategory = () => {
+		setCurrentCategory(category);
+	};
 
-	const handleDeleteCategory = async()=>{
+	const handleDeleteCategory = async () => {
 		if (category.id) {
-			deleteCategory(category.id)
+			deleteCategory(category.id);
 		}
-	}
+	};
 
 	const handleClickOpenDialog = () => {
-        setOpenDialog(true);
-    };
+		setOpenDialog(true);
+	};
 
 	const editCategoryFormProps = {
 		category,
 		onSubmit: handleEditCategory,
-		onClose: handleCloseUpdateItemModal
-	}
+		onClose: handleCloseUpdateItemModal,
+	};
 
 	const popMenuProps = {
 		options: [
-			{name: 'Edit name', icon: 'edit', onClick: handleOpenUpdateItemModal},
-			{name: 'Delete', icon: 'delete', onClick: handleClickOpenDialog},
+			{
+				name: 'Edit name',
+				icon: 'edit',
+				onClick: handleOpenUpdateItemModal,
+			},
+			{ name: 'Delete', icon: 'delete', onClick: handleClickOpenDialog },
 		],
-	}
-
-
-
+	};
 
 	return (
 		dataLoaded && (
-			<div className={`category-container ${isDeleting ? 'deleting' : ''}`}>
-				<Link to={`/category/${category.id}`} onClick={handleSelectCategory}>
-					<div className='category'>
-						<div className='top-side'>
-							<p className="category-title">{normalizedCategoryName}</p>
+			<div
+				className={`category-container ${isDeleting ? 'deleting' : ''}`}
+			>
+				<Link
+					to={`/category/${category.id}`}
+					onClick={handleSelectCategory}
+				>
+					<div className="category">
+						<div className="top-side">
+							<p className="category-title">
+								{normalizedCategoryName}
+							</p>
 						</div>
-						<div className='bottom-side'>
-							<div className='bottom-side__items'>
+						<div className="bottom-side">
+							<div className="bottom-side__items">
 								{getItemsInCategory()}
-								<img src={listImg} className='bottom-side__items__img' alt='list-img' />
+								<img
+									src={listImg}
+									className="bottom-side__items__img"
+									alt="list-img"
+								/>
 							</div>
-							<div className='bottom-side__folders'>
+							<div className="bottom-side__folders">
 								{getFoldersQuantity()}
-								<img src={folderImg} className='bottom-side__folders__img' alt='list-img' />
+								<img
+									src={folderImg}
+									className="bottom-side__folders__img"
+									alt="list-img"
+								/>
 							</div>
 						</div>
 					</div>
 				</Link>
 
-				<PopMenu {...{ ...popMenuProps, vertical: 'bottom' as 'bottom' }}>
-					<button className='category-options-button'>
-						<img src={settingsImg} alt='settings' className='category-options-button__img' />
+				<PopMenu {...{ ...popMenuProps, vertical: 'bottom' }}>
+					<button className="category-options-button">
+						<img
+							src={settingsImg}
+							alt="settings"
+							className="category-options-button__img"
+						/>
 					</button>
 				</PopMenu>
 
-
 				<AlertDialog
-					title='Delete category?'
-					text='This will erase all the folders and items associated with this category as well'
+					title="Delete category?"
+					text="This will erase all the folders and items associated with this category as well"
 					open={openDialog}
 					setOpen={setOpenDialog}
 					handleConfirmAction={handleDeleteCategory}
 				/>
 
-				<Modal onClose={handleCloseUpdateItemModal} open={openEditCategoryModal} >
-					<EditCategoryForm {...editCategoryFormProps}/>
-				</Modal>  
-				
+				<Modal
+					onClose={handleCloseUpdateItemModal}
+					open={openEditCategoryModal}
+				>
+					<EditCategoryForm {...editCategoryFormProps} />
+				</Modal>
 			</div>
 		)
 	);

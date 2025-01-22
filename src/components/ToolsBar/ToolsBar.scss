@@ -1,21 +1,25 @@
 @use '../../scss/variables';
 
 .tools-bar-container {
-    border-bottom: 1px solid #262a30;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 50px;
-    min-height: 50px;
+	border-bottom: 1px solid #262a30;
+	background-color: var(--background-color);
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 50px;
+	min-height: 50px;
+	position: sticky;
+	top: 60px;
+	z-index: 999;
 
-    .tools-bar {
-        width: variables.$content-max-width;
-        max-width: variables.$content-max-width;
-        padding: 10px 20px 10px 20px;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+	.tools-bar {
+		width: variables.$content-max-width;
+		max-width: variables.$content-max-width;
+		padding: 10px 20px 10px 20px;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 }

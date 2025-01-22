@@ -1,17 +1,13 @@
-import { useDataContext } from '../../context/DataContext'
-import './Toast.scss'
+import { useDataContext } from '../../context/DataContext';
+import './Toast.scss';
 import { Spin } from '../Spin/Spin';
 
-interface ToastTypes {
-    
-}
+export const Toast: React.FC = () => {
+	const { changesSaved } = useDataContext();
 
-export const Toast: React.FC<ToastTypes> = () => {
-    const {changesSaved} = useDataContext();
-
-    return (
-        <div className={`toast ${changesSaved ? '' : 'visible'}`}>
-            <Spin />
-        </div>
-    )
-}
+	return (
+		<div className={`toast ${changesSaved ? '' : 'visible'}`}>
+			<Spin />
+		</div>
+	);
+};

@@ -5,70 +5,65 @@ import { useState } from 'react';
 import { useCurrentCategoryContext } from '../../../context/categoryContext';
 import { useNavigate } from 'react-router-dom';
 
-interface SearchInputTypes {
-    
-}
+export const SearchInput: React.FC = () => {
+	const [searchQuery, setSearchQuery] = useState('');
+	const { currentCategory } = useCurrentCategoryContext();
+	const navigate = useNavigate();
 
-export const SearchInput: React.FC<SearchInputTypes> = () => {
-    const [searchQuery , setSearchQuery] = useState('')
-    const {currentCategory} = useCurrentCategoryContext()
-    const navigate = useNavigate()
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setSearchQuery(e.target.value);
+	};
 
-    const handleInputChange =(e: React.ChangeEvent<HTMLInputElement>)=> {
-        setSearchQuery(e.target.value)
-    }
+	const clearSearch = () => {
+		setSearchQuery('');
+	};
 
-    const clearSearch = () => {
-        setSearchQuery('')
-    }
+	const search = () => {
+		if (currentCategory) {
+			navigate(`search/category/${currentCategory.id}/${searchQuery}`);
+		} else {
+			navigate(`search/${searchQuery}`);
+		}
+	};
 
-    const search =()=> {
-        if (currentCategory) {
-            navigate(`search/category/${currentCategory.id}/${searchQuery}`)
-        } else {
-            navigate(`search/${searchQuery}`)
-        }
-    }
+	const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		if (searchQuery) {
+			search();
+		}
+	};
 
-    const handleFormSubmit =(e: React.FormEvent<HTMLFormElement>)=> {
-        e.preventDefault()
-        if (searchQuery) {
-            search()
-        }
-    }
+	return (
+		<form onSubmit={handleFormSubmit} className="search-input-container">
+			<input
+				type="search"
+				className="search-input"
+				placeholder="Search..."
+				value={searchQuery}
+				onChange={handleInputChange}
+			/>
 
-    return (
-        <form onSubmit={handleFormSubmit} className='search-input-container'>
-            <input
-                type='search'
-                className='search-input'
-                placeholder='Search...'
-                value={searchQuery}
-                onChange={handleInputChange}
-            />
+			{searchQuery && (
+				<button
+					type="button"
+					onClick={clearSearch}
+					className="clear-search-button"
+				>
+					<img
+						className="cancel-image"
+						src={cancelImage}
+						alt="cancel-img"
+					/>
+				</button>
+			)}
 
-            {searchQuery && (
-                <button
-                    type='button'
-                    onClick={clearSearch}
-                    className='clear-search-button'
-                >
-                    <img
-                        className='cancel-image'
-                        src={cancelImage}
-                        alt='cancel-img'
-                    />
-                </button>
-            )}
-
-            <button type='submit' className='search-button'>
-                <img
-                    className='search-button__img'
-                    src={searchLightImg}
-                    alt='button-search-img'
-                />
-            </button>
-
-        </form>
-    )
-}
+			<button type="submit" className="search-button">
+				<img
+					className="search-button__img"
+					src={searchLightImg}
+					alt="button-search-img"
+				/>
+			</button>
+		</form>
+	);
+};
