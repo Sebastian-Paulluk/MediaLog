@@ -197,7 +197,7 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({
 
 			<div className="form-body">
 				<div className="field-container name-container">
-					<label htmlFor="name" className="form_label">
+					<label htmlFor="name" className="form__label">
 						Name
 					</label>
 					<input
@@ -212,7 +212,7 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({
 
 				<div className="field-container season-episode-container">
 					<div className="field-container">
-						<label htmlFor="season" className="form_label">
+						<label htmlFor="season" className="form__label">
 							Season
 						</label>
 						<Counter
@@ -225,7 +225,7 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({
 					</div>
 
 					<div className="field-container">
-						<label htmlFor="episode" className="form_label">
+						<label htmlFor="episode" className="form__label">
 							Episode
 						</label>
 						<Counter
