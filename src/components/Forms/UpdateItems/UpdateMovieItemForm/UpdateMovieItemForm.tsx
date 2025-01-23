@@ -235,7 +235,7 @@ export const UpdateMovieItemForm: React.FC<UpdateMovieItemFormTypes> = ({
 						className="form__notes"
 						name="notes"
 						value={movieItemData.notes}
-						rows={2}
+						rows={3}
 						cols={50}
 						onChange={handleNotesChange}
 					/>

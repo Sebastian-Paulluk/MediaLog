@@ -1,216 +1,213 @@
 @use '../../scss/variables';
 
 .form {
-    width: 300px;
-    background-color: rgb(20, 20, 20);
-    border: 1px solid rgb(60, 60, 60);
-    display: flex;
-    flex-direction: column;
-    position: relative;
+	width: 300px;
+	background-color: rgb(20, 20, 20);
+	border: 1px solid rgb(60, 60, 60);
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	border-radius: 15px;
 
-    &__title {
-        font-weight: bolder;
-        font-size: larger;
-        text-align: center;
-        border-bottom: 1px solid variables.$borderColor;
-        padding: 20px;
-        padding-bottom: 10px;
+	&__title {
+		font-weight: bolder;
+		font-size: larger;
+		text-align: center;
+		border-bottom: 1px solid variables.$borderColor;
+		padding: 20px;
+		padding-bottom: 10px;
 
-        .item-status {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 30px;
-            gap: 10px;
+		.item-status {
+			margin-top: 20px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 30px;
+			gap: 10px;
 
-            &__fav-img, &__completed-img {
-                width: 25px;
-                cursor: pointer;
-            }
-        }
-    }
+			&__fav-img,
+			&__completed-img {
+				width: 25px;
+				cursor: pointer;
+			}
+		}
+	}
 
-    &__updating-title {
-        font-weight: 200;
+	&__updating-title {
+		font-weight: 200;
 
-        .item-name {
-            color: rgb(255, 255, 255);
-            width: 100%;
-            font-weight: 700;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
+		.item-name {
+			color: rgb(255, 255, 255);
+			width: 100%;
+			font-weight: 700;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	}
 
-    .form-body {
-        padding: 20px;
-        gap: 10px;
-        display: flex;
-        flex-direction: column;
+	.form-body {
+		padding: 20px;
+		gap: 10px;
+		display: flex;
+		flex-direction: column;
 
-        .field-container {
-            .form__label {
-                font-weight: bolder;
-            }
-        }
-    }
+		.field-container {
+			.form__label {
+				font-weight: bolder;
+			}
+		}
+	}
 
+	&__input {
+		margin-top: 5px;
+		width: 100%;
+		border: 1px solid rgb(60, 60, 60);
+		border-radius: 8px;
+		background-color: rgb(29, 29, 29);
+		color: rgb(190, 190, 190);
+		caret-color: rgb(190, 190, 190);
+		outline: none;
+		transition: border-color 0.2s ease, box-shadow 0.3s ease;
+		padding: 10px 15px 10px 15px;
+		&:hover {
+			border-color: rgb(97, 97, 97);
+		}
 
-    &__input {
-        margin-top: 5px;
-        width: 100%;
-        border: 1px solid rgb(60, 60, 60);
-        border-radius: 8px;
-        background-color: rgb(29, 29, 29);
-        color: rgb(190, 190, 190);
-        caret-color: rgb(190, 190, 190);
-        outline: none;
-        transition: border-color 0.2s ease, box-shadow 0.3s ease;
-        padding: 10px 15px 10px 15px;
-        &:hover {
-            border-color: rgb(97, 97, 97);
-        }
-        
-        &:focus {
-            border-color: rgb(120, 120, 120);
-            box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.5);
-        }
-    }
+		&:focus {
+			border-color: rgb(120, 120, 120);
+			box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.5);
+		}
+	}
 
-    &__notes {
-        margin-top: 5px;
-        border: 1px solid rgb(60, 60, 60);
-        border-radius: 8px;
-        background-color: rgb(29, 29, 29);
-        color: rgb(190, 190, 190);
-        caret-color: rgb(190, 190, 190);
-        outline: none;
-        transition: border-color 0.2s ease, box-shadow 0.3s ease;
-        padding: 10px 15px 10px 15px;
-        resize: none;
-        width: 100%;
+	&__notes {
+		margin-top: 5px;
+		border: 1px solid rgb(60, 60, 60);
+		border-radius: 8px;
+		background-color: rgb(29, 29, 29);
+		color: rgb(190, 190, 190);
+		caret-color: rgb(190, 190, 190);
+		outline: none;
+		transition: border-color 0.2s ease, box-shadow 0.3s ease;
+		padding: 10px 15px 10px 15px;
+		resize: none;
+		width: 100%;
 
-        &:hover {
-            border-color: rgb(97, 97, 97);
-        }
-        
-        &:focus {
-            border-color: rgb(120, 120, 120);
-            box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.5);
-        }
-    }
+		&:hover {
+			border-color: rgb(97, 97, 97);
+		}
 
+		&:focus {
+			border-color: rgb(120, 120, 120);
+			box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.5);
+		}
+	}
 
-    .notes-label {
-        display: flex;
+	.notes-label {
+		display: flex;
 
-        .copy-notes-button {
-            border: 1px solid white;
-            width: 20px;
-            height: 20px;
-            padding: 1px;
-            border-radius: 3px;
-            opacity: 0.6;
-            transition: opacity .3s;
+		.copy-notes-button {
+			border: 1px solid white;
+			width: 20px;
+			height: 20px;
+			padding: 1px;
+			border-radius: 3px;
+			opacity: 0.6;
+			transition: opacity 0.3s;
 
-            &:hover {
-                opacity: 1;
-            }
+			&:hover {
+				opacity: 1;
+			}
 
-            &:active {
-                background-color: rgb(97, 97, 97);
-            }
+			&:active {
+				background-color: rgb(97, 97, 97);
+			}
 
-            &.disabled {
-                opacity: 0.2;
-                pointer-events: none;
-            }
+			&.disabled {
+				opacity: 0.2;
+				pointer-events: none;
+			}
 
-            &__img {
-                
-                max-width: 100%;
-                max-height: 100%;
-            }
-        }
-    }
+			&__img {
+				max-width: 100%;
+				max-height: 100%;
+			}
+		}
+	}
 
-    .copy-notes-text {
-        color: #EAC452;
-        margin-left: auto;
-        opacity: 0;
-        margin-right: 10px;
-        transition: opacity .2s;
-        
-        &.visible {
-            opacity: 1;
-        }
-    }
+	.copy-notes-text {
+		color: #eac452;
+		margin-left: auto;
+		opacity: 0;
+		margin-right: 10px;
+		transition: opacity 0.2s;
 
-    &__buttons-container {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        border-top: 1px solid variables.$borderColor;
-        padding-top: 30px;
-        padding-bottom: 30px;
+		&.visible {
+			opacity: 1;
+		}
+	}
 
+	&__buttons-container {
+		display: flex;
+		justify-content: center;
+		gap: 20px;
+		border-top: 1px solid variables.$borderColor;
+		padding-top: 30px;
+		padding-bottom: 30px;
 
-        .form__submit-button, .form__cancel-button{
-            padding: 8px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: rgb(141, 141, 141);
-            color: rgb(0, 0, 0);
-            transition: background-color 0.2s ease;
-            font-weight: 600;
-            font-size: 16px;
+		.form__submit-button,
+		.form__cancel-button {
+			padding: 8px 20px;
+			border-radius: 5px;
+			cursor: pointer;
+			background-color: rgb(141, 141, 141);
+			color: rgb(0, 0, 0);
+			transition: background-color 0.2s ease;
+			font-weight: 600;
+			font-size: 16px;
 
-            &:hover {
-                background-color: rgb(184, 184, 184);
-            }
+			&:hover {
+				background-color: rgb(184, 184, 184);
+			}
 
-            &:active {
-                transition: none;
-                background-color: white;
-            }
-        }
-    }
+			&:active {
+				transition: none;
+				background-color: white;
+			}
+		}
+	}
 
+	&__close-button {
+		position: absolute;
+		border: 1px solid variables.$borderColor;
+		background-color: transparent;
+		top: 5px;
+		right: 5px;
+		border-radius: 50%;
+		padding: 1px 3px;
+		cursor: pointer;
+		font-weight: bolder;
+		transition: background-color 0.2s ease, transform 0.2s ease;
+		color: rgb(201, 201, 201);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 25px;
+		height: 25px;
 
-    &__close-button {
-        position: absolute;
-        border: 1px solid variables.$borderColor;
-        background-color: transparent;
-        top: 5px;
-        right: 5px;
-        border-radius: 50%;
-        padding: 1px 3px;
-        cursor: pointer;
-        font-weight: bolder;
-        transition: background-color 0.2s ease, transform 0.2s ease;
-        color: rgb(201, 201, 201);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 25px;
-        height: 25px;
+		&__img {
+			width: 100%;
+		}
 
-        &__img {
-            width: 100%;
+		&:hover {
+			background-color: variables.$color4;
+			transform: scale(1.1);
+		}
 
-        }
-
-        &:hover {
-            background-color: variables.$color4;
-            transform: scale(1.1);
-        }
-
-        &:active {
-            transition: none;
-            color: white;
-            border: 1px solid rgb(255, 255, 255);
-        }
-    }
+		&:active {
+			transition: none;
+			color: white;
+			border: 1px solid rgb(255, 255, 255);
+		}
+	}
 }

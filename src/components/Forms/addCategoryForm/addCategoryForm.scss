@@ -1,74 +1,75 @@
 @use '../../../scss/variables';
 
 .add-category-form {
-    
-    .field-container {
-        .new-category-name-input {
-            margin-bottom: 15px;
-        }
-    }
+	border-radius: 15px;
 
-    .type-options-container {
-        display: flex;
-        justify-content: space-between;
-        border: 1px solid rgb(60, 60, 60);
-        border-radius: 5px;
-        position: relative;
-        padding: 20px 10px 20px 10px;
+	.field-container {
+		.new-category-name-input {
+			margin-bottom: 15px;
+		}
+	}
 
-        .type-label {
-            background-color: rgb(20, 20, 20);
-            position: absolute;
-            top: -15px;
-            left: 0;
-            padding: 0 10px 0 3px;
-            transform: translateX(-3px);
-        }
-    }
+	.type-options-container {
+		display: flex;
+		justify-content: space-between;
+		border: 1px solid rgb(60, 60, 60);
+		border-radius: 5px;
+		position: relative;
+		padding: 20px 10px 20px 10px;
 
-    .form__type-label {
-        display: flex;
-        gap: 5px;
+		.type-label {
+			background-color: rgb(20, 20, 20);
+			position: absolute;
+			top: -15px;
+			left: 0;
+			padding: 0 10px 0 3px;
+			transform: translateX(-3px);
+		}
+	}
 
-        .category-type-radio-button {
-            display: none;
-        }
+	.form__type-label {
+		display: flex;
+		gap: 5px;
 
-        .custom-radio {
-            position: relative; 
-            height: 20px;
-            width: 20px;
-            border-radius: 50%;
-            border: 2px solid variables.$borderColor;
-            background-color: transparent;
-            transition: background-color 0.2s ease, border-color 0.2s ease;
-            cursor: pointer;
+		.category-type-radio-button {
+			display: none;
+		}
 
-            &:hover {
-                border-color: variables.$color9;
-            }
-        }
+		.custom-radio {
+			position: relative;
+			height: 20px;
+			width: 20px;
+			border-radius: 50%;
+			border: 2px solid variables.$borderColor;
+			background-color: transparent;
+			transition: background-color 0.2s ease, border-color 0.2s ease;
+			cursor: pointer;
 
-        .category-type-radio-button:checked + .custom-radio {
-            background-color: variables.$color5;
-        }
+			&:hover {
+				border-color: variables.$color9;
+			}
+		}
 
-        .custom-radio::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #EAC452;
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
+		.category-type-radio-button:checked + .custom-radio {
+			background-color: variables.$color5;
+		}
 
-        .category-type-radio-button:checked + .custom-radio::after {
-            opacity: 1;
-        }
-    }
+		.custom-radio::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background-color: #eac452;
+			opacity: 0;
+			transition: opacity 0.2s;
+		}
+
+		.category-type-radio-button:checked + .custom-radio::after {
+			opacity: 1;
+		}
+	}
 }

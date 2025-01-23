@@ -198,7 +198,7 @@ export const UpdateOtherItemForm: React.FC<UpdateOtherItemFormTypes> = ({
 						className="form__notes"
 						name="notes"
 						value={otherItemData.notes}
-						rows={2}
+						rows={3}
 						cols={50}
 						onChange={handleNotesChange}
 					/>

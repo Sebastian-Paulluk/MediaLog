@@ -268,7 +268,7 @@ export const UpdateSeriesItemForm: React.FC<UpdateSeriesItemFormTypes> = ({
 						name="notes"
 						value={seriesItemData.notes}
 						onChange={handleNotesChange}
-						rows={2}
+						rows={3}
 						cols={50}
 					/>
 				</div>
