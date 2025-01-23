@@ -1,128 +1,117 @@
 @use '../../../../scss/variables';
 
 .category-container {
-    width: 150px;
-    height: 150px;
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    cursor: pointer;
-    transition:
-        transform 1s ease,
-        opacity 1s ease;
+	width: 150px;
+	height: 150px;
+	position: relative;
+	border-radius: 10px;
+	overflow: hidden;
+	cursor: pointer;
+	transition: transform 1s ease, opacity 1s ease;
 
-    .category {
-        border-radius: 10px;
-        width: 100%;
-        height: 100%;
-        background-color: var(--components-bg);
-        transition:
-            background-color 0.2s ease;
+	.category {
+		border-radius: 10px;
+		width: 100%;
+		height: 100%;
+		background-color: var(--components-bg);
+		transition: background-color 0.2s ease;
 
-        &:hover {
-            background-color: var(--components-bg-hover);
-        }
-    
-        .top-side {
-            width: 100%;
-            height: 110px;
-            border-bottom: 1px solid variables.$backGroundColor;
-            padding: 10px;
-            padding-bottom: 15px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            position: relative;
+		&:hover {
+			background-color: var(--components-bg-hover);
+		}
 
-            .category-title {
-                font-weight: bolder;
-                max-height: 100%;
-                display: -webkit-box;
-                -webkit-line-clamp: 4;
-                line-clamp: 4;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-            }
+		.top-side {
+			width: 100%;
+			height: 110px;
+			border-bottom: 1px solid variables.$backGroundColor;
+			padding: 10px;
+			padding-bottom: 15px;
+			overflow: hidden;
+			display: flex;
+			flex-direction: column;
+			position: relative;
 
-            &__type {
-                color: gray;
-                font-size: smaller;
-                position: absolute;
-                bottom: -25px;
-            }
-        }
+			.category-title {
+				font-weight: bolder;
+				max-height: 100%;
+				display: -webkit-box;
+				-webkit-line-clamp: 4;
+				line-clamp: 4;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
+			}
 
-        .bottom-side {
-            opacity: 0.4;
-            height: 40px;
-            padding: 5px 10px 10px 10px;
-            display: flex;
-            gap: 7px;
+			&__type {
+				color: gray;
+				font-size: smaller;
+				position: absolute;
+				bottom: -25px;
+			}
+		}
 
-            &__type {
-                font-size: smaller;
-            }
+		.bottom-side {
+			opacity: 0.4;
+			height: 40px;
+			padding: 5px 10px 10px 10px;
+			display: flex;
+			gap: 7px;
 
-            &__folders, &__items {
-                height: 100%;
-                display: flex;
-                align-items: flex-end;
-                gap: 2px;
+			&__type {
+				font-size: smaller;
+			}
 
-                &__img {
-                    max-width: 20px;
-                }
-            }
-        }
-    }
+			&__folders,
+			&__items {
+				height: 100%;
+				display: flex;
+				align-items: flex-end;
+				gap: 2px;
 
-    .pop-menu {
-        transform: translate(-10px, -42px);
+				&__img {
+					max-width: 20px;
+				}
+			}
+		}
+	}
 
-        .category-options-button {
-            border-radius: 50px;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            position: absolute;
-            right: 4px;
-            top: 20px;
-            padding: 2px;
-            background: none;
-            transform: translateX(7px);
-    
-            &__img {
-                width: 100%;
-            }
-        }
-    }
+	.pop-menu {
+		transform: translate(-10px, -42px);
 
-    &.deleting {
-        cursor: default;
-        pointer-events: none;
-        transform: scale(0.2);
-        opacity: 0;
-    }
+		.category-options-button {
+			border-radius: 50px;
+			cursor: pointer;
+			transition: background-color 0.2s ease;
+			position: absolute;
+			right: 4px;
+			top: 20px;
+			padding: 2px;
+			background: none;
+			transform: translateX(7px);
 
+			&__img {
+				width: 100%;
+			}
+		}
+	}
 
+	.category-options-button {
+		width: 25px;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
-    .category-options-button {
-        width: 25px;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    
-        &__img {
-            width: 20px;
-            opacity: 0.4;
-            transition: opacity .2s, transform .2s;
-        }
-    
-        &:hover {
-            .category-options-button__img  {
-                opacity: 1;
-                transform: rotate(90deg);
-            }
-        }
-    }
+		&__img {
+			width: 20px;
+			opacity: 0.4;
+			transition: opacity 0.2s, transform 0.2s;
+		}
+
+		&:hover {
+			.category-options-button__img {
+				opacity: 1;
+				transform: rotate(90deg);
+			}
+		}
+	}
 }
