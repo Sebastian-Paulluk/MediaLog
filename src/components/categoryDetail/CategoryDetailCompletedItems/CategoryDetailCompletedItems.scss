@@ -1,76 +1,76 @@
 @use '../../../scss/variables';
 
 .category-detail-completed-items {
-    margin-top: 10px;
-    width: 100%;
-    border-top: 1px solid variables.$color5;
-    display: grid;
-    grid-template-rows: 40px 0fr;
-    transition: grid-template-rows 0.6s ease;
-    overflow: hidden;
+	margin-top: 10px;
+	width: 100%;
+	border-top: 1px solid variables.$color5;
+	display: grid;
+	grid-template-rows: 40px 0fr;
+	transition: grid-template-rows 0.6s ease;
+	overflow: hidden;
+	padding-bottom: 20px;
 
-    .completed-title {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        width: fit-content;
-        cursor: pointer;
-        animation: horizontalMountingMovement 0.3s ease;
-        padding-top: 10px;
-        padding-bottom: 13px;
-        
-        .arrow-img {
-            width: 30px;
-            transform: translateY(3px);
-            transition: transform 0.2s ease;
-        }
-    }
+	.completed-title {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		width: fit-content;
+		cursor: pointer;
+		animation: horizontalMountingMovement 0.3s ease;
+		padding-top: 10px;
+		padding-bottom: 13px;
 
-    .list-container {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        opacity: 0;
-        transition: opacity 0.6s ease, margin-top 0.6s ease;
-        overflow: hidden;
-    }
+		.arrow-img {
+			width: 30px;
+			transform: translateY(3px);
+			transition: transform 0.2s ease;
+		}
+	}
 
-    &.expanded {
-        transition: grid-template-rows 0s ease;
-        grid-template-rows: 40px 1fr;
+	.list-container {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+		opacity: 0;
+		transition: opacity 0.6s ease, margin-top 0.6s ease;
+		overflow: hidden;
+	}
 
-        .completed-title{
-            
-            .arrow-img{
-                transform: scaleY(-1)
-            }
-        }
+	&.expanded {
+		transition: grid-template-rows 0s ease;
+		grid-template-rows: 40px 1fr;
 
-        .list-container {
-            opacity: 1;
-        }
-    }
+		.completed-title {
+			.arrow-img {
+				transform: scaleY(-1);
+			}
+		}
 
-    &.empty {
-        pointer-events: none;
+		.list-container {
+			opacity: 1;
+		}
+	}
 
-        .completed-title{
-            color: rgb(83, 83, 83);
-            
-            .arrow-img{
-                display: none;
-            }
-        }
-    }
+	&.empty {
+		pointer-events: none;
+
+		.completed-title {
+			color: rgb(83, 83, 83);
+
+			.arrow-img {
+				display: none;
+			}
+		}
+	}
 }
 
 @keyframes horizontalMountingMovement {
-    from {
-        transform: translateX(100px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+	from {
+		transform: translateX(100px);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
 }

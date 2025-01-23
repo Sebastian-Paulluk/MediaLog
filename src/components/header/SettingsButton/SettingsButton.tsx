@@ -19,11 +19,6 @@ export const SettingsButton: React.FC = () => {
 	const popMenuProps = {
 		header: userName,
 		options: [
-			{
-				name: 'Settings',
-				icon: 'settings',
-				onClick: () => console.log(),
-			},
 			{ name: 'Logout', icon: 'logout', onClick: handleUserLogout },
 		],
 	};
