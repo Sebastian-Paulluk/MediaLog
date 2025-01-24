@@ -6,59 +6,63 @@
 </div>
 
 <br>
-<!-- 
+
 <div align="center">
   <a href="#">
-    <img src="https://img.shields.io/badge/lang-español-blue.svg" alt="es">
+    <img src="https://img.shields.io/badge/lang-español-red.svg" alt="es">
   </a>
 </div>
--->
+
 
 <details>
-  <summary>Tabla de contenido</summary>
+  <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#caracteristicas">Características principales</a></li>
-    <li><a href="#creado-con">Creado con</a></li>
-    <li><a href="#despliegue">Despliegue</a></li>
-    <li><a href="#instalacion">Instalación</a></li>
-    <li><a href="#imagenes">Imágenes</a></li>
-    <li><a href="#pefiles-y-contacto">Perfiles y contacto</a></li>
+    <li><a href="#caracteristicas">Main Features</a></li>
+    <li><a href="#creado-con">Built With</a></li>
+    <li><a href="#despliegue">Deployment</a></li>
+    <li><a href="#instalacion">Installation</a></li>
+    <li><a href="#imagenes">Images</a></li>
+    <li><a href="#pefiles-y-contacto">Profiles and Contact</a></li>
   </ol>
 </details>
 
 
+
+
 # MediaLog
 
-MediaLog es una aplicación web desarrollada con React, diseñada para organizar y gestionar series, películas y otros elementos de manera eficiente. La interfaz permite crear y personalizar categorías y subcategorías con un diseño estilo árbol de carpetas, donde podés agregar y organizar tus elementos multimedia de forma intuitiva.
+MediaLog is a web application developed with React, designed to efficiently organize and manage series, movies, and other media items. The interface allows you to create and customize categories and subcategories with a folder tree-style design, where you can intuitively add and organize your media content.
 
 
 <br>
 
 <a id="caracteristicas"></a>
-## Características principales
+## Main Features
 
-- **Categorías personalizables**:  
-  Crea categorías principales del tipo "Series", "Películas” u “Otros” y organiza tus elementos en subcarpetas.
+- Customizable Categories:  
+  Create main categories like "Series," "Movies," or "Other" and organize your items in subfolders.
 
-- **Gestión de elementos multimedia**:  
-  - Guarda detalles como el nombre, temporada y episodio (para series), o el tiempo en minutos (para películas).  
-  - Agrega notas personalizadas para cada elemento.
+- Multimedia Item Management:  
+  - Save details such as name, season and episode (for series), or time in minutes (for movies).  
+  - Add custom notes for each item.
 
-- **Marcadores**:  
-  Marca los ítems como "favoritos" o "completados" directamente dentro de las categorías o subcarpetas para mantener un registro de su estado.
+- Bookmarks:  
+  Mark items as "favorites" or "completed" directly within categories or subfolders to keep track of their status.
 
-- **Historial reciente**:  
-  En la página de inicio, se muestran los últimos 3 elementos creados o modificados, ordenados por fecha de modificación.
+- Recent History:  
+  The homepage displays the last 3 items created or modified, sorted by modification date.
 
-- **Interfaz estilo árbol de carpetas**:  
-  Organiza los elementos multimedia dentro de categorías y carpetas anidadas para una navegación más clara y estructurada.
+- Folder Tree-Style Interface:  
+  Organize multimedia items within categories and folders for clearer and more structured navigation.
+
+
 
 
 <br>
 
 <a id="creado-con"></a>
 
-## Creado con
+## Built With
 
 * [![React][React.js]][React-url]
 * [![TypeScript][TypeScript]][TypeScript-url]
@@ -76,28 +80,28 @@ MediaLog es una aplicación web desarrollada con React, diseñada para organizar
 
 <a id="despliegue"></a>
 
-## Despliegue:
+## Deploy:
 ### <https://series-log.vercel.app/>
 
 <br>
 
 <a id="instalacion"></a>
 
-## Instalación
+## Installation
 
-1. Clonar el proyecto
+1. Clone the project
    ```sh
    git clone https://github.com/Sebastian-Paulluk/MediaLog.git
    ```
-2. Instalar depencias
+2. Install dependencies
    ```sh
    npm install
    ```
-3. Entrar al directorio del proyecto
+3. Navigate to the project directory
    ```sh
    cd MediaLog
    ```
-4. Correr la app
+4. Run the app
    ```sh
    npm run start
    ```
@@ -106,42 +110,42 @@ MediaLog es una aplicación web desarrollada con React, diseñada para organizar
 
 <a id="imagenes"></a>
 
-## Imágenes
+## Images
 
 <br>
 
-Inicio:
+Home:
 
 ![](https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/inicio.png)
 
 <br>
 
-Categorias:
+Categories:
 
 ![](https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/items-en-carpeta.png)
 
 <br>
 
-Ultimos items modificados:
+Last created or modified items:
 
 ![](https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/ultimos-modificados.png)
 
 <br>
 
-Favoritos:
+Favorites:
 
 ![](https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/favoritos.png)
 
 <br>
 
 
-Modificando items:
+Updating items:
 
 ![](https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/modificando-item-juntos.png) 
 
 <br>
 
-Moviendo items en categoria:
+Moving items in category:
 
 ![](https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/moviendo-item.png)
 
@@ -151,7 +155,7 @@ Moviendo items en categoria:
 
 <a id="pefiles-y-contacto"></a>
 
-## Perfiles y contacto
+## Profiles and Contact
 
 ### Sebastián Jonatan Paulluk
 <br>
@@ -162,7 +166,7 @@ Moviendo items en categoria:
 
 [![Gmail][Gmail-icon]][Gmail-url] &nbsp; &nbsp; sebastianpaulluk@gmail.com
 
-<p align="right"><a href="#readme-top">Volver al inicio</a></p>
+<p align="right"><a href="#readme-top">Back to top</a></p>
 
 
 
@@ -201,6 +205,8 @@ Moviendo items en categoria:
 
 [GitHub-icon]: https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white
 [GitHub-url]: https://github.com/Sebastian-Paulluk
+
+
 
 
 
