@@ -216,7 +216,7 @@ MediaLog is a web application developed with React, designed to efficiently orga
 
 [![Gmail][Gmail-icon]][Gmail-url] &nbsp; &nbsp; sebastianpaulluk@gmail.com
 
-<p align="right"><a href="#readme-top">Back to top</a></p>
+<p align="right"><a href="#top">Back to top</a></p>
 
 
 
