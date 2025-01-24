@@ -7,8 +7,8 @@
 
 <br>
 
-<div align="center">
-    <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.md"><img src="https://img.shields.io/badge/lang-english-blue.svg" height="30" alt="eng"></a> &nbsp; <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.es.md"><img src="https://img.shields.io/badge/lang-español-red.svg" alt="es"></a>
+<div align="right">
+    <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.md"><img src="https://img.shields.io/badge/lang-english-blue.svg" height="27" alt="eng"></a> &nbsp; <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.es.md"><img src="https://img.shields.io/badge/lang-español-red.svg" alt="es"></a>
 </div>
 
 
