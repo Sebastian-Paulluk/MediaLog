@@ -1,7 +1,18 @@
 <a id="readme-top"></a>
-![](https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/logo.png)
 
 
+<div align="center">
+  <img  src="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/logo.png">
+</div>
+
+<br>
+<!-- 
+<div align="center">
+  <a href="#">
+    <img src="https://img.shields.io/badge/lang-español-blue.svg" alt="es">
+  </a>
+</div>
+-->
 
 <details>
   <summary>Tabla de contenido</summary>
@@ -15,14 +26,13 @@
   </ol>
 </details>
 
-<br>
 
 # MediaLog
 
 MediaLog es una aplicación web desarrollada con React, diseñada para organizar y gestionar series, películas y otros elementos de manera eficiente. La interfaz permite crear y personalizar categorías y subcategorías con un diseño estilo árbol de carpetas, donde podés agregar y organizar tus elementos multimedia de forma intuitiva.
 
 
-<br><br>
+<br>
 
 <a id="caracteristicas"></a>
 ## Características principales
@@ -44,7 +54,7 @@ MediaLog es una aplicación web desarrollada con React, diseñada para organizar
   Organiza los elementos multimedia dentro de categorías y carpetas anidadas para una navegación más clara y estructurada.
 
 
-<br><br>
+<br>
 
 <a id="creado-con"></a>
 
@@ -69,10 +79,7 @@ MediaLog es una aplicación web desarrollada con React, diseñada para organizar
 ## Despliegue:
 ### <https://series-log.vercel.app/>
 
-
-
 <br>
-
 
 <a id="instalacion"></a>
 
