@@ -1,4 +1,6 @@
+<a id="readme-top"></a>
 ![](https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/logo.png)
+
 
 
 # MediaLog
@@ -121,14 +123,20 @@ Moviendo items en categoria:
 <br>
 
 
-## Contacto
+## Perfiles y contacto
 
 ### Sebastián Jonatan Paulluk
 <br>
 
+[![GitHub][GitHub-icon]][GitHub-url] &nbsp; &nbsp; [github.com/Sebastian-Paulluk](https://github.com/Sebastian-Paulluk)
+
+[![LinkedIn][LinkedIn-icon]][LinkedIn-url] &nbsp; &nbsp; [linkedin.com/in/sebastian-paulluk/](https://www.linkedin.com/in/sebastian-paulluk/)
+
 [![Gmail][Gmail-icon]][Gmail-url] &nbsp; &nbsp; sebastianpaulluk@gmail.com
 
-[![LinkedIn][LinkedIn-icon]][LinkedIn-url] &nbsp; &nbsp; [www.linkedin.com/in/sebastian-paulluk/](https://www.linkedin.com/in/sebastian-paulluk/)
+<p align="right"><a href="#readme-top">Volver al inicio</a></p>
+
+
 
 
 
@@ -160,6 +168,8 @@ Moviendo items en categoria:
 [Gmail-icon]: https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white
 [Gmail-url]: mailto:sebastianpaulluk@gmail.com
 
+[GitHub-icon]: https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white
+[GitHub-url]: https://github.com/Sebastian-Paulluk
 
 
 
