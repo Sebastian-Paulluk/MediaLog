@@ -3,6 +3,20 @@
 
 
 
+<details>
+  <summary>Tabla de contenido</summary>
+  <ol>
+    <li><a href="#caracteristicas">Características principales</a></li>
+    <li><a href="#creado-con">Creado con</a></li>
+    <li><a href="#despliegue">Despliegue</a></li>
+    <li><a href="#instalacion">Instalación</a></li>
+    <li><a href="#imagenes">Imágenes</a></li>
+    <li><a href="#pefiles-y-contacto">Perfiles y contacto</a></li>
+  </ol>
+</details>
+
+<br>
+
 # MediaLog
 
 MediaLog es una aplicación web desarrollada con React, diseñada para organizar y gestionar series, películas y otros elementos de manera eficiente. La interfaz permite crear y personalizar categorías y subcategorías con un diseño estilo árbol de carpetas, donde podés agregar y organizar tus elementos multimedia de forma intuitiva.
@@ -10,7 +24,7 @@ MediaLog es una aplicación web desarrollada con React, diseñada para organizar
 
 <br><br>
 
-
+<a id="caracteristicas"></a>
 ## Características principales
 
 - **Categorías personalizables**:  
@@ -32,6 +46,7 @@ MediaLog es una aplicación web desarrollada con React, diseñada para organizar
 
 <br><br>
 
+<a id="creado-con"></a>
 
 ## Creado con
 
@@ -48,7 +63,9 @@ MediaLog es una aplicación web desarrollada con React, diseñada para organizar
 <br>
 
 
-## Deploy:
+<a id="despliegue"></a>
+
+## Despliegue:
 ### <https://series-log.vercel.app/>
 
 
@@ -56,6 +73,7 @@ MediaLog es una aplicación web desarrollada con React, diseñada para organizar
 <br>
 
 
+<a id="instalacion"></a>
 
 ## Instalación
 
@@ -78,6 +96,7 @@ MediaLog es una aplicación web desarrollada con React, diseñada para organizar
 
 <br><br>
 
+<a id="imagenes"></a>
 
 ## Imágenes
 
@@ -122,6 +141,7 @@ Moviendo items en categoria:
 <br>
 <br>
 
+<a id="pefiles-y-contacto"></a>
 
 ## Perfiles y contacto
 
