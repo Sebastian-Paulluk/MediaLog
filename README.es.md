@@ -1,5 +1,4 @@
-<a id="readme-top"></a>
-
+<a id="top"></a>
 
 <div align="center">
   <img  src="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/logo.png">
@@ -29,7 +28,6 @@
 
 MediaLog es una aplicación web desarrollada con React, diseñada para organizar y gestionar series, películas y otros elementos de manera eficiente. La interfaz permite crear y personalizar categorías y subcategorías con un diseño estilo árbol de carpetas, donde podés agregar y organizar tus elementos multimedia de forma intuitiva.
 
-
 <br>
 
 <a id="caracteristicas"></a>
@@ -51,11 +49,11 @@ MediaLog es una aplicación web desarrollada con React, diseñada para organizar
 - **Interfaz estilo árbol de carpetas**:  
   Organiza los elementos multimedia dentro de categorías y carpetas para una navegación más clara y estructurada.
 
-
 <br>
 
-<a id="creado-con"></a>
 
+
+<a id="creado-con"></a>
 ## Creado con
 
 * [![React][React.js]][React-url]
@@ -72,43 +70,46 @@ MediaLog es una aplicación web desarrollada con React, diseñada para organizar
 <br>
 
 
-<a id="despliegue"></a>
 
+<a id="despliegue"></a>
 ## Despliegue:
 ### <https://series-log.vercel.app/>
 
+
+
 <br>
 
-<a id="instalacion"></a>
 
+
+<a id="instalacion"></a>
 ## Instalación
 
 1. Clonar el proyecto
    ```sh
    git clone https://github.com/Sebastian-Paulluk/MediaLog.git
    ```
-2. Instalar depencias
-   ```sh
-   npm install
-   ```
-3. Entrar al directorio del proyecto
+2. Entrar al directorio del proyecto
    ```sh
    cd MediaLog
+   ```
+3. Instalar depencias
+   ```sh
+   npm install
    ```
 4. Correr la app
    ```sh
    npm run start
    ```
 
+
+
 <br><br>
 
 
 
 <a id="imagenes"></a>
-
 # Imágenes
 
-<br>
 <br>
 
 ###
@@ -168,12 +169,14 @@ MediaLog es una aplicación web desarrollada con React, diseñada para organizar
   <img src="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/moviendo-item.png">
 </kbd>
 
+
+
+<br>
 <br>
 <br>
 
 
 <a id="pefiles-y-contacto"></a>
-
 ## Perfiles y contacto
 
 ### Sebastián Jonatan Paulluk
@@ -185,7 +188,8 @@ MediaLog es una aplicación web desarrollada con React, diseñada para organizar
 
 [![Gmail][Gmail-icon]][Gmail-url] &nbsp; &nbsp; sebastianpaulluk@gmail.com
 
-<p align="right"><a href="#readme-top">Volver al inicio</a></p>
+<p align="right"><a href="#top">Volver al inicio</a></p>
+
 
 
 
@@ -224,8 +228,3 @@ MediaLog es una aplicación web desarrollada con React, diseñada para organizar
 
 [GitHub-icon]: https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white
 [GitHub-url]: https://github.com/Sebastian-Paulluk
-
-
-
-
-
