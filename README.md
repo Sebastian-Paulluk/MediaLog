@@ -8,7 +8,7 @@
 <br>
 
 <div align="center">
-    <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.md"><img src="https://img.shields.io/badge/lang-english-blue.svg" alt="es"></a> &nbsp; <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.es.md"><img src="https://img.shields.io/badge/lang-español-red.svg" alt="es"></a>
+    <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.md"><img src="https://img.shields.io/badge/lang-english-blue.svg" height="30" alt="es"></a> &nbsp; <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.es.md"><img src="https://img.shields.io/badge/lang-español-red.svg" alt="es"></a>
 </div>
 
 
@@ -78,7 +78,7 @@ MediaLog is a web application developed with React, designed to efficiently orga
 
 <a id="despliegue"></a>
 
-## Deploy:
+## Deploy
 ### <https://series-log.vercel.app/>
 
 <br>
@@ -108,45 +108,67 @@ MediaLog is a web application developed with React, designed to efficiently orga
 
 <a id="imagenes"></a>
 
-## Images
+# Images
 
 <br>
-
-Home:
-
-![](https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/inicio.png)
-
 <br>
 
-Categories:
+###
 
-![](https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/items-en-carpeta.png)
-
-<br>
-
-Last created or modified items:
-
-![](https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/ultimos-modificados.png)
+### Home:
+<kbd>
+  <img src="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/inicio.png">
+</kbd>
 
 <br>
-
-Favorites:
-
-![](https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/favoritos.png)
-
 <br>
 
+###
 
-Updating items:
-
-![](https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/modificando-item-juntos.png) 
+### Categories:
+<kbd>
+  <img src="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/items-en-carpeta.png">
+</kbd>
 
 <br>
+<br>
 
-Moving items in category:
+###
 
-![](https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/moviendo-item.png)
+### Last created or modified items:
+<kbd>
+  <img src="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/ultimos-modificados.png">
+</kbd>
 
+<br>
+<br>
+
+###
+
+### Favorites:
+<kbd>
+  <img src="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/favoritos.png">
+</kbd>
+
+<br>
+<br>
+
+###
+
+### Updating items:
+<kbd align="center">
+  <img src="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/modificando-item-juntos.png">
+</kbd>
+
+<br>
+<br>
+
+###
+
+### Moving items in category:
+<kbd>
+  <img src="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/moviendo-item.png">
+</kbd>
 
 <br>
 <br>
