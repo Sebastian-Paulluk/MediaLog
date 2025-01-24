@@ -8,7 +8,7 @@
   </tr>
 </table>
 
-<br>
+
 
 <table align="right">
     <tr>
@@ -27,23 +27,7 @@
 
 
 
-
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li><a href="#caracteristicas">Main Features</a></li>
-    <li><a href="#creado-con">Built With</a></li>
-    <li><a href="#despliegue">Deployment</a></li>
-    <li><a href="#instalacion">Installation</a></li>
-    <li><a href="#imagenes">Images</a></li>
-    <li><a href="#pefiles-y-contacto">Profiles and Contact</a></li>
-  </ol>
-</details>
-
-
-
-<br>
-<br>
+<br><br>
 
 
 
@@ -52,6 +36,20 @@
 MediaLog is a web application developed with React, designed to efficiently organize and manage series, movies, and other media items. The interface allows you to create and customize categories and subcategories with a folder tree-style design, where you can intuitively add and organize your media content.
 
 
+
+<br>
+
+
+
+## Content
+- <a href="#caracteristicas"> ✨ Main Features </a>
+- <a href="#creado-con"> 🛠️ Built with</a>
+- <a href="#despliegue"> 🚀 Deployment</a>
+- <a href="#instalacion"> 📥 Installation</a>
+- <a href="#imagenes"> 🖼️ Images</a>
+- <a href="#pefiles-y-contacto"> 👤 Profiles and contact</a>
+
+  
 
 <br>
 
@@ -103,7 +101,7 @@ MediaLog is a web application developed with React, designed to efficiently orga
 
 <a id="despliegue"></a>
 
-## Deploy
+## Deployment
 ### <https://series-log.vercel.app/>
 
 <br>
