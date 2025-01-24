@@ -8,6 +8,12 @@
 <br>
 
 <div align="center">
+
+  <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.md">
+    <img src="https://img.shields.io/badge/lang-english-blue.svg" alt="es">
+  </a>
+
+
   <a href="#">
     <img src="https://img.shields.io/badge/lang-español-red.svg" alt="es">
   </a>
