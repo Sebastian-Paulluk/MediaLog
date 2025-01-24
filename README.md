@@ -51,6 +51,7 @@ MediaLog es una aplicación web desarrollada con React, diseñada para organizar
 ## Creado con
 
 * [![React][React.js]][React-url]
+* [![TypeScript][TypeScript]][TypeScript-url]
 * [![Sass][Sass]][Sass-url]
 * [![React Router DOM][ReactRouterDOM]][ReactRouterDOM-url]
 * [![Material UI][Material-UI]][Material-UI-url]
@@ -163,6 +164,9 @@ Moviendo items en categoria:
  <!-- MARKDOWN LINKS & IMAGES -->
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
+
+[TypeScript]: https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white
+[TypeScript-url]: https://www.typescriptlang.org/
 
 [Sass]: https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white
 [Sass-url]: https://sass-lang.com/
