@@ -1,15 +1,31 @@
-<a id="readme-top"></a>
+<a id="top"></a>
 
-
-<div align="center">
-  <img  src="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/logo.png">
-</div>
+<table align="center"> 
+    <tr>
+      <td>
+        <img  src="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/logo.png">
+    </td>
+  </tr>
+</table>
 
 <br>
 
-<div align="right">
-    <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.md"><img src="https://img.shields.io/badge/lang-english-blue.svg" height="27" alt="eng"></a> &nbsp; <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.es.md"><img src="https://img.shields.io/badge/lang-español-red.svg" alt="es"></a>
-</div>
+<table align="right">
+    <tr>
+      <td align="center">
+        Languages
+      </td>
+    </tr>
+  <tr>
+    <td align="right">
+      <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.md"><img src="https://img.shields.io/badge/english-blue.svg" alt="eng"></a>
+      &nbsp;
+      <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.es.md"><img src="https://img.shields.io/badge/español-red.svg" height="25" alt="es"></a>
+    </td>
+  </tr>
+</table>
+
+
 
 
 <details>
@@ -26,13 +42,20 @@
 
 
 
+<br>
+<br>
+
+
 
 # MediaLog
 
 MediaLog is a web application developed with React, designed to efficiently organize and manage series, movies, and other media items. The interface allows you to create and customize categories and subcategories with a folder tree-style design, where you can intuitively add and organize your media content.
 
 
+
 <br>
+
+
 
 <a id="caracteristicas"></a>
 ## Main Features
@@ -58,8 +81,9 @@ MediaLog is a web application developed with React, designed to efficiently orga
 
 <br>
 
-<a id="creado-con"></a>
 
+
+<a id="creado-con"></a>
 ## Built With
 
 * [![React][React.js]][React-url]
@@ -74,6 +98,7 @@ MediaLog is a web application developed with React, designed to efficiently orga
 
 
 <br>
+
 
 
 <a id="despliegue"></a>
@@ -91,23 +116,26 @@ MediaLog is a web application developed with React, designed to efficiently orga
    ```sh
    git clone https://github.com/Sebastian-Paulluk/MediaLog.git
    ```
-2. Install dependencies
-   ```sh
-   npm install
-   ```
-3. Navigate to the project directory
+2. Navigate to the project directory
    ```sh
    cd MediaLog
+   ```
+3. Install dependencies
+   ```sh
+   npm install
    ```
 4. Run the app
    ```sh
    npm run start
    ```
 
+
+
 <br><br>
 
-<a id="imagenes"></a>
 
+
+<a id="imagenes"></a>
 # Images
 
 <br>
@@ -170,11 +198,15 @@ MediaLog is a web application developed with React, designed to efficiently orga
   <img src="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/public/images-github/moviendo-item.png">
 </kbd>
 
+
+
 <br>
 <br>
+<br>
+
+
 
 <a id="pefiles-y-contacto"></a>
-
 ## Profiles and Contact
 
 ### Sebastián Jonatan Paulluk
