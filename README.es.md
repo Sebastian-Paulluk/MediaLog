@@ -9,7 +9,6 @@
 </table>
 
 
-<br>
 
 <table align="right">
     <tr>
@@ -28,22 +27,7 @@
 
 
 
-<details>
-  <summary>Tabla de contenido</summary>
-  <ol>
-    <li><a href="#caracteristicas">Características principales</a></li>
-    <li><a href="#creado-con">Creado con</a></li>
-    <li><a href="#despliegue">Despliegue</a></li>
-    <li><a href="#instalacion">Instalación</a></li>
-    <li><a href="#imagenes">Imágenes</a></li>
-    <li><a href="#pefiles-y-contacto">Perfiles y contacto</a></li>
-  </ol>
-</details>
-
-
-
-<br>
-<br>
+<br><br>
 
 
 
@@ -51,7 +35,25 @@
 
 MediaLog es una aplicación web desarrollada con React, diseñada para organizar y gestionar series, películas y otros elementos de manera eficiente. La interfaz permite crear y personalizar categorías y subcategorías con un diseño estilo árbol de carpetas, donde podés agregar y organizar tus elementos multimedia de forma intuitiva.
 
+
+
 <br>
+
+
+
+## Contenido
+- <a href="#caracteristicas"> ✨ Características principales </a>
+- <a href="#creado-con"> 🛠️ Creado con</a>
+- <a href="#despliegue"> 🚀 Despliegue</a>
+- <a href="#instalacion"> 📥 Instalación</a>
+- <a href="#imagenes"> 🖼️ Imágenes</a>
+- <a href="#pefiles-y-contacto"> 👤 Perfiles y contacto</a>
+
+  
+
+<br>
+
+
 
 <a id="caracteristicas"></a>
 ## Características principales
