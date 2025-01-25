@@ -11,9 +11,9 @@
 
 
 <div align="right">
-  <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.md"><img src="https://img.shields.io/badge/lang-english-blue.svg" height="25" alt="eng"></a>
+  <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.md"><img src="https://img.shields.io/badge/lang-english-blue.svg" alt="eng"></a>
   &nbsp;
-  <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.es.md"><img src="https://img.shields.io/badge/lang-español-red.svg" alt="es"></a>
+  <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.es.md"><img src="https://img.shields.io/badge/lang-español-red.svg" height="27" alt="es"></a>
 </div>
 
 
