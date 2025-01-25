@@ -10,24 +10,12 @@
 
 
 
-<table align="right">
-    <tr>
-      <td align="center">
-        Idiomas
-      </td>
-    </tr>
-  <tr>
-    <td align="right">
-      <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.md"><img src="https://img.shields.io/badge/english-blue.svg" alt="eng"></a>
-      &nbsp;
-      <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.es.md"><img src="https://img.shields.io/badge/español-red.svg" height="25" alt="es"></a>
-    </td>
-  </tr>
-</table>
+<div align="right">
+  <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.md"><img src="https://img.shields.io/badge/lang-english-blue.svg" height="25" alt="eng"></a>
+  &nbsp;
+  <a href="https://github.com/Sebastian-Paulluk/MediaLog/blob/main/README.es.md"><img src="https://img.shields.io/badge/lang-español-red.svg" alt="es"></a>
+</div>
 
-
-
-<br><br>
 
 
 
@@ -201,19 +189,27 @@ MediaLog es una aplicación web desarrollada con React, diseñada para organizar
 <br>
 
 
-<a id="pefiles-y-contacto"></a>
-## Perfiles y contacto
+<p align="right"><a href="#top">Volver al inicio</a></p>
 
-### Sebastián Jonatan Paulluk
+___
+
+<a id="pefiles-y-contacto"></a>
+
+<br>
+<h3 align="center"> Sebastián Jonatan Paulluk </h3>
 <br>
 
-[![GitHub][GitHub-icon]][GitHub-url] &nbsp; &nbsp; [github.com/Sebastian-Paulluk](https://github.com/Sebastian-Paulluk)
-
-[![LinkedIn][LinkedIn-icon]][LinkedIn-url] &nbsp; &nbsp; [linkedin.com/in/sebastian-paulluk/](https://www.linkedin.com/in/sebastian-paulluk/)
-
-[![Gmail][Gmail-icon]][Gmail-url] &nbsp; &nbsp; sebastianpaulluk@gmail.com
-
-<p align="right"><a href="#top">Volver al inicio</a></p>
+<div align="center">✉️ Email: sebastianpaulluk@gmail.com</div>
+<br>
+<div align="center">
+    <a href="https://github.com/Sebastian-Paulluk"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="github"></a>
+    &nbsp;
+    <a href="https://www.linkedin.com/in/sebastian-paulluk/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="linkedin"></a>
+    &nbsp;
+    <a href="https://www.instagram.com/sebapaulluk/"><img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white" alt="instagram"></a>
+    &nbsp;
+    <a href="https://www.facebook.com/sebastian.paulluk/"><img src="https://img.shields.io/badge/Facebook-%231877F2.svg?style=for-the-badge&logo=Facebook&logoColor=white" alt="facebook"></a>
+</div>
 
 
 
